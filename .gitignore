@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment — never commit real credentials.
+# .env.example is committed as the template; every real value stays out of git.
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production
+.env.production.local
+
+# Local object storage (student recordings, payment receipts).
+# These are private user data and must never enter a repository.
+storage/
+
+# Scratch and local working files
+scratch/
+*.log
+
+# Test and coverage output
+coverage/
+.vitest/
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Vercel / deployment caches
+.vercel
