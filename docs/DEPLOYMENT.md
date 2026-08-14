@@ -98,27 +98,35 @@ Settings page shows whether each one is configured, never its value.
 
 ## Step 3 — First deploy
 
-Hostinger runs `npm install` then `npm run build`, which is:
+Hostinger runs `npm install`, then `npm run build`, then `npm start`.
 
 ```
-prisma generate && prisma migrate deploy && next build
+build:  prisma generate && next build
+start:  prisma migrate deploy && next start
 ```
 
-Migrations run as part of the build on purpose. A managed host only knows
-`npm run build`, so if the schema were not brought up to date there, a deploy
-could ship code expecting columns the database does not have.
-`prisma migrate deploy` is idempotent and never resets data.
+**The build never touches the database.** Build environments frequently have no
+`DATABASE_URL` and no network route to Postgres, and a build that needs one
+fails before Next.js compiles anything. This build is verified to complete with
+`DATABASE_URL` and `AUTH_SECRET` entirely unset.
 
-The app is then started with `npm start`, which binds to Hostinger's `$PORT`.
+**Migrations run at start instead**, in the runtime environment where the
+variables are guaranteed to exist. `prisma migrate deploy` is idempotent, takes
+a Postgres advisory lock so concurrent instances are safe, and never resets
+data.
 
-**Watch the build log.** A failure here is almost always one of:
+If you would rather run migrations by hand, use `npm run start:no-migrate` as
+the start command and run `npm run db:deploy` from the terminal yourself.
 
-| Symptom | Cause |
-|---|---|
-| `P1001 Can't reach database server` | `DATABASE_URL` wrong, or you used the non-pooled endpoint |
-| `DEMO_MODE must not be enabled in production` | `DEMO_MODE` is still `true` |
-| `AUTH_SECRET is required in production` | the variable is missing |
-| Type or lint errors | should not happen — `npm run build` passes locally; re-pull |
+**Watch the logs.** Failures are almost always one of:
+
+| Symptom | Where | Cause |
+|---|---|---|
+| `Environment variable not found: DATABASE_URL` | start | The variable is not set on the app |
+| `P1001 Can't reach database server` | start | Wrong host, or you used the non-pooled endpoint |
+| `DEMO_MODE must not be enabled in production` | start | `DEMO_MODE` is still `true` |
+| `AUTH_SECRET is required in production` | start | The variable is missing |
+| Type or lint errors | build | Should not happen — the build passes from a clean clone; re-pull |
 
 ---
 
@@ -137,7 +145,7 @@ The app is then started with `npm start`, which binds to Hostinger's `$PORT`.
 
 ## Step 5 — Seed the first admin
 
-The database already has its schema from step 3. It needs one administrator.
+The schema was applied when the app started. It needs one administrator.
 
 Set `SEED_ADMIN_EMAIL` and `SEED_ADMIN_PASSWORD` (a strong one) in the
 environment, then run the seed once from Hostinger's terminal:

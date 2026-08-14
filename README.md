@@ -121,9 +121,9 @@ only in environment variables, so a compromised admin session cannot read them.
 | | |
 |---|---|
 | `npm run dev` | Development server |
-| `npm run build` | Production build — runs pending migrations first |
-| `npm run build:local` | Build without touching the database |
-| `npm start` | Serve the production build |
+| `npm run build` | Production build — never touches the database |
+| `npm start` | Apply pending migrations, then serve |
+| `npm run start:no-migrate` | Serve without running migrations |
 | `npm test` | Vitest suite |
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm run lint` | ESLint |

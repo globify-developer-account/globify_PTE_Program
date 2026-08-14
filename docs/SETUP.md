@@ -129,8 +129,9 @@ npm run lint
 npm test
 ```
 
-`npm run build` also runs `prisma migrate deploy`, so it needs a reachable
-database. Use `npm run build:local` to build without touching one.
+`npm run build` never touches the database, so it works offline. Migrations are
+applied by `npm start` instead, which runs in the environment that actually has
+`DATABASE_URL`.
 
 ---
 
