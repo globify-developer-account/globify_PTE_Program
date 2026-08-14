@@ -22,10 +22,13 @@ next-env.d.ts
 
 # Local object storage (student recordings, payment receipts).
 # These are private user data and must never enter a repository.
-storage/
+#
+# Leading slash matters: an unanchored `storage/` would also match
+# src/lib/storage/, silently excluding the storage module from the repository.
+/storage/
 
-# Scratch and local working files
-scratch/
+# Scratch and local working files. Anchored for the same reason as above.
+/scratch/
 *.log
 
 # Test and coverage output

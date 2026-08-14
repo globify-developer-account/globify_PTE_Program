@@ -8,8 +8,10 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
-    "start": "next start",
+    "// build": "Applies pending migrations before building. Managed hosts only know `npm run build`, so the schema must be brought up to date here or a deploy can ship code that expects columns the database does not have. `migrate deploy` is idempotent and never resets data.",
+    "build": "prisma generate && prisma migrate deploy && next build",
+    "build:local": "prisma generate && next build",
+    "start": "next start -p ${PORT:-3000}",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -21,6 +23,7 @@
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
     "db:reset": "prisma migrate reset --force",
+    "verify:storage": "tsx scripts/verify-storage.mts",
     "migration:build": "tsx scripts/build-migration.ts"
   },
   "dependencies": {
