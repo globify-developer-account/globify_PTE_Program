@@ -7,7 +7,7 @@ import { slugify } from '@/lib/utils'
 
 export const runtime = 'nodejs'
 
-export const topicSchema = z.object({
+const topicSchema = z.object({
   slug: z.string().trim().max(80).optional(),
   title: z.string().trim().min(3).max(120),
   subtitle: z.string().trim().max(200).nullish(),
