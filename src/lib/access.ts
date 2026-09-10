@@ -15,6 +15,7 @@ import { startOfDay } from './utils'
 export type GatedFeature =
   | 'ai_speaking'
   | 'ai_writing'
+  | 'ai_conversation'
   | 'mock_test'
   | 'practice'
   | 'teacher_review'
@@ -23,6 +24,7 @@ export type GatedFeature =
 export interface PlanLimits {
   aiSpeakingPerMonth: number
   aiWritingPerMonth: number
+  aiConversationsPerMonth: number
   mockTestsPerMonth: number
   practicePerDay: number
   teacherReviews: number
@@ -33,6 +35,7 @@ export interface PlanLimits {
 export const FREE_LIMITS: PlanLimits = {
   aiSpeakingPerMonth: 5,
   aiWritingPerMonth: 3,
+  aiConversationsPerMonth: 2,
   mockTestsPerMonth: 1,
   practicePerDay: 10,
   teacherReviews: 0,
@@ -47,6 +50,7 @@ const FEATURE_META: Record<
 > = {
   ai_speaking: { limitKey: 'aiSpeakingPerMonth', window: 'month', label: 'AI speaking evaluations' },
   ai_writing: { limitKey: 'aiWritingPerMonth', window: 'month', label: 'AI writing evaluations' },
+  ai_conversation: { limitKey: 'aiConversationsPerMonth', window: 'month', label: 'AI conversations' },
   mock_test: { limitKey: 'mockTestsPerMonth', window: 'month', label: 'mock tests' },
   practice: { limitKey: 'practicePerDay', window: 'day', label: 'practice questions' },
   teacher_review: { limitKey: 'teacherReviews', window: 'month', label: 'teacher reviews' },
@@ -62,6 +66,7 @@ export function parseLimits(raw: unknown): PlanLimits {
   return {
     aiSpeakingPerMonth: num('aiSpeakingPerMonth', FREE_LIMITS.aiSpeakingPerMonth),
     aiWritingPerMonth: num('aiWritingPerMonth', FREE_LIMITS.aiWritingPerMonth),
+    aiConversationsPerMonth: num('aiConversationsPerMonth', FREE_LIMITS.aiConversationsPerMonth),
     mockTestsPerMonth: num('mockTestsPerMonth', FREE_LIMITS.mockTestsPerMonth),
     practicePerDay: num('practicePerDay', FREE_LIMITS.practicePerDay),
     teacherReviews: num('teacherReviews', FREE_LIMITS.teacherReviews),

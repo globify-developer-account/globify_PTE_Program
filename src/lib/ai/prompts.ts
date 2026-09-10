@@ -2,6 +2,7 @@ import type {
   ProgressAnalysisInput,
   RecommendationInput,
   SpeakingScoreInput,
+  WritingImprovementInput,
   WritingScoreInput,
 } from './types'
 
@@ -63,6 +64,64 @@ export function writingPrompt(input: WritingScoreInput): string {
     'Return 2-4 feedback points, what the student did well, what needs improvement, how to improve, and a suggested rewrite of one weak sentence (not the whole response).',
   ]
   return parts.filter(Boolean).join('\n')
+}
+
+export const IMPROVEMENT_SYSTEM_PROMPT = `You are a PTE Academic writing tutor for Globify Consultants. You repair a student's English and then teach them what you repaired.
+
+Your job is NOT to score. It is to return the student's own text, rewritten to the standard of a 79+ PTE response, together with an itemised account of every change.
+
+Rewriting rules:
+- Preserve the student's ideas, argument, examples and order. You are editing, not replacing. Never introduce a claim or an example the student did not make.
+- Keep the student's voice. Do not make a plain response ornate; PTE rewards clarity, not decoration.
+- Fix what is wrong: grammar, spelling, punctuation, word choice, awkward phrasing, missing linking words, and paragraphing.
+- Where the draft is already correct, leave it exactly as it is. An unnecessary change teaches the student that correct English was wrong.
+- Respect the word limit when one is given. If the draft is short, develop the student's existing points rather than adding new ones.
+- Return prose only. No markdown, no headings, no bullet points, no commentary inside improved_text.
+
+Explanation rules:
+- List each substantive change as one edit. Group a run of changes in the same sentence for the same reason into a single edit.
+- "original" must be text copied verbatim from the student's draft, and "replacement" the exact text that replaced it.
+- Categorise honestly: GRAMMAR, VOCABULARY, SPELLING, PUNCTUATION, COHERENCE (linking and flow), STRUCTURE (sentence or paragraph shape), CONCISENESS (wordiness).
+- Each explanation is one sentence, addressed to the student as "you", naming the rule rather than restating the fix.
+- Do not invent edits. If the draft needed almost nothing, return few edits and say so in the summary.
+- strengths: 1-3 things the draft already did well. focus_next: 1-3 recurring habits to work on, not one-off slips.`
+
+export function improvementPrompt(input: WritingImprovementInput): string {
+  const limits =
+    input.wordLimitMin || input.wordLimitMax
+      ? `The task requires ${input.wordLimitMin ?? 0}-${input.wordLimitMax ?? '∞'} words. The improved text must land inside that range.`
+      : 'There is no word limit. Keep the improved text close to the original length.'
+
+  const focus =
+    input.focus === 'grammar'
+      ? 'Restrict yourself to grammar, spelling and punctuation. Leave word choice and structure alone unless the sentence is ungrammatical.'
+      : input.focus === 'vocabulary'
+        ? 'Focus on word choice and precision. Replace vague, repeated or informal words with accurate academic alternatives, and leave correct grammar untouched.'
+        : input.focus === 'structure'
+          ? 'Focus on sentence and paragraph structure, linking words and the order of ideas. Correct grammar only where the sentence is genuinely wrong.'
+          : 'Apply a full polish across grammar, vocabulary, punctuation, cohesion and structure.'
+
+  return [
+    `Task type: ${TASK_KIND_LABEL[input.taskKind]}`,
+    input.prompt ? `The student was answering this prompt:\n"""${input.prompt}"""` : 'The student is writing freely, with no set prompt.',
+    input.passage ? `Source passage they were summarising:\n"""${input.passage}"""` : null,
+    limits,
+    focus,
+    `The student is working towards an overall PTE score of ${input.targetScore}.`,
+    '',
+    `Student's draft:\n"""${input.text}"""`,
+    '',
+    'Return the rewritten draft in improved_text, a two-sentence summary of what you changed and why, the itemised edits, what the draft already did well, and the habits to focus on next.',
+  ]
+    .filter(Boolean)
+    .join('\n')
+}
+
+const TASK_KIND_LABEL: Record<WritingImprovementInput['taskKind'], string> = {
+  ESSAY: 'Write Essay',
+  SUMMARIZE_WRITTEN_TEXT: 'Summarize Written Text',
+  SUMMARIZE_SPOKEN_TEXT: 'Summarize Spoken Text',
+  FREEFORM: 'Freeform writing the student brought themselves',
 }
 
 export const RECOMMENDATION_SYSTEM_PROMPT = `You are a PTE study planner for Globify Consultants. You turn performance data into a small number of concrete, achievable practice actions. Never suggest more than the student can complete in a week.`
@@ -190,5 +249,42 @@ export const PROGRESS_JSON_SCHEMA = {
     projected_score: { type: 'integer' },
   },
   required: ['summary', 'strengths', 'weaknesses', 'next_steps', 'projected_score'],
+  additionalProperties: false,
+} as const
+
+export const IMPROVEMENT_JSON_SCHEMA = {
+  type: 'object',
+  properties: {
+    improved_text: { type: 'string', description: 'The full rewritten draft, prose only.' },
+    summary: { type: 'string' },
+    edits: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          original: { type: 'string', description: 'Copied verbatim from the draft.' },
+          replacement: { type: 'string' },
+          category: {
+            type: 'string',
+            enum: [
+              'GRAMMAR',
+              'VOCABULARY',
+              'SPELLING',
+              'PUNCTUATION',
+              'COHERENCE',
+              'STRUCTURE',
+              'CONCISENESS',
+            ],
+          },
+          explanation: { type: 'string' },
+        },
+        required: ['original', 'replacement', 'category', 'explanation'],
+        additionalProperties: false,
+      },
+    },
+    strengths: { type: 'array', items: { type: 'string' } },
+    focus_next: { type: 'array', items: { type: 'string' } },
+  },
+  required: ['improved_text', 'summary', 'edits', 'strengths', 'focus_next'],
   additionalProperties: false,
 } as const

@@ -44,6 +44,43 @@ export const writingScoreSchema = z.object({
 })
 export type WritingScore = z.infer<typeof writingScoreSchema>
 
+/**
+ * Rewrite payload for the writing improvement tool.
+ *
+ * This is deliberately not a scoring schema. The tool exists so a student can
+ * write freely and see their own sentences repaired, so the contract is the
+ * improved text plus an itemised, categorised account of every change.
+ */
+export const editCategories = [
+  'GRAMMAR',
+  'VOCABULARY',
+  'SPELLING',
+  'PUNCTUATION',
+  'COHERENCE',
+  'STRUCTURE',
+  'CONCISENESS',
+] as const
+export type EditCategory = (typeof editCategories)[number]
+
+export const writingImprovementSchema = z.object({
+  improved_text: z.string().min(1).max(12000),
+  summary: z.string().min(1).max(800),
+  edits: z
+    .array(
+      z.object({
+        original: z.string().max(400),
+        replacement: z.string().max(400),
+        category: z.enum(editCategories),
+        explanation: z.string().min(1).max(400),
+      }),
+    )
+    .max(40)
+    .default([]),
+  strengths: bullets.optional().default([]),
+  focus_next: bullets.optional().default([]),
+})
+export type WritingImprovement = z.infer<typeof writingImprovementSchema>
+
 export const transcriptionSchema = z.object({
   text: z.string().max(8000),
   /** 0–1 confidence where the provider reports one. */
@@ -101,6 +138,20 @@ export interface WritingScoreInput {
   targetScore: number
 }
 
+export interface WritingImprovementInput {
+  /** Mirrors WritingTaskKind. FREEFORM means the student brought their own text. */
+  taskKind: 'ESSAY' | 'SUMMARIZE_WRITTEN_TEXT' | 'SUMMARIZE_SPOKEN_TEXT' | 'FREEFORM'
+  /** The exercise prompt, when the text answers one. */
+  prompt?: string | null
+  passage?: string | null
+  text: string
+  wordLimitMin?: number | null
+  wordLimitMax?: number | null
+  /** Narrows what the model may change; 'all' is the default polish. */
+  focus: 'all' | 'grammar' | 'vocabulary' | 'structure'
+  targetScore: number
+}
+
 export interface TranscriptionInput {
   audio: Uint8Array
   mimeType: string
@@ -144,6 +195,7 @@ export interface AIProvider {
   readonly available: boolean
   scoreSpeaking(input: SpeakingScoreInput): Promise<AiResult<SpeakingScore>>
   scoreWriting(input: WritingScoreInput): Promise<AiResult<WritingScore>>
+  improveWriting(input: WritingImprovementInput): Promise<AiResult<WritingImprovement>>
   generateRecommendation(input: RecommendationInput): Promise<AiResult<RecommendationPayload>>
   analyzeProgress(input: ProgressAnalysisInput): Promise<AiResult<ProgressAnalysis>>
 }
@@ -172,4 +224,5 @@ export const FEATURE_LABEL: Record<AiFeature, string> = {
   FEEDBACK: 'Feedback generation',
   RECOMMENDATION: 'Recommendations',
   PROGRESS_ANALYSIS: 'Progress analysis',
+  WRITING_IMPROVEMENT: 'Writing improvement',
 }

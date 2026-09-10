@@ -3,6 +3,7 @@ import { contentOverlap, normalizeText } from '../../pte/scoring'
 import type {
   AIProvider,
   AiResult,
+  EditCategory,
   ProgressAnalysis,
   ProgressAnalysisInput,
   RecommendationInput,
@@ -12,6 +13,8 @@ import type {
   Transcription,
   TranscriptionInput,
   TranscriptionProvider,
+  WritingImprovement,
+  WritingImprovementInput,
   WritingScore,
   WritingScoreInput,
 } from '../types'
@@ -45,6 +48,265 @@ function lexicalVariety(text: string): number {
   const words = normalizeText(text).split(' ').filter(Boolean)
   if (words.length === 0) return 0
   return new Set(words).size / words.length
+}
+
+/**
+ * Deterministic rule-based rewriter behind the improvement tool in demo mode.
+ *
+ * It is a copy-editor, not a model: every rule below is a mechanical fix that
+ * is right or wrong independently of context, so it never "improves" correct
+ * English into something else. Anything needing judgement — developing an
+ * argument, restructuring a paragraph — is left to a real provider, and every
+ * surface that renders these results labels them as simulated.
+ */
+
+interface Rule {
+  pattern: RegExp
+  replace: string
+  category: EditCategory
+  explanation: string
+}
+
+const SPELLINGS: Array<[string, string]> = [
+  ['alot', 'a lot'],
+  ['recieve', 'receive'],
+  ['beacuse', 'because'],
+  ['definately', 'definitely'],
+  ['occured', 'occurred'],
+  ['seperate', 'separate'],
+  ['thier', 'their'],
+  ['wich', 'which'],
+  ['goverment', 'government'],
+  ['enviroment', 'environment'],
+  ['sucess', 'success'],
+  ['benifit', 'benefit'],
+  ['oppurtunity', 'opportunity'],
+  ['arguement', 'argument'],
+  ['existance', 'existence'],
+  ['neccessary', 'necessary'],
+  ['knowlege', 'knowledge'],
+  ['acheive', 'achieve'],
+  ['begining', 'beginning'],
+]
+
+const CONTRACTIONS: Array<[string, string]> = [
+  ['don.t', 'do not'],
+  ['doesn.t', 'does not'],
+  ['can.t', 'cannot'],
+  ['won.t', 'will not'],
+  ['isn.t', 'is not'],
+  ['aren.t', 'are not'],
+  ['wasn.t', 'was not'],
+  ['shouldn.t', 'should not'],
+  ['it.s', 'it is'],
+  ['they.re', 'they are'],
+  ['there.s', 'there is'],
+]
+
+const INFORMAL: Array<[string, string]> = [
+  ['a lot of', 'many'],
+  ['lots of', 'many'],
+  ['kids', 'children'],
+  ['stuff', 'material'],
+  ['nowadays', 'in recent years'],
+  ['big problem', 'significant problem'],
+  ['really important', 'crucial'],
+  ['very good', 'highly beneficial'],
+  ['very bad', 'severely detrimental'],
+]
+
+const WORDY: Array<[string, string]> = [
+  ['due to the fact that', 'because'],
+  ['in spite of the fact that', 'although'],
+  ['at this point in time', 'now'],
+  ['in order to', 'to'],
+  ['the majority of', 'most'],
+  ['a large number of', 'many'],
+]
+
+function phraseRules(
+  pairs: Array<[string, string]>,
+  category: EditCategory,
+  explanation: string,
+): Rule[] {
+  // The left-hand sides are authored as regex-safe literals, so they can be
+  // embedded directly. `.` in the contraction list matches either a straight
+  // or a curly apostrophe, which is what a student's editor actually produces.
+  return pairs.map(([from, to]) => ({
+    pattern: new RegExp('\\b' + from + '\\b', 'gi'),
+    replace: to,
+    category,
+    explanation,
+  }))
+}
+
+const RULES: Rule[] = [
+  ...phraseRules(
+    SPELLINGS,
+    'SPELLING',
+    'This is a high-frequency misspelling, and spelling is scored directly on this task.',
+  ),
+  ...phraseRules(
+    CONTRACTIONS,
+    'VOCABULARY',
+    'Academic writing uses the full form rather than a contraction, which reads as informal speech.',
+  ),
+  ...phraseRules(
+    INFORMAL,
+    'VOCABULARY',
+    'A precise academic word scores higher than a vague or conversational one.',
+  ),
+  ...phraseRules(
+    WORDY,
+    'CONCISENESS',
+    'A shorter phrase carries the same meaning and leaves room for your argument.',
+  ),
+]
+
+const CONNECTIVES =
+  /\b(however|therefore|moreover|furthermore|although|whereas|consequently|in addition|for example|as a result)\b/i
+
+/** Applies one rule, returning the new text and a sample of what it changed. */
+function applyRule(text: string, rule: Rule): { text: string; edit: WritingImprovement['edits'][number] | null } {
+  rule.pattern.lastIndex = 0
+  const match = rule.pattern.exec(text)
+  if (!match) return { text, edit: null }
+
+  rule.pattern.lastIndex = 0
+  const next = text.replace(rule.pattern, (found) =>
+    // Keep the student's capitalisation when the phrase opened a sentence.
+    found[0] === found[0]?.toUpperCase() && found[0] !== found[0]?.toLowerCase()
+      ? rule.replace.charAt(0).toUpperCase() + rule.replace.slice(1)
+      : rule.replace,
+  )
+
+  return {
+    text: next,
+    edit: {
+      original: match[0],
+      replacement: rule.replace,
+      category: rule.category,
+      explanation: rule.explanation,
+    },
+  }
+}
+
+function mechanicalFixes(text: string): { text: string; edits: WritingImprovement['edits'] } {
+  const edits: WritingImprovement['edits'] = []
+  let working = text
+
+  const doubleSpace = working.match(/\S {2,}\S/)
+  if (doubleSpace) {
+    working = working.replace(/ {2,}/g, ' ')
+    edits.push({
+      original: doubleSpace[0],
+      replacement: doubleSpace[0].replace(/ {2,}/g, ' '),
+      category: 'PUNCTUATION',
+      explanation: 'Use a single space between words so your response is not flagged as poorly formatted.',
+    })
+  }
+
+  const spaceBefore = working.match(/\w\s+[,.;:!?]/)
+  if (spaceBefore) {
+    working = working.replace(/\s+([,.;:!?])/g, '$1')
+    edits.push({
+      original: spaceBefore[0],
+      replacement: spaceBefore[0].replace(/\s+/, ''),
+      category: 'PUNCTUATION',
+      explanation: 'Punctuation attaches to the word before it, with no space in between.',
+    })
+  }
+
+  const missingSpace = working.match(/\w[,;:.!?][A-Za-z]/)
+  if (missingSpace) {
+    working = working.replace(/([,;:])(?=[A-Za-z])/g, '$1 ').replace(/([.!?])(?=[A-Za-z])/g, '$1 ')
+    edits.push({
+      original: missingSpace[0],
+      replacement: `${missingSpace[0].slice(0, 2)} ${missingSpace[0].slice(2)}`,
+      category: 'PUNCTUATION',
+      explanation: 'Leave a space after punctuation so the next word is readable.',
+    })
+  }
+
+  const repeated = working.match(/\b(\w+)\s+\1\b/i)
+  if (repeated) {
+    working = working.replace(/\b(\w+)(\s+)\1\b/gi, '$1')
+    edits.push({
+      original: repeated[0],
+      replacement: repeated[1] ?? repeated[0],
+      category: 'GRAMMAR',
+      explanation: 'You repeated a word here; the duplicate adds nothing and reads as a typing slip.',
+    })
+  }
+
+  const lowerI = working.match(/\bi\b/)
+  if (lowerI) {
+    working = working.replace(/\bi\b/g, 'I')
+    edits.push({
+      original: 'i',
+      replacement: 'I',
+      category: 'GRAMMAR',
+      explanation: 'The first-person pronoun "I" is always capitalised, wherever it falls in the sentence.',
+    })
+  }
+
+  const lowerStart = working.match(/(?:^|[.!?]\s+)([a-z])/)
+  if (lowerStart) {
+    working = working.replace(/(^|[.!?]\s+)([a-z])/g, (_all, lead: string, letter: string) => lead + letter.toUpperCase())
+    edits.push({
+      original: lowerStart[0].trim(),
+      replacement: lowerStart[0].trim().toUpperCase(),
+      category: 'PUNCTUATION',
+      explanation: 'Every sentence starts with a capital letter.',
+    })
+  }
+
+  return { text: working, edits }
+}
+
+function improveText(text: string): { improved: string; edits: WritingImprovement['edits'] } {
+  const edits: WritingImprovement['edits'] = []
+  let working = text.trim()
+
+  for (const rule of RULES) {
+    const result = applyRule(working, rule)
+    working = result.text
+    if (result.edit) edits.push(result.edit)
+  }
+
+  const mechanical = mechanicalFixes(working)
+  working = mechanical.text
+  edits.push(...mechanical.edits)
+
+  if (working.length > 0 && !/[.!?]$/.test(working)) {
+    const tail = working.slice(-30)
+    working += '.'
+    edits.push({
+      original: tail,
+      replacement: `${tail}.`,
+      category: 'PUNCTUATION',
+      explanation: 'Your final sentence has no full stop, which reads as an unfinished answer.',
+    })
+  }
+
+  if (!CONNECTIVES.test(working)) {
+    const sentences = working.split(/(?<=[.!?])\s+/)
+    const second = sentences[1]
+    if (second && second.length > 1) {
+      const linked = `Furthermore, ${second.charAt(0).toLowerCase()}${second.slice(1)}`
+      sentences[1] = linked
+      working = sentences.join(' ')
+      edits.push({
+        original: second.slice(0, 60),
+        replacement: linked.slice(0, 60),
+        category: 'COHERENCE',
+        explanation:
+          'Your sentences ran on without linking words, so the relationship between your ideas was left implicit.',
+      })
+    }
+  }
+
+  return { improved: working, edits: edits.slice(0, 40) }
 }
 
 export const demoProvider: AIProvider = {
@@ -197,6 +459,58 @@ export const demoProvider: AIProvider = {
       improvements: overall < input.targetScore ? ['Focus on developing each paragraph with a supporting example.'] : [],
       how_to_improve: ['Write one practice response a day and re-read it for linking words before submitting.'],
       suggested_rewrite: sentences[0] ? `${sentences[0].trim()}, which directly supports the position taken above.` : '',
+    })
+  },
+
+  async improveWriting(input: WritingImprovementInput): Promise<AiResult<WritingImprovement>> {
+    const draft = input.text.trim()
+    if (draft.length === 0) {
+      return noResult<WritingImprovement>({
+        improved_text: '',
+        summary: 'There was nothing to improve — the draft was empty.',
+        edits: [],
+        strengths: [],
+        focus_next: ['Write a first draft, however rough. The tool repairs English; it cannot supply ideas.'],
+      })
+    }
+
+    const { improved, edits } = improveText(draft)
+    const byCategory = new Map<EditCategory, number>()
+    for (const edit of edits) byCategory.set(edit.category, (byCategory.get(edit.category) ?? 0) + 1)
+
+    const worst = [...byCategory.entries()].sort(([, a], [, b]) => b - a)[0]
+    const words = countWords(draft)
+    const variety = lexicalVariety(draft)
+
+    const strengths: string[] = []
+    if (variety > 0.55) strengths.push('Your vocabulary is varied — you rarely repeat the same word.')
+    if (!byCategory.has('SPELLING')) strengths.push('No common misspellings were found in your draft.')
+    if (input.wordLimitMin && words >= input.wordLimitMin) {
+      strengths.push(`You reached ${words} words, which meets the ${input.wordLimitMin}-word minimum.`)
+    }
+
+    const focus: string[] = []
+    if (worst) {
+      focus.push(
+        `${worst[0].toLowerCase()} accounted for ${worst[1]} of the ${edits.length} change${edits.length === 1 ? '' : 's'} below — that is the habit to break first.`,
+      )
+    }
+    if (input.wordLimitMin && words < input.wordLimitMin) {
+      focus.push(`You are ${input.wordLimitMin - words} words short of the required minimum of ${input.wordLimitMin}.`)
+    }
+    if (focus.length === 0) {
+      focus.push('Re-read your next draft once for punctuation before you submit it.')
+    }
+
+    return noResult<WritingImprovement>({
+      improved_text: improved,
+      summary:
+        edits.length === 0
+          ? 'The simulated editor found no mechanical errors to fix. A live AI provider would also assess your argument, development and structure, which this rule-based editor deliberately leaves alone.'
+          : `The simulated editor made ${edits.length} mechanical correction${edits.length === 1 ? '' : 's'} to spelling, punctuation, register and cohesion. It does not judge your argument or restructure your paragraphs — configure a live AI provider for that.`,
+      edits,
+      strengths,
+      focus_next: focus,
     })
   },
 

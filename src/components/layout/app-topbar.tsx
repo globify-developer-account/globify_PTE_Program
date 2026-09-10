@@ -23,6 +23,7 @@ const TITLES: Array<[string, string]> = [
   ['/dashboard', 'Dashboard'],
   ['/practice', 'Practice'],
   ['/mock-tests', 'Mock Tests'],
+  ['/drills', 'Dictation & Shadowing'],
   ['/progress', 'Progress'],
   ['/ai-tools', 'AI Tools'],
   ['/resources', 'Resources'],

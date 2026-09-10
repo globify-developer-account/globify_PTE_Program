@@ -5,9 +5,12 @@ import {
   PROGRESS_SYSTEM_PROMPT,
   RECOMMENDATION_JSON_SCHEMA,
   RECOMMENDATION_SYSTEM_PROMPT,
+  IMPROVEMENT_JSON_SCHEMA,
+  IMPROVEMENT_SYSTEM_PROMPT,
   SCORING_SYSTEM_PROMPT,
   SPEAKING_JSON_SCHEMA,
   WRITING_JSON_SCHEMA,
+  improvementPrompt,
   progressPrompt,
   recommendationPrompt,
   speakingPrompt,
@@ -18,6 +21,7 @@ import {
   progressAnalysisSchema,
   recommendationSchema,
   speakingScoreSchema,
+  writingImprovementSchema,
   transcriptionSchema,
   writingScoreSchema,
   type AIProvider,
@@ -31,6 +35,8 @@ import {
   type Transcription,
   type TranscriptionInput,
   type TranscriptionProvider,
+  type WritingImprovement,
+  type WritingImprovementInput,
   type WritingScore,
   type WritingScoreInput,
 } from '../types'
@@ -151,6 +157,15 @@ export const openaiProvider: AIProvider = {
       jsonSchema: WRITING_JSON_SCHEMA,
       schema: writingScoreSchema,
       schemaName: 'writing_score',
+    })
+  },
+  improveWriting(input: WritingImprovementInput): Promise<AiResult<WritingImprovement>> {
+    return call({
+      system: IMPROVEMENT_SYSTEM_PROMPT,
+      prompt: improvementPrompt(input),
+      jsonSchema: IMPROVEMENT_JSON_SCHEMA,
+      schema: writingImprovementSchema,
+      schemaName: 'writing_improvement',
     })
   },
   generateRecommendation(input: RecommendationInput): Promise<AiResult<RecommendationPayload>> {

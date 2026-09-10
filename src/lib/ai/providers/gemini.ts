@@ -5,9 +5,12 @@ import {
   PROGRESS_SYSTEM_PROMPT,
   RECOMMENDATION_JSON_SCHEMA,
   RECOMMENDATION_SYSTEM_PROMPT,
+  IMPROVEMENT_JSON_SCHEMA,
+  IMPROVEMENT_SYSTEM_PROMPT,
   SCORING_SYSTEM_PROMPT,
   SPEAKING_JSON_SCHEMA,
   WRITING_JSON_SCHEMA,
+  improvementPrompt,
   progressPrompt,
   recommendationPrompt,
   speakingPrompt,
@@ -18,6 +21,7 @@ import {
   progressAnalysisSchema,
   recommendationSchema,
   speakingScoreSchema,
+  writingImprovementSchema,
   writingScoreSchema,
   type AIProvider,
   type AiResult,
@@ -27,6 +31,8 @@ import {
   type RecommendationPayload,
   type SpeakingScore,
   type SpeakingScoreInput,
+  type WritingImprovement,
+  type WritingImprovementInput,
   type WritingScore,
   type WritingScoreInput,
 } from '../types'
@@ -145,6 +151,14 @@ export const geminiProvider: AIProvider = {
       prompt: writingPrompt(input),
       jsonSchema: WRITING_JSON_SCHEMA,
       schema: writingScoreSchema,
+    })
+  },
+  improveWriting(input: WritingImprovementInput): Promise<AiResult<WritingImprovement>> {
+    return call({
+      system: IMPROVEMENT_SYSTEM_PROMPT,
+      prompt: improvementPrompt(input),
+      jsonSchema: IMPROVEMENT_JSON_SCHEMA,
+      schema: writingImprovementSchema,
     })
   },
   generateRecommendation(input: RecommendationInput): Promise<AiResult<RecommendationPayload>> {

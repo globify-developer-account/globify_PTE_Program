@@ -61,8 +61,10 @@ export const publicNav = [
 
 export const appNav = [
   { label: 'Dashboard', href: '/dashboard', icon: 'LayoutDashboard' },
+  { label: 'Learn', href: '/learn', icon: 'GraduationCap' },
   { label: 'Practice', href: '/practice', icon: 'Mic' },
   { label: 'Mock Tests', href: '/mock-tests', icon: 'ClipboardList' },
+  { label: 'Dictation & Shadowing', href: '/drills', icon: 'Headphones' },
   { label: 'Progress', href: '/progress', icon: 'TrendingUp' },
   { label: 'AI Tools', href: '/ai-tools', icon: 'Sparkles' },
   { label: 'Resources', href: '/resources', icon: 'BookOpen' },
@@ -85,6 +87,8 @@ export const adminNav = [
   { label: 'Plans', href: '/admin/plans', icon: 'CreditCard', permission: 'plans.view' },
   { label: 'Payments', href: '/admin/payments', icon: 'Receipt', permission: 'payments.view' },
   { label: 'Coupons', href: '/admin/coupons', icon: 'Ticket', permission: 'plans.view' },
+  { label: 'Courses', href: '/admin/courses', icon: 'GraduationCap', permission: 'content.view' },
+  { label: 'Dictation & Shadowing', href: '/admin/drills', icon: 'Headphones', permission: 'content.view' },
   { label: 'Resources', href: '/admin/resources', icon: 'BookOpen', permission: 'content.view' },
   { label: 'Announcements', href: '/admin/announcements', icon: 'Megaphone', permission: 'content.view' },
   { label: 'Teacher Reviews', href: '/admin/reviews', icon: 'MessageSquareText', permission: 'reviews.view' },

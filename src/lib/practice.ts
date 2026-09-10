@@ -206,6 +206,34 @@ export async function startPracticeSession(
     throw notFound('There are no published questions available for this selection yet.')
   }
 
+  const { sessionId } = await createSessionForQuestions({
+    userId: input.userId,
+    questionIds,
+    section: input.section ?? null,
+    typeCode: input.typeCode ?? null,
+  })
+
+  return { sessionId, questionIds }
+}
+
+/**
+ * Creates a session over an explicit list of questions.
+ *
+ * Lesson drills use this: there the questions are the ones the lesson author
+ * attached, not the ones the selection heuristic above would have picked.
+ * Quota is the caller's responsibility, since a drill still counts against the
+ * same daily practice allowance.
+ */
+export async function createSessionForQuestions(input: {
+  userId: string
+  questionIds: string[]
+  section?: PteSection | null
+  typeCode?: string | null
+}): Promise<{ sessionId: string }> {
+  if (input.questionIds.length === 0) {
+    throw notFound('There are no published questions available for this selection yet.')
+  }
+
   const definition = input.typeCode ? questionType(input.typeCode) : undefined
   const session = await prisma.practiceSession.create({
     data: {
@@ -213,7 +241,7 @@ export async function startPracticeSession(
       kind: 'PRACTICE',
       section: input.section ?? definition?.section ?? null,
       questionTypeCode: input.typeCode ?? null,
-      totalQuestions: questionIds.length,
+      totalQuestions: input.questionIds.length,
     },
     select: { id: true },
   })
@@ -221,14 +249,14 @@ export async function startPracticeSession(
   // Attempts are created up front so the player can resume exactly where it
   // stopped, and so a refresh never silently starts a new question.
   await prisma.attempt.createMany({
-    data: questionIds.map((questionId) => ({
+    data: input.questionIds.map((questionId) => ({
       userId: input.userId,
       questionId,
       sessionId: session.id,
     })),
   })
 
-  return { sessionId: session.id, questionIds }
+  return { sessionId: session.id }
 }
 
 export interface SessionQuestionState {

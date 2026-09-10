@@ -112,6 +112,22 @@ enum AiFeature {
   FEEDBACK
   RECOMMENDATION
   PROGRESS_ANALYSIS
+  WRITING_IMPROVEMENT
+  CONVERSATION
+  CONVERSATION_REPORT
+  SPEECH_SYNTHESIS
+  IELTS_WRITING_SCORE
+  IELTS_SPEAKING_SCORE
+}
+
+/// The shapes a writing improvement exercise can take. The first three mirror
+/// the scored PTE tasks; FREEFORM is text the student brought themselves and
+/// carries no word limit.
+enum WritingTaskKind {
+  ESSAY
+  SUMMARIZE_WRITTEN_TEXT
+  SUMMARIZE_SPOKEN_TEXT
+  FREEFORM
 }
 
 enum AiRequestStatus {
@@ -165,6 +181,30 @@ enum MockTestKind {
   SECTIONAL
 }
 
+/// The exam a piece of content belongs to. Everything that existed before this
+/// enum was introduced is PTE, which is why every column defaults to it.
+enum Exam {
+  PTE
+  IELTS
+}
+
+/// IELTS ships as two exams wearing one name. They share Listening but differ
+/// in Reading (different passages *and* a stricter raw-score conversion) and in
+/// Writing Task 1. Null means "applies to both", which is how Listening and
+/// every PTE row is stored.
+enum IeltsVariant {
+  ACADEMIC
+  GENERAL_TRAINING
+}
+
+/// Which scale a Score is reported on. `Score.overall` stays the normalised
+/// 0-90 currency the charts and progress rollups read; `Score.band` is
+/// authoritative for IELTS and `overall` is derived from it.
+enum ScoreScale {
+  PTE_10_90
+  IELTS_BAND
+}
+
 // -----------------------------------------------------------------------------
 // Identity & access
 // -----------------------------------------------------------------------------
@@ -205,6 +245,13 @@ model User {
   reviewedPayments Payment[]            @relation("PaymentReviewer")
   studentNotes     StudentNote[]        @relation("NoteStudent")
   authoredNotes    StudentNote[]        @relation("NoteAuthor")
+  enrollments      CourseEnrollment[]
+  lessonProgress   LessonProgress[]
+  authoredDrills   Drill[]              @relation("DrillAuthor")
+  drillAttempts    DrillAttempt[]
+  drillProgress    DrillProgress[]
+  writingImprovements WritingImprovement[]
+  conversations    Conversation[]
 
   @@index([role, status])
   @@index([createdAt])
@@ -218,7 +265,13 @@ model Profile {
   country              String?   @default("Pakistan")
   city                 String?
   studyDestination     String?
+  targetExam           Exam      @default(PTE)
+  /// PTE target on the 10-90 scale. Ignored when targetExam is IELTS.
   targetScore          Int       @default(79)
+  /// IELTS target band, 0-9 in half steps. Ignored when targetExam is PTE.
+  targetBand           Float?
+  /// Which IELTS exam the student is sitting. Null until they pick one.
+  ieltsVariant         IeltsVariant?
   currentEstimateScore Int?
   preferredTestDate    DateTime?
   dailyGoalMinutes     Int       @default(45)
@@ -472,6 +525,7 @@ model QuestionType {
   code           String     @unique
   name           String
   shortName      String
+  exam           Exam       @default(PTE)
   section        PteSection
   description    String?
   /// Renderer key — maps to a React component in the practice engine.
@@ -489,7 +543,7 @@ model QuestionType {
 
   questions Question[]
 
-  @@index([section, displayOrder])
+  @@index([exam, section, displayOrder])
 }
 
 model QuestionCategory {
@@ -520,6 +574,9 @@ model Question {
   audioUrl       String?
   /// Transcript of audioUrl — used for AI scoring and accessibility.
   audioTranscript String?
+  /// Academic vs General Training, for the IELTS tasks whose content differs.
+  /// Null for PTE and for IELTS content shared by both variants.
+  variant        IeltsVariant?
   /// Shape depends on the renderer (see src/lib/pte/schemas.ts).
   options        Json          @default("[]")
   correctAnswer  Json          @default("{}")
@@ -546,6 +603,7 @@ model Question {
   attempts   Attempt[]
   setItems   QuestionSetItem[]
   mockItems  MockTestQuestion[]
+  lessonItems LessonQuestion[]
 
   @@index([questionTypeId, status])
   @@index([status, difficulty])
@@ -557,6 +615,7 @@ model QuestionSet {
   slug         String        @unique
   name         String
   description  String?
+  exam         Exam          @default(PTE)
   section      PteSection?
   isPremium    Boolean       @default(false)
   status       ContentStatus @default(PUBLISHED)
@@ -589,6 +648,8 @@ model MockTest {
   slug            String        @unique
   title           String
   description     String?
+  exam            Exam          @default(PTE)
+  variant         IeltsVariant?
   kind            MockTestKind  @default(FULL)
   difficulty      Difficulty    @default(MEDIUM)
   durationMinutes Int           @default(120)
@@ -646,6 +707,12 @@ model MockTestResult {
   writingScore   Int
   readingScore   Int
   listeningScore Int
+  /// IELTS band equivalents. Null on PTE results.
+  overallBand    Float?
+  speakingBand   Float?
+  writingBand    Float?
+  readingBand    Float?
+  listeningBand  Float?
   /// { grammar, oralFluency, pronunciation, spelling, vocabulary, writtenDiscourse }
   enablingSkills Json     @default("{}")
   strongestArea  String?
@@ -736,8 +803,14 @@ model Score {
   attemptId   String      @unique
   attempt     Attempt     @relation(fields: [attemptId], references: [id], onDelete: Cascade)
   source      ScoreSource @default(RULE)
-  /// Normalised 0-90 PTE-style estimate.
+  /// Normalised 0-90 estimate. Kept for every exam so progress rollups, charts
+  /// and the recommendation engine have one comparable number to read.
   overall     Int
+  /// Which scale this score was actually produced on.
+  scale       ScoreScale  @default(PTE_10_90)
+  /// IELTS band, 0-9 in half steps. Authoritative when scale is IELTS_BAND;
+  /// `overall` is derived from it. Null for PTE.
+  band        Float?
   rawScore    Float?
   maxRawScore Float?
   isCorrect   Boolean?
@@ -798,6 +871,7 @@ model Progress {
   id              String     @id @default(cuid())
   userId          String
   user            User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exam            Exam       @default(PTE)
   section         PteSection
   estimatedScore  Int        @default(0)
   previousScore   Int?
@@ -808,7 +882,7 @@ model Progress {
   byQuestionType  Json       @default("{}")
   updatedAt       DateTime   @updatedAt
 
-  @@unique([userId, section])
+  @@unique([userId, exam, section])
   @@index([userId])
 }
 
@@ -820,6 +894,7 @@ model ProgressSnapshot {
   id             String   @id @default(cuid())
   userId         String
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exam           Exam     @default(PTE)
   date           DateTime @db.Date
   overallScore   Int      @default(0)
   speakingScore  Int?
@@ -829,8 +904,8 @@ model ProgressSnapshot {
   attempts       Int      @default(0)
   minutes        Int      @default(0)
 
-  @@unique([userId, date])
-  @@index([userId, date])
+  @@unique([userId, exam, date])
+  @@index([userId, exam, date])
 }
 
 model Recommendation {
@@ -1003,4 +1078,536 @@ model PlatformSetting {
   key       String   @id
   value     Json
   updatedAt DateTime @updatedAt
+}
+
+// -----------------------------------------------------------------------------
+// Courses
+//
+// A course is an ordered path through the material: Course -> CourseModule ->
+// Lesson. Modules are optional — a short course can hang lessons straight off
+// the course and leave `moduleId` null, which is why lessons carry their own
+// `order` rather than relying on the module for sequencing.
+//
+// Lessons reuse the existing question bank through LessonQuestion instead of
+// duplicating content, so a drill inside a lesson is the same Question row the
+// practice engine already renders and scores.
+// -----------------------------------------------------------------------------
+
+enum LessonKind {
+  ARTICLE
+  VIDEO
+  VOCABULARY
+  FLASHCARD
+  DICTATION
+  SHADOWING
+  PRONUNCIATION
+  QUIZ
+}
+
+enum LessonState {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}
+
+model Course {
+  id           String        @id @default(cuid())
+  slug         String        @unique
+  title        String
+  subtitle     String?
+  description  String?
+  /// Null for courses that span every section (vocabulary, study skills).
+  section      PteSection?
+  level        Difficulty    @default(MEDIUM)
+  coverImageUrl String?
+  isPremium    Boolean       @default(false)
+  status       ContentStatus @default(DRAFT)
+  tags         String[]      @default([])
+  /// Denormalised for listing cards, recomputed when lessons change.
+  lessonCount      Int       @default(0)
+  estimatedMinutes Int       @default(0)
+  displayOrder Int           @default(0)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  modules     CourseModule[]
+  lessons     Lesson[]
+  enrollments CourseEnrollment[]
+
+  @@index([status, displayOrder])
+  @@index([section, status])
+}
+
+model CourseModule {
+  id          String   @id @default(cuid())
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  lessons Lesson[]
+
+  @@index([courseId, order])
+}
+
+model Lesson {
+  id       String        @id @default(cuid())
+  courseId String
+  course   Course        @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  moduleId String?
+  module   CourseModule? @relation(fields: [moduleId], references: [id], onDelete: SetNull)
+
+  slug     String
+  /// Learner-facing sequence number ("Lesson 7"), distinct from `order`, which
+  /// is the sort key and may be rewritten when lessons are reordered.
+  number   Int
+  title    String
+  summary  String?
+  kind     LessonKind    @default(ARTICLE)
+  /// Body content — shape depends on `kind` (see src/lib/pte/schemas.ts).
+  content  Json          @default("{}")
+  videoUrl String?
+  audioUrl String?
+  audioTranscript String?
+
+  estimatedMinutes Int          @default(5)
+  isPremium        Boolean      @default(false)
+  status           ContentStatus @default(DRAFT)
+  order            Int          @default(0)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  questions LessonQuestion[]
+  progress  LessonProgress[]
+
+  @@unique([courseId, slug])
+  @@index([courseId, order])
+  @@index([moduleId, order])
+  @@index([status])
+}
+
+/// Attaches an existing bank question to a lesson as an inline drill.
+model LessonQuestion {
+  id         String   @id @default(cuid())
+  lessonId   String
+  lesson     Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  order      Int      @default(0)
+
+  @@unique([lessonId, questionId])
+  @@index([questionId])
+}
+
+model CourseEnrollment {
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId String
+  course   Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  /// Cached 0-100 rollup of LessonProgress, so course cards need one query.
+  percentComplete Int      @default(0)
+  lessonsDone     Int      @default(0)
+  startedAt       DateTime @default(now())
+  lastActivityAt  DateTime @default(now())
+  completedAt     DateTime?
+
+  @@unique([userId, courseId])
+  @@index([userId, lastActivityAt])
+}
+
+model LessonProgress {
+  id       String      @id @default(cuid())
+  userId   String
+  user     User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId String
+  lesson   Lesson      @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  state        LessonState @default(NOT_STARTED)
+  secondsSpent Int         @default(0)
+  lastViewedAt DateTime    @default(now())
+  completedAt  DateTime?
+
+  @@unique([userId, lessonId])
+  @@index([userId, state])
+  @@index([lessonId])
+}
+
+// -----------------------------------------------------------------------------
+// Writing improvement
+// -----------------------------------------------------------------------------
+
+/// A prompt in the writing improvement library. Deliberately separate from
+/// `Question`: these are never scored inside a session, never appear in a mock
+/// test, and exist only as starting points for the improvement tool.
+model WritingExercise {
+  id           String          @id @default(cuid())
+  slug         String          @unique
+  title        String
+  /// Free-text grouping shown as a filter chip, e.g. "Argument" or "Education".
+  category     String
+  taskKind     WritingTaskKind @default(ESSAY)
+  prompt       String
+  /// Source text for the summarise tasks.
+  passage      String?
+  /// One or two sentences of coaching shown beside the editor.
+  guidance     String?
+  tags         String[]        @default([])
+  difficulty   Difficulty      @default(MEDIUM)
+  wordMin      Int             @default(200)
+  wordMax      Int             @default(300)
+  minutes      Int             @default(20)
+  isPremium    Boolean         @default(false)
+  status       ContentStatus   @default(PUBLISHED)
+  displayOrder Int             @default(0)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  improvements WritingImprovement[]
+
+  @@index([status, category])
+  @@index([status, taskKind])
+}
+
+/// One run of the improvement tool. Kept so a student can reopen what they
+/// wrote and so the library can show which exercises they have worked on.
+model WritingImprovement {
+  id         String           @id @default(cuid())
+  userId     String
+  user       User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exerciseId String?
+  exercise   WritingExercise? @relation(fields: [exerciseId], references: [id], onDelete: SetNull)
+
+  taskKind     WritingTaskKind @default(FREEFORM)
+  prompt       String?
+  originalText String
+  improvedText String
+  summary      String
+  /// `{ original, replacement, category, explanation }[]` — see `writingImprovementSchema`.
+  edits        Json            @default("[]")
+  editCount    Int             @default(0)
+  wordCount    Int             @default(0)
+  /// Which AI provider produced this, so a simulated run stays labelled.
+  provider     String?
+  createdAt    DateTime        @default(now())
+
+  @@index([userId, createdAt])
+  @@index([exerciseId])
+}
+
+// -----------------------------------------------------------------------------
+// Dictation & shadowing drills
+//
+// A separate library from the PTE question bank. A drill is one short recording
+// plus its transcript, split into sentence-length segments, and every drill can
+// be worked through in two modes:
+//
+//   DICTATION  — listen to a segment and type it. The segment text is withheld
+//                from the browser until the answer has been posted.
+//   SHADOWING  — read the segment aloud with the recording. The text is shown,
+//                because that is the exercise.
+//
+// Both modes end in the same word-by-word comparison (src/lib/drills/diff.ts),
+// so one DrillAttempt shape covers both and progress is comparable across them.
+// -----------------------------------------------------------------------------
+
+enum DrillMode {
+  DICTATION
+  SHADOWING
+}
+
+model DrillCategory {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  name         String
+  description  String?
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  drills Drill[]
+
+  @@index([displayOrder])
+}
+
+model Drill {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  title       String
+  description String?
+  categoryId  String
+  category    DrillCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  /// Storage key or absolute URL — resolved to a signed URL before it is sent.
+  audioUrl        String
+  /// The whole recording as text. Segments are the practised unit; this is what
+  /// gets shown as a reading passage and what an admin edits.
+  transcript      String
+  audioDurationMs Int?
+  /// Free-text accent label ("British", "American") shown on the card.
+  accent          String?
+  wordCount       Int           @default(0)
+  difficulty      Difficulty    @default(MEDIUM)
+  isPremium       Boolean       @default(false)
+  status          ContentStatus @default(DRAFT)
+  tags            String[]      @default([])
+  displayOrder    Int           @default(0)
+  timesAttempted  Int           @default(0)
+
+  createdById String?
+  createdBy   User?    @relation("DrillAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  segments DrillSegment[]
+  attempts DrillAttempt[]
+  progress DrillProgress[]
+
+  @@index([status, displayOrder])
+  @@index([categoryId, status])
+}
+
+/// One sentence of a drill — the unit a learner types or shadows in one go.
+model DrillSegment {
+  id      String @id @default(cuid())
+  drillId String
+  drill   Drill  @relation(fields: [drillId], references: [id], onDelete: Cascade)
+  order   Int
+  text    String
+  /// Offsets into the drill audio, so a segment can be looped on its own.
+  startMs Int    @default(0)
+  endMs   Int    @default(0)
+
+  attempts DrillAttempt[]
+
+  @@unique([drillId, order])
+  @@index([drillId])
+}
+
+model DrillAttempt {
+  id        String        @id @default(cuid())
+  userId    String
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  drillId   String
+  drill     Drill         @relation(fields: [drillId], references: [id], onDelete: Cascade)
+  segmentId String?
+  segment   DrillSegment? @relation(fields: [segmentId], references: [id], onDelete: SetNull)
+  mode      DrillMode
+
+  /// What was typed (dictation) or what the recording was transcribed to
+  /// (shadowing) — the same field, because both are scored the same way.
+  responseText String?
+  audioUrl     String?
+  audioDurationMs Int?
+
+  /// 0–100, derived from the word alignment. Not a PTE score, and never
+  /// presented as one.
+  accuracy     Int   @default(0)
+  wordsCorrect Int   @default(0)
+  wordsTotal   Int   @default(0)
+  /// Words per minute, shadowing only — pace against the reference recording.
+  wordsPerMinute Int?
+  /// The token-by-token verdict, so the review panel can be redrawn from history.
+  detail       Json  @default("[]")
+  /// How many times the clip was replayed before answering.
+  playCount        Int @default(0)
+  timeSpentSeconds Int @default(0)
+
+  createdAt DateTime @default(now())
+
+  @@index([userId, createdAt])
+  @@index([drillId, mode])
+  @@index([segmentId])
+}
+
+/// Per-user rollup so a library card needs one query instead of one per drill.
+model DrillProgress {
+  id      String    @id @default(cuid())
+  userId  String
+  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  drillId String
+  drill   Drill     @relation(fields: [drillId], references: [id], onDelete: Cascade)
+  mode    DrillMode
+
+  attempts          Int      @default(0)
+  bestAccuracy      Int      @default(0)
+  lastAccuracy      Int      @default(0)
+  /// Distinct segments answered at least once — drives the "3 of 8" ring.
+  segmentsCompleted Int      @default(0)
+  completedAt       DateTime?
+  lastActivityAt    DateTime @default(now())
+
+  @@unique([userId, drillId, mode])
+  @@index([userId, lastActivityAt])
+  @@index([drillId])
+}
+
+// -----------------------------------------------------------------------------
+// AI Conversations
+//
+// Freeform spoken and typed practice against an AI partner. A ConversationTopic
+// is the reusable scenario staff author; a Conversation is one student's run of
+// it, and owns a denormalised copy of the scenario so an edited or deleted
+// topic never rewrites history the student has already been given feedback on.
+//
+// Corrections live on the student's own message rather than in the partner's
+// reply: the partner never breaks character to correct, which is the whole
+// point of a low-pressure speaking exercise.
+// -----------------------------------------------------------------------------
+
+enum ConversationCategory {
+  DAILY_LIFE
+  SOCIAL
+  TRAVEL
+  WORK_AND_STUDY
+  EXAM_PREP
+  CUSTOM
+}
+
+enum ConversationStatus {
+  ACTIVE
+  COMPLETED
+  ABANDONED
+}
+
+enum ChatRole {
+  USER
+  ASSISTANT
+}
+
+model ConversationTopic {
+  id          String               @id @default(cuid())
+  slug        String               @unique
+  title       String
+  subtitle    String?
+  description String?
+  category    ConversationCategory @default(DAILY_LIFE)
+  level       Difficulty           @default(MEDIUM)
+  /// Emoji shown on the topic card. Kept as text so staff can paste any glyph.
+  emoji       String?
+
+  /// Who the AI plays, e.g. "Sara".
+  personaName String
+  /// Their relationship to the student, e.g. "a neighbour you have just met".
+  personaRole String
+  /// The situation both sides are in, handed to the model verbatim.
+  scenario    String
+  /// The partner's first turn. Stored rather than generated so the conversation
+  /// opens instantly, with no AI call and no spend, before the student speaks.
+  openingLine String
+
+  /// What the student should manage to do. Shown as a checklist and scored in the report.
+  goals          String[] @default([])
+  /// Ready-made openers offered when a student stalls.
+  starterPhrases String[] @default([])
+  /// Vocabulary and structures the partner steers towards.
+  targetLanguage String[] @default([])
+
+  isPremium    Boolean       @default(false)
+  status       ContentStatus @default(DRAFT)
+  displayOrder Int           @default(0)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  conversations Conversation[]
+
+  @@index([status, displayOrder])
+  @@index([category, status])
+}
+
+model Conversation {
+  id      String             @id @default(cuid())
+  userId  String
+  user    User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topicId String?
+  topic   ConversationTopic? @relation(fields: [topicId], references: [id], onDelete: SetNull)
+
+  /// Denormalised from the topic at creation. A conversation must keep the
+  /// scenario it was actually held under, even if staff later edit or retire it.
+  title       String
+  scenario    String
+  personaName String
+  personaRole String
+  level       Difficulty @default(MEDIUM)
+  goals       String[]   @default([])
+  /// True when the student wrote their own scenario instead of picking a topic.
+  isCustom    Boolean    @default(false)
+
+  status       ConversationStatus @default(ACTIVE)
+  messageCount Int                @default(0)
+  /// The student's own turns — what the report and the usage counter care about.
+  userTurns    Int                @default(0)
+  /// How many of those turns were spoken rather than typed.
+  spokenTurns  Int                @default(0)
+
+  startedAt     DateTime  @default(now())
+  lastMessageAt DateTime  @default(now())
+  completedAt   DateTime?
+
+  messages ConversationMessage[]
+  report   ConversationReport?
+
+  @@index([userId, lastMessageAt])
+  @@index([userId, status])
+  @@index([topicId])
+}
+
+model ConversationMessage {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  role ChatRole
+  /// Position in the conversation. Messages are always read in sequence, and
+  /// the unique index is what stops a double-submit inserting the same turn twice.
+  index   Int
+  content String
+
+  /// Storage key for the student's recording, when the turn was spoken.
+  audioKey    String?
+  transcribed Boolean @default(false)
+
+  /// A gentle rewrite of the student's turn, shown beside it. Null when the
+  /// turn needed no correction — which is the common case by design.
+  correction     String?
+  correctionNote String?
+  /// Two or three things the student could say next.
+  suggestions    String[] @default([])
+
+  createdAt DateTime @default(now())
+
+  @@unique([conversationId, index])
+  @@index([conversationId, createdAt])
+}
+
+model ConversationReport {
+  id             String       @id @default(cuid())
+  conversationId String       @unique
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  /// AI estimated speaking band for the conversation, 10-90. Practice only —
+  /// never presented as, or written into, an official score.
+  estimatedScore Int
+  fluency        Int
+  vocabulary     Int
+  grammar        Int
+  /// How well the student sustained the exchange: asking back, following up, repairing.
+  interaction    Int
+
+  summary      String
+  strengths    String[] @default([])
+  improvements String[] @default([])
+  nextSteps    String[] @default([])
+  /// `{ said, better, why }[]` — see `conversationReportSchema`.
+  corrections  Json     @default("[]")
+  goalsMet     String[] @default([])
+
+  /// Which provider produced this, so a simulated run stays labelled.
+  provider  String?
+  simulated Boolean  @default(false)
+  createdAt DateTime @default(now())
 }

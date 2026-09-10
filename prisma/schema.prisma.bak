@@ -1,0 +1,1006 @@
+// =============================================================================
+// GLOBIFY PTE PREMIUM — Database schema
+// Globify Consultants · PostgreSQL + Prisma
+//
+// Money is stored as integer minor units (paisa / cents) in `*Cents` columns so
+// no Decimal ever has to cross the server/client boundary. Format with
+// `formatMoney()` from `src/lib/money.ts`.
+// =============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------------------------------------------
+// Enums
+// -----------------------------------------------------------------------------
+
+enum Role {
+  STUDENT
+  TEACHER
+  CONTENT_MANAGER
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  DELETED
+}
+
+enum PteSection {
+  SPEAKING
+  WRITING
+  READING
+  LISTENING
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum SubscriptionStatus {
+  PENDING
+  ACTIVE
+  EXPIRED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  MANUAL_REVIEW
+  PAID
+  FAILED
+  REFUNDED
+  CANCELLED
+}
+
+enum PaymentMethodKind {
+  CARD
+  BANK_TRANSFER
+  EASYPAISA
+  JAZZCASH
+  STRIPE
+  DEMO
+}
+
+enum SessionKind {
+  PRACTICE
+  MOCK
+}
+
+enum SessionStatus {
+  IN_PROGRESS
+  COMPLETED
+  ABANDONED
+}
+
+enum AttemptStatus {
+  STARTED
+  SUBMITTED
+  SCORING
+  SCORED
+  FAILED
+  SKIPPED
+}
+
+enum ScoreSource {
+  RULE
+  AI
+  TEACHER
+}
+
+enum AiFeature {
+  SPEAKING_SCORE
+  WRITING_SCORE
+  TRANSCRIPTION
+  FEEDBACK
+  RECOMMENDATION
+  PROGRESS_ANALYSIS
+}
+
+enum AiRequestStatus {
+  SUCCESS
+  FAILED
+  CACHED
+  BLOCKED
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED
+}
+
+enum RecommendationStatus {
+  ACTIVE
+  COMPLETED
+  DISMISSED
+}
+
+enum ReviewStatus {
+  REQUESTED
+  IN_PROGRESS
+  COMPLETED
+  REJECTED
+}
+
+enum NotificationChannel {
+  IN_APP
+  EMAIL
+  WHATSAPP
+  SMS
+}
+
+enum ReferralStatus {
+  CLICKED
+  REGISTERED
+  PURCHASED
+  REWARDED
+}
+
+enum Audience {
+  ALL
+  FREE
+  PREMIUM
+  EXPIRED
+}
+
+enum MockTestKind {
+  FULL
+  SECTIONAL
+}
+
+// -----------------------------------------------------------------------------
+// Identity & access
+// -----------------------------------------------------------------------------
+
+model User {
+  id            String     @id @default(cuid())
+  email         String     @unique
+  emailVerified DateTime?
+  passwordHash  String?
+  name          String
+  role          Role       @default(STUDENT)
+  status        UserStatus @default(ACTIVE)
+  lastLoginAt   DateTime?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  profile          Profile?
+  adminProfile     AdminUser?
+  sessions         Session[]
+  oauthAccounts    OAuthAccount[]
+  resetTokens      PasswordResetToken[]
+  subscriptions    Subscription[]
+  payments         Payment[]
+  practiceSessions PracticeSession[]
+  attempts         Attempt[]
+  progress         Progress[]
+  snapshots        ProgressSnapshot[]
+  recommendations  Recommendation[]
+  notifications    Notification[]
+  aiUsage          AiUsageLog[]
+  usageCounters    UsageCounter[]
+  couponUses       CouponRedemption[]
+  auditLogs        AuditLog[]           @relation("AuditActor")
+  authoredQuestions Question[]          @relation("QuestionAuthor")
+  teacherReviews   TeacherReview[]      @relation("ReviewTeacher")
+  referralsMade    Referral[]           @relation("Referrer")
+  referralReceived Referral?            @relation("ReferredUser")
+  reviewedPayments Payment[]            @relation("PaymentReviewer")
+  studentNotes     StudentNote[]        @relation("NoteStudent")
+  authoredNotes    StudentNote[]        @relation("NoteAuthor")
+
+  @@index([role, status])
+  @@index([createdAt])
+}
+
+model Profile {
+  id                   String    @id @default(cuid())
+  userId               String    @unique
+  user                 User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  phone                String?
+  country              String?   @default("Pakistan")
+  city                 String?
+  studyDestination     String?
+  targetScore          Int       @default(79)
+  currentEstimateScore Int?
+  preferredTestDate    DateTime?
+  dailyGoalMinutes     Int       @default(45)
+  streakDays           Int       @default(0)
+  longestStreak        Int       @default(0)
+  lastPracticeDate     DateTime?
+  avatarUrl            String?
+  referralCode         String    @unique
+  timezone             String    @default("Asia/Karachi")
+  onboardedAt          DateTime?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  @@index([referralCode])
+}
+
+/// Admin-scoped extension of a User. Admins authenticate through the same
+/// identity table — this holds only the extra fields and granular permissions.
+model AdminUser {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String?
+  permissions String[] @default([])
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Session {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash  String   @unique
+  userAgent  String?
+  ip         String?
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  createdAt  DateTime @default(now())
+  lastSeenAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model OAuthAccount {
+  id                String   @id @default(cuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider          String
+  providerAccountId String
+  createdAt         DateTime @default(now())
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+// -----------------------------------------------------------------------------
+// Subscriptions, payments, coupons, referrals
+// -----------------------------------------------------------------------------
+
+model SubscriptionPlan {
+  id           String   @id @default(cuid())
+  code         String   @unique
+  name         String
+  tagline      String?
+  description  String?
+  priceCents   Int
+  compareAtCents Int?
+  currency     String   @default("PKR")
+  durationDays Int
+  features     String[] @default([])
+  /// { aiSpeakingPerMonth, aiWritingPerMonth, mockTestsPerMonth, practicePerDay, teacherReviews } — -1 means unlimited
+  limits       Json     @default("{}")
+  isActive     Boolean  @default(true)
+  isPopular    Boolean  @default(false)
+  badge        String?
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  subscriptions Subscription[]
+  payments      Payment[]
+
+  @@index([isActive, displayOrder])
+}
+
+model Subscription {
+  id        String             @id @default(cuid())
+  userId    String
+  user      User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planId    String
+  plan      SubscriptionPlan   @relation(fields: [planId], references: [id])
+  status    SubscriptionStatus @default(PENDING)
+  startedAt DateTime?
+  expiresAt DateTime?
+  cancelledAt DateTime?
+  autoRenew Boolean            @default(false)
+  source    String             @default("checkout")
+  note      String?
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+
+  payments Payment[]
+
+  @@index([userId, status])
+  @@index([expiresAt])
+  @@index([createdAt])
+}
+
+model Payment {
+  id             String            @id @default(cuid())
+  reference      String            @unique
+  userId         String
+  user           User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planId         String
+  plan           SubscriptionPlan  @relation(fields: [planId], references: [id])
+  subscriptionId String?
+  subscription   Subscription?     @relation(fields: [subscriptionId], references: [id])
+  couponId       String?
+  coupon         Coupon?           @relation(fields: [couponId], references: [id])
+
+  provider       String
+  method         PaymentMethodKind
+  providerRef    String?
+  status         PaymentStatus     @default(PENDING)
+
+  subtotalCents  Int
+  discountCents  Int               @default(0)
+  taxCents       Int               @default(0)
+  totalCents     Int
+  currency       String            @default("PKR")
+
+  customerName   String?
+  customerEmail  String?
+  customerPhone  String?
+
+  proofUrl       String?
+  failureReason  String?
+  reviewNote     String?
+  reviewedById   String?
+  reviewedBy     User?             @relation("PaymentReviewer", fields: [reviewedById], references: [id])
+  reviewedAt     DateTime?
+  paidAt         DateTime?
+  metadata       Json              @default("{}")
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  referral Referral?
+
+  @@index([userId])
+  @@index([subscriptionId])
+  @@index([status, createdAt])
+  @@index([createdAt])
+}
+
+/// Raw provider webhook deliveries. `eventId` is unique so a redelivered event
+/// can never activate a subscription twice.
+model WebhookEvent {
+  id          String   @id @default(cuid())
+  provider    String
+  eventId     String
+  eventType   String
+  payload     Json
+  processedAt DateTime?
+  error       String?
+  createdAt   DateTime @default(now())
+
+  @@unique([provider, eventId])
+  @@index([createdAt])
+}
+
+model Coupon {
+  id             String       @id @default(cuid())
+  code           String       @unique
+  description    String?
+  discountType   DiscountType
+  /// Percent (1-100) when PERCENTAGE, minor units when FIXED.
+  discountValue  Int
+  maxDiscountCents Int?
+  minSubtotalCents Int        @default(0)
+  applicablePlanIds String[]  @default([])
+  usageLimit     Int?
+  perUserLimit   Int          @default(1)
+  usedCount      Int          @default(0)
+  startsAt       DateTime?
+  expiresAt      DateTime?
+  isActive       Boolean      @default(true)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  payments    Payment[]
+  redemptions CouponRedemption[]
+
+  @@index([isActive, expiresAt])
+}
+
+model CouponRedemption {
+  id        String   @id @default(cuid())
+  couponId  String
+  coupon    Coupon   @relation(fields: [couponId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  paymentId String?
+  createdAt DateTime @default(now())
+
+  @@index([couponId, userId])
+}
+
+model Referral {
+  id             String         @id @default(cuid())
+  code           String
+  referrerId     String
+  referrer       User           @relation("Referrer", fields: [referrerId], references: [id], onDelete: Cascade)
+  referredUserId String?        @unique
+  referredUser   User?          @relation("ReferredUser", fields: [referredUserId], references: [id], onDelete: SetNull)
+  paymentId      String?        @unique
+  payment        Payment?       @relation(fields: [paymentId], references: [id], onDelete: SetNull)
+  status         ReferralStatus @default(CLICKED)
+  rewardCents    Int            @default(0)
+  rewardedAt     DateTime?
+  landingPath    String?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  @@index([referrerId, status])
+  @@index([code])
+}
+
+// -----------------------------------------------------------------------------
+// Question bank
+// -----------------------------------------------------------------------------
+
+/// Question types are rows, not an enum — new PTE task types can be added from
+/// the admin panel without a migration. `code` is the stable contract the
+/// renderers key off (see src/lib/pte/question-types.ts).
+model QuestionType {
+  id             String     @id @default(cuid())
+  code           String     @unique
+  name           String
+  shortName      String
+  section        PteSection
+  description    String?
+  /// Renderer key — maps to a React component in the practice engine.
+  renderer       String
+  /// Contributes to these skill dimensions (used by the recommendation engine).
+  skills         String[]   @default([])
+  defaultTimeLimitSeconds Int?
+  defaultPreparationSeconds Int?
+  requiresAudioResponse  Boolean @default(false)
+  requiresTextResponse   Boolean @default(false)
+  isActive       Boolean    @default(true)
+  displayOrder   Int        @default(0)
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  questions Question[]
+
+  @@index([section, displayOrder])
+}
+
+model QuestionCategory {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  name         String
+  description  String?
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+
+  questions Question[]
+}
+
+model Question {
+  id             String        @id @default(cuid())
+  code           String        @unique
+  questionTypeId String
+  questionType   QuestionType  @relation(fields: [questionTypeId], references: [id])
+  categoryId     String?
+  category       QuestionCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  title          String
+  /// Prompt / instruction shown above the task.
+  prompt         String?
+  /// Reading passage or the text to be read aloud.
+  passage        String?
+  imageUrl       String?
+  audioUrl       String?
+  /// Transcript of audioUrl — used for AI scoring and accessibility.
+  audioTranscript String?
+  /// Shape depends on the renderer (see src/lib/pte/schemas.ts).
+  options        Json          @default("[]")
+  correctAnswer  Json          @default("{}")
+  explanation    String?
+  sampleAnswer   String?
+
+  difficulty     Difficulty    @default(MEDIUM)
+  status         ContentStatus @default(DRAFT)
+  tags           String[]      @default([])
+  timeLimitSeconds     Int?
+  preparationSeconds   Int?
+  wordLimitMin   Int?
+  wordLimitMax   Int?
+  isPremium      Boolean       @default(false)
+
+  timesAttempted Int           @default(0)
+  averageScore   Float?
+
+  createdById    String?
+  createdBy      User?         @relation("QuestionAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  attempts   Attempt[]
+  setItems   QuestionSetItem[]
+  mockItems  MockTestQuestion[]
+
+  @@index([questionTypeId, status])
+  @@index([status, difficulty])
+  @@index([createdAt])
+}
+
+model QuestionSet {
+  id           String        @id @default(cuid())
+  slug         String        @unique
+  name         String
+  description  String?
+  section      PteSection?
+  isPremium    Boolean       @default(false)
+  status       ContentStatus @default(PUBLISHED)
+  displayOrder Int           @default(0)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  items            QuestionSetItem[]
+  practiceSessions PracticeSession[]
+}
+
+model QuestionSetItem {
+  id            String      @id @default(cuid())
+  questionSetId String
+  questionSet   QuestionSet @relation(fields: [questionSetId], references: [id], onDelete: Cascade)
+  questionId    String
+  question      Question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  order         Int         @default(0)
+
+  @@unique([questionSetId, questionId])
+  @@index([questionId])
+}
+
+// -----------------------------------------------------------------------------
+// Mock tests
+// -----------------------------------------------------------------------------
+
+model MockTest {
+  id              String        @id @default(cuid())
+  slug            String        @unique
+  title           String
+  description     String?
+  kind            MockTestKind  @default(FULL)
+  difficulty      Difficulty    @default(MEDIUM)
+  durationMinutes Int           @default(120)
+  isPremium       Boolean       @default(true)
+  status          ContentStatus @default(DRAFT)
+  displayOrder    Int           @default(0)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  sections MockTestSection[]
+  sessions PracticeSession[]
+  results  MockTestResult[]
+
+  @@index([status, displayOrder])
+}
+
+model MockTestSection {
+  id              String     @id @default(cuid())
+  mockTestId      String
+  mockTest        MockTest   @relation(fields: [mockTestId], references: [id], onDelete: Cascade)
+  section         PteSection
+  title           String
+  instructions    String?
+  order           Int        @default(0)
+  durationSeconds Int
+  /// Relative contribution of this section to the overall estimated score.
+  weight          Float      @default(1)
+
+  questions MockTestQuestion[]
+
+  @@unique([mockTestId, order])
+}
+
+model MockTestQuestion {
+  id         String          @id @default(cuid())
+  sectionId  String
+  section    MockTestSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  questionId String
+  question   Question        @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  order      Int             @default(0)
+
+  @@unique([sectionId, questionId])
+  @@index([questionId])
+}
+
+model MockTestResult {
+  id             String   @id @default(cuid())
+  sessionId      String   @unique
+  session        PracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  mockTestId     String
+  mockTest       MockTest @relation(fields: [mockTestId], references: [id], onDelete: Cascade)
+  userId         String
+  overallScore   Int
+  speakingScore  Int
+  writingScore   Int
+  readingScore   Int
+  listeningScore Int
+  /// { grammar, oralFluency, pronunciation, spelling, vocabulary, writtenDiscourse }
+  enablingSkills Json     @default("{}")
+  strongestArea  String?
+  weakestArea    String?
+  createdAt      DateTime @default(now())
+
+  @@index([userId, createdAt])
+  @@index([mockTestId])
+}
+
+// -----------------------------------------------------------------------------
+// Practice, attempts, scoring
+// -----------------------------------------------------------------------------
+
+model PracticeSession {
+  id            String        @id @default(cuid())
+  userId        String
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  kind          SessionKind   @default(PRACTICE)
+  status        SessionStatus @default(IN_PROGRESS)
+  section       PteSection?
+  questionTypeCode String?
+  questionSetId String?
+  questionSet   QuestionSet?  @relation(fields: [questionSetId], references: [id], onDelete: SetNull)
+  mockTestId    String?
+  mockTest      MockTest?     @relation(fields: [mockTestId], references: [id], onDelete: SetNull)
+
+  totalQuestions     Int      @default(0)
+  completedQuestions Int      @default(0)
+  durationSeconds    Int      @default(0)
+  startedAt          DateTime @default(now())
+  completedAt        DateTime?
+  updatedAt          DateTime @updatedAt
+
+  attempts Attempt[]
+  result   MockTestResult?
+
+  @@index([userId, status])
+  @@index([userId, startedAt])
+  @@index([mockTestId])
+}
+
+model Attempt {
+  id         String          @id @default(cuid())
+  userId     String
+  user       User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questionId String
+  question   Question        @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  sessionId  String?
+  session    PracticeSession? @relation(fields: [sessionId], references: [id], onDelete: SetNull)
+
+  status           AttemptStatus @default(STARTED)
+  timeSpentSeconds Int           @default(0)
+  startedAt        DateTime      @default(now())
+  submittedAt      DateTime?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  answer     Answer?
+  score      Score?
+  aiAnalysis AIAnalysis?
+  review     TeacherReview?
+
+  @@index([userId, createdAt])
+  @@index([questionId])
+  @@index([sessionId])
+  @@index([status])
+}
+
+model Answer {
+  id        String   @id @default(cuid())
+  attemptId String   @unique
+  attempt   Attempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+
+  text            String?
+  /// Selected option ids, ordered item ids or per-blank values — shape per renderer.
+  selection       Json    @default("{}")
+  audioUrl        String?
+  audioDurationMs Int?
+  transcript      String?
+  wordCount       Int?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Score {
+  id          String      @id @default(cuid())
+  attemptId   String      @unique
+  attempt     Attempt     @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  source      ScoreSource @default(RULE)
+  /// Normalised 0-90 PTE-style estimate.
+  overall     Int
+  rawScore    Float?
+  maxRawScore Float?
+  isCorrect   Boolean?
+  /// { content, pronunciation, fluency, grammar, vocabulary, form, coherence, development, spelling }
+  breakdown   Json        @default("{}")
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([createdAt])
+}
+
+model AIAnalysis {
+  id          String   @id @default(cuid())
+  attemptId   String   @unique
+  attempt     Attempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  provider    String
+  model       String
+  feature     AiFeature
+  /// Validated, schema-checked payload. Raw provider text never reaches the UI.
+  result      Json
+  strengths   String[] @default([])
+  improvements String[] @default([])
+  suggestions String[] @default([])
+  suggestedRewrite String?
+  promptTokens     Int?
+  completionTokens Int?
+  costMicros       Int?
+  latencyMs        Int?
+  createdAt   DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model TeacherReview {
+  id           String       @id @default(cuid())
+  attemptId    String       @unique
+  attempt      Attempt      @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  studentId    String
+  teacherId    String?
+  teacher      User?        @relation("ReviewTeacher", fields: [teacherId], references: [id], onDelete: SetNull)
+  status       ReviewStatus @default(REQUESTED)
+  score        Int?
+  comments     String?
+  corrections  String?
+  recommendations String?
+  requestedAt  DateTime     @default(now())
+  reviewedAt   DateTime?
+
+  @@index([status, requestedAt])
+  @@index([studentId])
+}
+
+// -----------------------------------------------------------------------------
+// Progress & recommendations
+// -----------------------------------------------------------------------------
+
+model Progress {
+  id              String     @id @default(cuid())
+  userId          String
+  user            User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  section         PteSection
+  estimatedScore  Int        @default(0)
+  previousScore   Int?
+  accuracy        Float      @default(0)
+  attemptsCount   Int        @default(0)
+  minutesPracticed Int       @default(0)
+  /// Per question-type rollup: { [typeCode]: { attempts, avg } }
+  byQuestionType  Json       @default("{}")
+  updatedAt       DateTime   @updatedAt
+
+  @@unique([userId, section])
+  @@index([userId])
+}
+
+/// One row per student per day. Per-section scores are columns rather than
+/// separate rows so the whole chart reads from a single query, and so the
+/// unique key needs no nullable column (Postgres treats NULLs as distinct,
+/// which would silently defeat a unique constraint containing one).
+model ProgressSnapshot {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date           DateTime @db.Date
+  overallScore   Int      @default(0)
+  speakingScore  Int?
+  writingScore   Int?
+  readingScore   Int?
+  listeningScore Int?
+  attempts       Int      @default(0)
+  minutes        Int      @default(0)
+
+  @@unique([userId, date])
+  @@index([userId, date])
+}
+
+model Recommendation {
+  id               String               @id @default(cuid())
+  userId           String
+  user             User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  code             String
+  title            String
+  body             String
+  section          PteSection?
+  questionTypeCode String?
+  actionLabel      String?
+  actionHref       String?
+  priority         Int                  @default(0)
+  status           RecommendationStatus @default(ACTIVE)
+  source           ScoreSource          @default(RULE)
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+
+  @@unique([userId, code])
+  @@index([userId, status, priority])
+}
+
+// -----------------------------------------------------------------------------
+// Content, comms & operations
+// -----------------------------------------------------------------------------
+
+model Announcement {
+  id          String        @id @default(cuid())
+  title       String
+  body        String
+  audience    Audience      @default(ALL)
+  status      ContentStatus @default(DRAFT)
+  isPinned    Boolean       @default(false)
+  publishedAt DateTime?
+  expiresAt   DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([status, publishedAt])
+}
+
+model Resource {
+  id           String        @id @default(cuid())
+  slug         String        @unique
+  title        String
+  excerpt      String?
+  category     String
+  tags         String[]      @default([])
+  contentMd    String
+  readMinutes  Int           @default(4)
+  isPremium    Boolean       @default(false)
+  status       ContentStatus @default(DRAFT)
+  displayOrder Int           @default(0)
+  publishedAt  DateTime?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([status, category])
+}
+
+model Notification {
+  id        String              @id @default(cuid())
+  userId    String
+  user      User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  channel   NotificationChannel @default(IN_APP)
+  type      String
+  title     String
+  body      String
+  href      String?
+  readAt    DateTime?
+  sentAt    DateTime?
+  createdAt DateTime            @default(now())
+
+  @@index([userId, readAt])
+  @@index([createdAt])
+}
+
+model StudentNote {
+  id        String   @id @default(cuid())
+  studentId String
+  student   User     @relation("NoteStudent", fields: [studentId], references: [id], onDelete: Cascade)
+  authorId  String?
+  author    User?    @relation("NoteAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  body      String
+  createdAt DateTime @default(now())
+
+  @@index([studentId, createdAt])
+}
+
+/// Messages from the public contact form and in-app support widget.
+model SupportMessage {
+  id          String    @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  topic       String    @default("general")
+  targetScore Int?
+  message     String
+  userId      String?
+  status      String    @default("NEW")
+  handledById String?
+  handledAt   DateTime?
+  ip          String?
+  createdAt   DateTime  @default(now())
+
+  @@index([status, createdAt])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String?
+  actor     User?    @relation("AuditActor", fields: [actorId], references: [id], onDelete: SetNull)
+  actorRole Role?
+  action    String
+  entity    String
+  entityId  String?
+  metadata  Json     @default("{}")
+  ip        String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@index([entity, entityId])
+  @@index([actorId])
+  @@index([createdAt])
+}
+
+// -----------------------------------------------------------------------------
+// AI cost control
+// -----------------------------------------------------------------------------
+
+model AiUsageLog {
+  id               String          @id @default(cuid())
+  userId           String?
+  user             User?           @relation(fields: [userId], references: [id], onDelete: SetNull)
+  feature          AiFeature
+  provider         String
+  model            String
+  status           AiRequestStatus @default(SUCCESS)
+  promptTokens     Int             @default(0)
+  completionTokens Int             @default(0)
+  /// Estimated cost in millionths of a USD — integers keep aggregation exact.
+  costMicros       Int             @default(0)
+  latencyMs        Int             @default(0)
+  error            String?
+  createdAt        DateTime        @default(now())
+
+  @@index([userId, createdAt])
+  @@index([feature, createdAt])
+  @@index([createdAt])
+}
+
+/// Per-user, per-feature counters scoped to a billing/rolling window. Used to
+/// enforce free-tier and plan-defined limits without scanning attempt history.
+model UsageCounter {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  feature     String
+  periodStart DateTime
+  periodEnd   DateTime
+  count       Int      @default(0)
+  updatedAt   DateTime @updatedAt
+
+  @@unique([userId, feature, periodStart])
+  @@index([userId, feature])
+}
+
+model PlatformSetting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}

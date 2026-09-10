@@ -3,6 +3,9 @@ import { randomUUID } from 'node:crypto'
 import { PrismaClient, type Difficulty, type Prisma, type PteSection } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 import { SEED_QUESTIONS } from './seed-data/questions'
+import { SEED_DRILLS, SEED_DRILL_CATEGORIES } from './seed-data/drills'
+import { splitIntoSegments, tokenize } from '../src/lib/drills/diff'
+import { SEED_WRITING_EXERCISES } from './seed-data/writing-exercises'
 
 /**
  * Seeds a complete, demonstrable installation: the task catalogue, a question
@@ -372,6 +375,68 @@ async function main() {
   }
   console.log(`  ${SEED_QUESTIONS.length} questions`)
 
+  // 7b. Dictation & shadowing drills
+  //
+  // Text only. A drill needs a recording, and the seed has no way to produce
+  // one, so these are left as DRAFT with an empty audioUrl — invisible to
+  // students until an administrator attaches audio and marks the line timings
+  // in /admin/drills. Re-running the seed will not overwrite work done there:
+  // only the transcript-derived fields are updated, and status is left alone.
+  for (const category of SEED_DRILL_CATEGORIES) {
+    await prisma.drillCategory.upsert({
+      where: { slug: category.slug },
+      create: category,
+      update: { name: category.name, description: category.description, displayOrder: category.displayOrder },
+    })
+  }
+
+  const drillCategoryIds = new Map(
+    (await prisma.drillCategory.findMany({ select: { id: true, slug: true } })).map((row) => [
+      row.slug,
+      row.id,
+    ]),
+  )
+
+  for (const drill of SEED_DRILLS) {
+    const drillCategoryId = drillCategoryIds.get(drill.categorySlug)
+    if (!drillCategoryId) continue
+
+    const shared = {
+      categoryId: drillCategoryId,
+      title: drill.title,
+      description: drill.description,
+      transcript: drill.transcript,
+      wordCount: tokenize(drill.transcript).length,
+      accent: drill.accent,
+      difficulty: drill.difficulty as Difficulty,
+      isPremium: drill.isPremium,
+      tags: drill.tags,
+      displayOrder: drill.displayOrder,
+    }
+
+    const record = await prisma.drill.upsert({
+      where: { slug: drill.slug },
+      create: { ...shared, slug: drill.slug, audioUrl: '', status: 'DRAFT', createdById: admin.id },
+      update: shared,
+      select: { id: true },
+    })
+
+    // Timings stay at zero: they belong to a particular recording, which this
+    // script does not have.
+    const lines = splitIntoSegments(drill.transcript)
+    await prisma.drillSegment.deleteMany({ where: { drillId: record.id, order: { gte: lines.length } } })
+    for (const [order, text] of lines.entries()) {
+      await prisma.drillSegment.upsert({
+        where: { drillId_order: { drillId: record.id, order } },
+        create: { drillId: record.id, order, text },
+        update: { text },
+      })
+    }
+  }
+  console.log(
+    `  ${SEED_DRILLS.length} dictation & shadowing exercises (draft — add audio in /admin/drills)`,
+  )
+
   // 8. Mock tests
   const allQuestions = await prisma.question.findMany({
     select: { id: true, questionType: { select: { section: true, displayOrder: true } } },
@@ -460,7 +525,33 @@ async function main() {
     })
   }
 
-  // 10. Announcement
+  // 10. Writing improvement library
+  for (const [index, exercise] of SEED_WRITING_EXERCISES.entries()) {
+    const data = {
+      title: exercise.title,
+      category: exercise.category,
+      taskKind: exercise.taskKind,
+      prompt: exercise.prompt,
+      passage: exercise.passage ?? null,
+      guidance: exercise.guidance ?? null,
+      tags: exercise.tags,
+      difficulty: exercise.difficulty,
+      wordMin: exercise.wordMin,
+      wordMax: exercise.wordMax,
+      minutes: exercise.minutes,
+      isPremium: exercise.isPremium,
+      status: 'PUBLISHED' as const,
+      displayOrder: index + 1,
+    }
+    await prisma.writingExercise.upsert({
+      where: { slug: exercise.slug },
+      create: { slug: exercise.slug, ...data },
+      update: data,
+    })
+  }
+  console.log(`  ${SEED_WRITING_EXERCISES.length} writing improvement exercises`)
+
+  // 11. Announcement
   const existingAnnouncement = await prisma.announcement.findFirst({
     where: { title: 'Three new full mock tests are live' },
   })
@@ -477,7 +568,7 @@ async function main() {
     })
   }
 
-  // 11. Students with practice history
+  // 12. Students with practice history
   const studentHash = await bcrypt.hash(STUDENT_PASSWORD, 12)
   const scorableQuestions = await prisma.question.findMany({
     select: { id: true, questionType: { select: { code: true, section: true } } },

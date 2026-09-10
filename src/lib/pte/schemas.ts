@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 /**
- * Shapes for the JSON columns on Question and Answer.
+ * Shapes for the JSON columns on Question, Answer and Lesson.
  *
  * Everything that comes out of the database or off the wire is parsed through
  * these before it reaches a renderer or the scorer — a malformed question can
@@ -108,4 +108,69 @@ export function segmentPassage(passage: string): PassageSegment[] {
 /** Tokenises a transcript into clickable words for Highlight Incorrect Words. */
 export function tokenizeWords(text: string): string[] {
   return text.split(/(\s+)/).filter((token) => token.trim().length > 0)
+}
+
+// --- lesson content -----------------------------------------------------------
+
+/**
+ * One caption line, timed against the lesson's video or audio.
+ *
+ * Cues do triple duty: they are the captions on a video lesson, the segments a
+ * dictation lesson dictates one at a time, and the lines a shadowing lesson
+ * asks the student to repeat. Keeping one shape means the same authored
+ * transcript drives all three without being typed out three times.
+ */
+export const captionCueSchema = z.object({
+  /** Seconds from the start of the media. */
+  start: z.number().nonnegative().max(36_000),
+  end: z.number().nonnegative().max(36_000),
+  text: z.string().min(1).max(600),
+})
+export type CaptionCue = z.infer<typeof captionCueSchema>
+
+export const vocabularyTermSchema = z.object({
+  term: z.string().min(1).max(120),
+  definition: z.string().min(1).max(600),
+  example: z.string().max(600).optional(),
+  /** IPA, shown next to the term when present. */
+  phonetic: z.string().max(120).optional(),
+})
+export type VocabularyTerm = z.infer<typeof vocabularyTermSchema>
+
+export const lessonContentSchema = z
+  .object({
+    /** Prose body, one paragraph per blank-line-separated block. */
+    body: z.string().max(20_000).optional(),
+    keyPoints: z.array(z.string().min(1).max(300)).max(20).default([]),
+    cues: z.array(captionCueSchema).max(400).default([]),
+    terms: z.array(vocabularyTermSchema).max(100).default([]),
+    /**
+     * Drill this lesson sends the student to, by slug.
+     *
+     * A dictation or shadowing lesson does not run its own exercise — it points
+     * at `/drills/<slug>`, where the drill engine already handles segment
+     * replay, scoring and attempt history. The link is by slug rather than a
+     * foreign key so a course can be authored before its drills exist, and a
+     * missing drill degrades to the drills index instead of a broken lesson.
+     */
+    drillSlug: z.string().min(1).max(120).optional(),
+    /** Attribution for third-party media. */
+    source: z
+      .object({ label: z.string().min(1).max(160), href: z.string().url().max(500).optional() })
+      .optional(),
+  })
+  .strip()
+export type LessonContent = z.infer<typeof lessonContentSchema>
+
+export function parseLessonContent(raw: unknown): LessonContent {
+  const parsed = lessonContentSchema.safeParse(raw ?? {})
+  return parsed.success ? parsed.data : { keyPoints: [], cues: [], terms: [] }
+}
+
+/** Splits a prose body into paragraphs for the article renderer. */
+export function paragraphs(body: string): string[] {
+  return body
+    .split(/\n{2,}/)
+    .map((block) => block.trim())
+    .filter(Boolean)
 }
