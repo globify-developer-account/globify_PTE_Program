@@ -272,10 +272,10 @@ export async function getCourseDetail(slug: string, userId: string): Promise<Cou
   if (ungrouped.length > 0) {
     modules.push({ id: null, title: 'Lessons', description: null, lessons: ungrouped })
   }
-  for (const module of course.modules) {
-    const owned = lessons.filter((lesson) => lesson.moduleId === module.id)
+  for (const courseModule of course.modules) {
+    const owned = lessons.filter((lesson) => lesson.moduleId === courseModule.id)
     if (owned.length > 0) {
-      modules.push({ id: module.id, title: module.title, description: module.description, lessons: owned })
+      modules.push({ id: courseModule.id, title: courseModule.title, description: courseModule.description, lessons: owned })
     }
   }
 
