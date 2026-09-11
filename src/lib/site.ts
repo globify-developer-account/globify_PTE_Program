@@ -59,18 +59,53 @@ export const publicNav = [
   { label: 'Resources', href: '/resources' },
 ] as const
 
+/**
+ * The signed-in user centre, in the left rail.
+ *
+ * Ordered the way study platforms conventionally order it — the things a
+ * student opens daily first, account and support last. `Log Out` is not here
+ * because it posts rather than navigates; the sidebar renders it itself.
+ */
 export const appNav = [
-  { label: 'Dashboard', href: '/dashboard', icon: 'LayoutDashboard' },
-  { label: 'Learn', href: '/learn', icon: 'GraduationCap' },
-  { label: 'Practice', href: '/practice', icon: 'Mic' },
+  { label: 'Home', href: '/dashboard', icon: 'Home' },
+  { label: 'My Courses', href: '/learn', icon: 'GraduationCap' },
+  { label: 'Institute Mode', href: '/institute', icon: 'Users' },
+  { label: 'Study Centre', href: '/progress', icon: 'TrendingUp' },
   { label: 'Mock Tests', href: '/mock-tests', icon: 'ClipboardList' },
-  { label: 'Dictation & Shadowing', href: '/drills', icon: 'Headphones' },
-  { label: 'Progress', href: '/progress', icon: 'TrendingUp' },
-  { label: 'Conversations', href: '/conversations', icon: 'MessagesSquare' },
-  { label: 'Writing Improvement', href: '/writing-improvement', icon: 'PenLine' },
-  { label: 'AI Tools', href: '/ai-tools', icon: 'Sparkles' },
-  { label: 'Resources', href: '/resources', icon: 'BookOpen' },
-  { label: 'Profile', href: '/profile', icon: 'User' },
+  { label: 'Vocab Books', href: '/vocab', icon: 'BookOpen' },
+  { label: 'Settings', href: '/profile', icon: 'Settings' },
+  { label: 'Premium Centre', href: '/subscription', icon: 'Sparkles' },
+  { label: 'Notification Centre', href: '/notifications', icon: 'Bell' },
+  { label: 'Help (Q&A)', href: '/faq', icon: 'CircleHelp' },
+  { label: 'Contact Us', href: '/contact', icon: 'MessageSquareText' },
+] as const
+
+/**
+ * The masthead above the user centre. `PTE Practice` is a mega-menu rather
+ * than a link — `hasMegaMenu` tells the topbar to render the task panel
+ * instead of navigating.
+ */
+export const topNav = [
+  { label: 'Home', href: '/dashboard', hasMegaMenu: false },
+  { label: 'PTE Practice', href: '/practice', hasMegaMenu: true },
+  { label: 'Course', href: '/learn', hasMegaMenu: false },
+  { label: 'Circle', href: '/circle', hasMegaMenu: false },
+  { label: 'Institute', href: '/institute', hasMegaMenu: false },
+] as const
+
+/**
+ * The footer row of the practice mega-menu: study tools that are not
+ * themselves a scored task type.
+ */
+export const practiceMenuExtras = [
+  { label: 'Vocab Books', href: '/vocab' },
+  { label: 'Shadowing', href: '/drills' },
+  { label: 'AI Score Analysis', href: '/progress' },
+  { label: 'AI Study Plan', href: '/ai-tools' },
+  { label: 'Speaking Partner', href: '/conversations' },
+  { label: 'Writing Improvement', href: '/writing-improvement' },
+  { label: 'Mock Tests', href: '/mock-tests' },
+  { label: 'Study Materials', href: '/resources' },
 ] as const
 
 export const mobileNav = [

@@ -9,7 +9,7 @@ import { formatDuration } from '@/lib/utils'
 export const metadata = pageMetadata({
   title: 'PTE Preparation',
   description:
-    'A complete guide to PTE Academic preparation: all four sections, all eighteen task types, timing, scoring and how to practise each one effectively.',
+    'A complete guide to PTE Academic preparation: all four sections, every task type, timing, scoring and how to practise each one effectively.',
   path: '/pte',
   keywords: ['PTE preparation', 'PTE Academic', 'PTE question types', 'PTE sections', 'PTE scoring'],
 })
@@ -60,7 +60,7 @@ export default function PtePage() {
       </section>
 
       <section className="container-page pb-20">
-        <h2 className="text-2xl font-bold tracking-tight text-navy-900">All eighteen task types</h2>
+        <h2 className="text-2xl font-bold tracking-tight text-navy-900">Every task type</h2>
         <p className="mt-2 max-w-2xl text-[15px] text-ink-600">
           Timings below are the defaults used in Globify practice. Admins can adjust them per question, and mock
           tests use their own section timing.

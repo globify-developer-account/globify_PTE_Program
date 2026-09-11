@@ -88,7 +88,7 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="Complete coverage"
           title="Every PTE Academic task, in one place"
-          description="Practise all eighteen task types with the same timing, structure and constraints you will meet on test day."
+          description="Practise every task type with the same timing, structure and constraints you will meet on test day."
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {SECTIONS.map((section) => {

@@ -36,7 +36,7 @@ export default async function PracticePage() {
         <div>
           <h2 className="text-2xl font-semibold tracking-tight text-navy-900">Practice</h2>
           <p className="mt-1.5 text-sm text-ink-500">
-            All 18 PTE Academic task types, scored the moment you submit.
+            Every PTE task type, scored the moment you submit.
           </p>
         </div>
         <StartPracticeButton count={5} label="Quick 5-question session" />

@@ -9,6 +9,9 @@ import { splitIntoSegments, tokenize } from '../src/lib/drills/diff'
 import { SEED_WRITING_EXERCISES } from './seed-data/writing-exercises'
 import { SEED_COURSES } from './seed-data/courses'
 import { SEED_CONVERSATION_TOPICS } from './seed-data/conversation-topics'
+import { QUESTION_TYPES } from '../src/lib/pte/question-types'
+import { SEED_VOCAB_BOOKS } from './seed-data/vocab'
+import { SEED_LIVE_CLASSES } from './seed-data/classes'
 
 /**
  * Seeds a complete, demonstrable installation: the task catalogue, a question
@@ -27,26 +30,6 @@ const STUDENT_PASSWORD = process.env.SEED_STUDENT_PASSWORD?.trim() || 'GlobifySt
 
 // --- task catalogue -----------------------------------------------------------
 
-const QUESTION_TYPES = [
-  { code: 'READ_ALOUD', name: 'Read Aloud', shortName: 'RA', section: 'SPEAKING', renderer: 'speaking-read-aloud', description: 'Read a short text aloud, clearly and naturally, within the time limit.', skills: ['pronunciation', 'oralFluency', 'content'], time: 40, prep: 35, audio: true, text: false, order: 1 },
-  { code: 'REPEAT_SENTENCE', name: 'Repeat Sentence', shortName: 'RS', section: 'SPEAKING', renderer: 'speaking-audio-prompt', description: 'Listen to a sentence and repeat it exactly as you heard it.', skills: ['pronunciation', 'oralFluency', 'listening', 'content'], time: 15, prep: 3, audio: true, text: false, order: 2 },
-  { code: 'DESCRIBE_IMAGE', name: 'Describe Image', shortName: 'DI', section: 'SPEAKING', renderer: 'speaking-image-prompt', description: 'Study the image and describe what it shows in detail.', skills: ['oralFluency', 'pronunciation', 'vocabulary', 'content'], time: 40, prep: 25, audio: true, text: false, order: 3 },
-  { code: 'RETELL_LECTURE', name: 'Retell Lecture', shortName: 'RL', section: 'SPEAKING', renderer: 'speaking-audio-prompt', description: 'Listen to a lecture and retell it in your own words.', skills: ['oralFluency', 'pronunciation', 'content', 'listening'], time: 40, prep: 10, audio: true, text: false, order: 4 },
-  { code: 'ANSWER_SHORT_QUESTION', name: 'Answer Short Question', shortName: 'ASQ', section: 'SPEAKING', renderer: 'speaking-audio-prompt', description: 'Answer a short question in one or a few words.', skills: ['listening', 'vocabulary', 'content'], time: 10, prep: 3, audio: true, text: false, order: 5 },
-  { code: 'SUMMARIZE_WRITTEN_TEXT', name: 'Summarize Written Text', shortName: 'SWT', section: 'WRITING', renderer: 'writing-text', description: 'Summarise the passage in a single sentence of 5–75 words.', skills: ['content', 'form', 'grammar', 'vocabulary'], time: 600, prep: null, audio: false, text: true, order: 6 },
-  { code: 'ESSAY', name: 'Write Essay', shortName: 'WE', section: 'WRITING', renderer: 'writing-text', description: 'Write a 200–300 word argumentative essay on the given topic.', skills: ['content', 'form', 'grammar', 'vocabulary', 'writtenDiscourse', 'spelling'], time: 1200, prep: null, audio: false, text: true, order: 7 },
-  { code: 'READING_MCQ_SINGLE', name: 'Multiple Choice, Single Answer', shortName: 'R-MCQ', section: 'READING', renderer: 'choice-single', description: 'Read the passage and choose the single best answer.', skills: ['reading', 'content'], time: 120, prep: null, audio: false, text: false, order: 8 },
-  { code: 'READING_MCQ_MULTIPLE', name: 'Multiple Choice, Multiple Answers', shortName: 'R-MCM', section: 'READING', renderer: 'choice-multiple', description: 'Choose every option that correctly answers the question. Wrong choices lose marks.', skills: ['reading', 'content'], time: 180, prep: null, audio: false, text: false, order: 9 },
-  { code: 'REORDER_PARAGRAPHS', name: 'Re-order Paragraphs', shortName: 'RO', section: 'READING', renderer: 'reorder', description: 'Arrange the text boxes into the correct logical order.', skills: ['reading', 'writtenDiscourse'], time: 180, prep: null, audio: false, text: false, order: 10 },
-  { code: 'READING_FILL_BLANKS', name: 'Reading: Fill in the Blanks', shortName: 'R-FIB', section: 'READING', renderer: 'fill-blanks-dropdown', description: 'Choose the correct word for each blank in the passage.', skills: ['reading', 'vocabulary', 'grammar'], time: 180, prep: null, audio: false, text: false, order: 11 },
-  { code: 'READING_WRITING_FILL_BLANKS', name: 'Reading & Writing: Fill in the Blanks', shortName: 'RW-FIB', section: 'READING', renderer: 'fill-blanks-dropdown', description: 'Choose the word that fits each blank in both meaning and grammar.', skills: ['reading', 'vocabulary', 'grammar', 'writtenDiscourse'], time: 210, prep: null, audio: false, text: false, order: 12 },
-  { code: 'SUMMARIZE_SPOKEN_TEXT', name: 'Summarize Spoken Text', shortName: 'SST', section: 'LISTENING', renderer: 'writing-text', description: 'Listen to a lecture and summarise it in 50–70 words.', skills: ['listening', 'content', 'form', 'grammar', 'vocabulary', 'spelling'], time: 600, prep: null, audio: false, text: true, order: 13 },
-  { code: 'LISTENING_MCQ_SINGLE', name: 'Listening: Multiple Choice, Single Answer', shortName: 'L-MCQ', section: 'LISTENING', renderer: 'choice-single', description: 'Listen to the recording and choose the single best answer.', skills: ['listening', 'content'], time: 120, prep: null, audio: false, text: false, order: 14 },
-  { code: 'LISTENING_MCQ_MULTIPLE', name: 'Listening: Multiple Choice, Multiple Answers', shortName: 'L-MCM', section: 'LISTENING', renderer: 'choice-multiple', description: 'Select every correct option. Incorrect selections lose marks.', skills: ['listening', 'content'], time: 150, prep: null, audio: false, text: false, order: 15 },
-  { code: 'LISTENING_FILL_BLANKS', name: 'Listening: Fill in the Blanks', shortName: 'L-FIB', section: 'LISTENING', renderer: 'fill-blanks-typed', description: 'Type the missing word you hear into each blank in the transcript.', skills: ['listening', 'spelling', 'vocabulary'], time: 180, prep: null, audio: false, text: false, order: 16 },
-  { code: 'HIGHLIGHT_INCORRECT_WORDS', name: 'Highlight Incorrect Words', shortName: 'HIW', section: 'LISTENING', renderer: 'highlight-words', description: 'Click the words in the transcript that differ from the recording.', skills: ['listening', 'reading'], time: 150, prep: null, audio: false, text: false, order: 17 },
-  { code: 'WRITE_FROM_DICTATION', name: 'Write From Dictation', shortName: 'WFD', section: 'LISTENING', renderer: 'dictation', description: 'Type the sentence exactly as you hear it.', skills: ['listening', 'spelling', 'grammar'], time: 60, prep: null, audio: false, text: false, order: 18 },
-] as const
 
 const PLANS = [
   {
@@ -61,7 +44,7 @@ const PLANS = [
     badge: null,
     displayOrder: 1,
     features: [
-      'Unlimited practice across all 18 task types',
+      'Unlimited practice across every task type',
       '60 AI speaking evaluations per month',
       '40 AI writing evaluations per month',
       '4 full mock tests per month',
@@ -222,6 +205,14 @@ async function main() {
   })
 
   // 2. Question types
+  //
+  // The catalogue is imported from src/lib/pte/question-types rather than
+  // repeated here: it is the same list the practice engine renders from, and a
+  // second copy would silently drift the moment Pearson changes the exam.
+  //
+  // `lastTypeNumber` is deliberately absent from `update` — it is a live
+  // allocator, and resetting it on a re-seed would hand out numbers that
+  // existing questions already hold.
   for (const type of QUESTION_TYPES) {
     const data = {
       name: type.name,
@@ -230,12 +221,15 @@ async function main() {
       renderer: type.renderer,
       description: type.description,
       skills: [...type.skills],
-      defaultTimeLimitSeconds: type.time,
-      defaultPreparationSeconds: type.prep,
-      requiresAudioResponse: type.audio,
-      requiresTextResponse: type.text,
+      defaultTimeLimitSeconds: type.defaultTimeLimitSeconds,
+      defaultPreparationSeconds: type.defaultPreparationSeconds,
+      requiresAudioResponse: type.requiresAudioResponse,
+      requiresTextResponse: type.requiresTextResponse,
+      scoreWeight: type.scoreWeight,
+      variants: [...type.variants],
+      isNew: type.isNew,
       isActive: true,
-      displayOrder: type.order,
+      displayOrder: type.displayOrder,
     }
     await prisma.questionType.upsert({
       where: { code: type.code },
@@ -999,6 +993,78 @@ async function main() {
   }
 
   console.log(`  ${STUDENTS.length} students with practice history`)
+
+  // --- vocabulary books -------------------------------------------------------
+  //
+  // Words are upserted on (bookId, headword) so re-running the seed after a
+  // word list is edited updates the definitions in place, leaving every
+  // learner's familiarity progress attached to the same rows.
+  for (const book of SEED_VOCAB_BOOKS) {
+    const bookData = {
+      title: book.title,
+      description: book.description,
+      badge: book.badge,
+      color: book.color,
+      modes: book.modes,
+      questionTypeCode: book.questionTypeCode ?? null,
+      isPremium: book.isPremium,
+      status: 'PUBLISHED' as const,
+      displayOrder: book.displayOrder,
+      wordCount: book.words.length,
+    }
+    const record = await prisma.vocabBook.upsert({
+      where: { slug: book.slug },
+      create: { slug: book.slug, ...bookData },
+      update: bookData,
+    })
+
+    for (const [index, word] of book.words.entries()) {
+      const wordData = {
+        phonetic: word.phonetic ?? null,
+        partOfSpeech: word.partOfSpeech ?? null,
+        definition: word.definition,
+        example: word.example ?? null,
+        acceptedForms: word.acceptedForms ?? [],
+        displayOrder: index + 1,
+      }
+      await prisma.vocabWord.upsert({
+        where: { bookId_headword: { bookId: record.id, headword: word.headword } },
+        create: { bookId: record.id, headword: word.headword, ...wordData },
+        update: wordData,
+      })
+    }
+  }
+  console.log(
+    `  ${SEED_VOCAB_BOOKS.length} vocab books (${SEED_VOCAB_BOOKS.reduce((sum, book) => sum + book.words.length, 0)} words)`,
+  )
+
+  // --- live classes -----------------------------------------------------------
+  //
+  // Offsets are resolved against now, so the schedule is always populated
+  // relative to whenever the seed was run.
+  const seededAt = Date.now()
+  for (const entry of SEED_LIVE_CLASSES) {
+    const startsAt = new Date(seededAt + entry.startsInHours * 60 * 60 * 1000)
+    const classData = {
+      title: entry.title,
+      description: entry.description,
+      kind: entry.kind,
+      section: entry.section,
+      instructorName: entry.instructorName,
+      startsAt,
+      endsAt: new Date(startsAt.getTime() + entry.durationMinutes * 60 * 1000),
+      capacity: entry.capacity,
+      isPremium: entry.isPremium,
+      status: 'PUBLISHED' as const,
+    }
+    await prisma.liveClass.upsert({
+      where: { slug: entry.slug },
+      create: { slug: entry.slug, ...classData },
+      update: classData,
+    })
+  }
+  console.log(`  ${SEED_LIVE_CLASSES.length} live classes`)
+
   console.log('\nSeed complete.')
   console.log(`  Admin:   ${ADMIN_EMAIL} / ${ADMIN_PASSWORD}`)
   console.log(`  Student: ${STUDENTS[0]!.email} / ${STUDENT_PASSWORD}`)

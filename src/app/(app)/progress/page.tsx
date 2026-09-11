@@ -236,7 +236,7 @@ export default async function ProgressPage() {
                 ))}
                 <UpgradePrompt
                   title="See every task type"
-                  description="Premium shows your average across all 18 task types, your enabling-skill breakdown and your full attempt history."
+                  description="Premium shows your average across every task type, your enabling-skill breakdown and your full attempt history."
                   ctaLabel="Unlock full analytics"
                   className="mt-4"
                 />

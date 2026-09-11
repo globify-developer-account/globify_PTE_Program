@@ -1,6 +1,8 @@
 import {
   BarChart3,
+  Bell,
   BookOpen,
+  CircleHelp,
   ClipboardList,
   CreditCard,
   FileQuestion,
@@ -32,7 +34,9 @@ import {
  */
 const ICONS: Record<string, LucideIcon> = {
   BarChart3,
+  Bell,
   BookOpen,
+  CircleHelp,
   ClipboardList,
   CreditCard,
   FileQuestion,

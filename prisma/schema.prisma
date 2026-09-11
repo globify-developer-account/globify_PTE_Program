@@ -197,6 +197,17 @@ enum IeltsVariant {
   GENERAL_TRAINING
 }
 
+/// Pearson sells two PTE products off one task bank. Academic (and its UKVI
+/// sibling, which differs only in the secure-test-centre wrapper) is the
+/// university/visa route; Core is the IRCC route and swaps Describe Image,
+/// Retell Lecture and Write Essay for Write Email and Respond to a Situation.
+/// A QuestionType lists the variants that offer it; a learner picks one on
+/// their profile and the practice menus filter to it.
+enum PteVariant {
+  ACADEMIC_UKVI
+  CORE
+}
+
 /// Which scale a Score is reported on. `Score.overall` stays the normalised
 /// 0-90 currency the charts and progress rollups read; `Score.band` is
 /// authoritative for IELTS and `overall` is derived from it.
@@ -252,6 +263,13 @@ model User {
   drillProgress    DrillProgress[]
   writingImprovements WritingImprovement[]
   conversations    Conversation[]
+  vocabProgress    VocabWordProgress[]
+  savedVocab       SavedVocabWord[]
+  classBookings    ClassBooking[]
+  circlePosts      CirclePost[]         @relation("CirclePostAuthor")
+  circleComments   CircleComment[]      @relation("CircleCommentAuthor")
+  circleReactions  CircleReaction[]
+  instituteMemberships InstituteMember[]
 
   @@index([role, status])
   @@index([createdAt])
@@ -272,6 +290,8 @@ model Profile {
   targetBand           Float?
   /// Which IELTS exam the student is sitting. Null until they pick one.
   ieltsVariant         IeltsVariant?
+  /// Which PTE product the student is sitting. Drives the task list they see.
+  pteVariant           PteVariant @default(ACADEMIC_UKVI)
   currentEstimateScore Int?
   preferredTestDate    DateTime?
   dailyGoalMinutes     Int       @default(45)
@@ -536,8 +556,18 @@ model QuestionType {
   defaultPreparationSeconds Int?
   requiresAudioResponse  Boolean @default(false)
   requiresTextResponse   Boolean @default(false)
+  /// Estimated share of the total score, as a percentage. Displayed in the
+  /// practice menu so students can prioritise. Below 1% is stored as 0.5.
+  scoreWeight    Float      @default(0)
+  /// PTE products offering this task. Empty for IELTS rows.
+  variants       PteVariant[] @default([])
+  /// Recently introduced by Pearson — drives the "New" badge.
+  isNew          Boolean    @default(false)
   isActive       Boolean    @default(true)
   displayOrder   Int        @default(0)
+  /// High-water mark for `Question.typeNumber`. Incremented in the same
+  /// transaction that creates a question so numbers never collide or reuse.
+  lastTypeNumber Int        @default(0)
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
 
@@ -564,6 +594,11 @@ model Question {
   questionType   QuestionType  @relation(fields: [questionTypeId], references: [id])
   categoryId     String?
   category       QuestionCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  /// Sequential number within the question type, so students can refer to a
+  /// task the way they do in study groups: "RA #677". Assigned on publish from
+  /// `QuestionType.lastTypeNumber`; null while the question is still a draft.
+  typeNumber     Int?
 
   title          String
   /// Prompt / instruction shown above the task.
@@ -605,6 +640,7 @@ model Question {
   mockItems  MockTestQuestion[]
   lessonItems LessonQuestion[]
 
+  @@unique([questionTypeId, typeNumber])
   @@index([questionTypeId, status])
   @@index([status, difficulty])
   @@index([createdAt])
@@ -1610,4 +1646,309 @@ model ConversationReport {
   provider  String?
   simulated Boolean  @default(false)
   createdAt DateTime @default(now())
+}
+
+// -----------------------------------------------------------------------------
+// Vocabulary books
+// -----------------------------------------------------------------------------
+
+/// A vocab book is studied in one of two directions: see the word and recall
+/// the meaning, or hear the word and write it. The same book can be offered in
+/// both, so this is a property of the study session rather than the book.
+enum VocabMode {
+  READING
+  LISTENING
+}
+
+/// How well a learner knows one word. Progress is per user per word, so the
+/// same word appearing in two books shares one familiarity state.
+enum VocabFamiliarity {
+  NEW
+  LEARNING
+  FAMILIAR
+  MASTERED
+}
+
+model VocabBook {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  description String?
+  /// Two or three characters printed on the book spine in the card grid.
+  badge       String
+  /// Spine colour as a hex value, so admins can add books without a deploy.
+  color       String    @default("#2e5bff")
+  /// Which study directions this book supports.
+  modes       VocabMode[] @default([READING, LISTENING])
+  /// Books sourced from a task type link back to it for "practise these" CTAs.
+  questionTypeCode String?
+  isPremium   Boolean   @default(false)
+  status      ContentStatus @default(PUBLISHED)
+  displayOrder Int      @default(0)
+  /// Denormalised count of published words — the card shows it on every render.
+  wordCount   Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  words VocabWord[]
+
+  @@index([status, displayOrder])
+}
+
+model VocabWord {
+  id           String   @id @default(cuid())
+  bookId       String
+  book         VocabBook @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  headword     String
+  /// IPA, shown under the headword in reading mode.
+  phonetic     String?
+  audioUrl     String?
+  partOfSpeech String?
+  definition   String
+  example      String?
+  /// Other forms a dictation answer should accept (plurals, US/UK spellings).
+  acceptedForms String[] @default([])
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  progress VocabWordProgress[]
+
+  @@unique([bookId, headword])
+  @@index([bookId, displayOrder])
+}
+
+model VocabWordProgress {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  wordId      String
+  word        VocabWord @relation(fields: [wordId], references: [id], onDelete: Cascade)
+  familiarity VocabFamiliarity @default(NEW)
+  /// Consecutive correct recalls — drives the spacing interval.
+  streak      Int      @default(0)
+  timesSeen   Int      @default(0)
+  timesCorrect Int     @default(0)
+  lastSeenAt  DateTime?
+  /// When this word next falls due. Null means it has never been studied.
+  dueAt       DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([userId, wordId])
+  @@index([userId, dueAt])
+  @@index([userId, familiarity])
+}
+
+/// Words a learner flagged while practising, independent of any book. This is
+/// the "My Vocab List" book — it has no VocabBook row because its contents
+/// differ per user.
+model SavedVocabWord {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  headword   String
+  /// Where they met the word, so the list can link back to the task.
+  questionId String?
+  note       String?
+  familiarity VocabFamiliarity @default(NEW)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([userId, headword])
+  @@index([userId, createdAt])
+}
+
+// -----------------------------------------------------------------------------
+// Live classes
+// -----------------------------------------------------------------------------
+
+enum LiveClassKind {
+  LIVE_CLASS
+  LECTURE
+  PRACTICE_SESSION
+  WORKSHOP
+}
+
+enum BookingStatus {
+  RESERVED
+  ATTENDED
+  MISSED
+  CANCELLED
+}
+
+model LiveClass {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String?
+  kind        LiveClassKind @default(LIVE_CLASS)
+  section     PteSection?
+  instructorName String
+  instructorAvatarUrl String?
+  /// Stored in UTC. The dashboard renders it in Profile.timezone.
+  startsAt    DateTime
+  endsAt      DateTime
+  /// Meeting link, revealed only to learners holding a booking.
+  joinUrl     String?
+  recordingUrl String?
+  /// Null means unlimited seats.
+  capacity    Int?
+  /// Free classes are open to every signed-in learner; otherwise entitlement
+  /// is checked against the subscription before a booking is written.
+  isPremium   Boolean  @default(true)
+  status      ContentStatus @default(PUBLISHED)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  bookings ClassBooking[]
+
+  @@index([status, startsAt])
+  @@index([kind, startsAt])
+}
+
+model ClassBooking {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  classId   String
+  liveClass LiveClass @relation(fields: [classId], references: [id], onDelete: Cascade)
+  status    BookingStatus @default(RESERVED)
+  bookedAt  DateTime @default(now())
+  attendedAt DateTime?
+
+  @@unique([userId, classId])
+  @@index([userId, bookedAt])
+  @@index([classId, status])
+}
+
+// -----------------------------------------------------------------------------
+// Circle — the student community
+// -----------------------------------------------------------------------------
+
+enum CirclePostCategory {
+  EXAM_EXPERIENCE
+  QUESTION_PREDICTION
+  STUDY_TIP
+  SCORE_REPORT
+  GENERAL
+}
+
+enum CirclePostStatus {
+  PUBLISHED
+  HIDDEN
+  REMOVED
+}
+
+model CirclePost {
+  id        String   @id @default(cuid())
+  authorId  String
+  author    User     @relation("CirclePostAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  title     String
+  body      String
+  category  CirclePostCategory @default(GENERAL)
+  section   PteSection?
+  /// Score the poster reported, when they are sharing a result.
+  reportedScore Int?
+  /// When they sat the exam — how prediction threads stay sorted by recency.
+  examDate  DateTime?
+  tags      String[] @default([])
+  status    CirclePostStatus @default(PUBLISHED)
+  /// Denormalised so the feed does not aggregate on every read.
+  likeCount    Int   @default(0)
+  commentCount Int   @default(0)
+  /// Staff-promoted posts pin to the top of the feed.
+  isPinned  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  comments  CircleComment[]
+  reactions CircleReaction[]
+
+  @@index([status, isPinned, createdAt])
+  @@index([category, createdAt])
+  @@index([authorId, createdAt])
+}
+
+model CircleComment {
+  id        String   @id @default(cuid())
+  postId    String
+  post      CirclePost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  authorId  String
+  author    User     @relation("CircleCommentAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  body      String
+  /// Set for a reply to another comment; null for a top-level comment.
+  parentId  String?
+  parent    CircleComment? @relation("CircleCommentThread", fields: [parentId], references: [id], onDelete: Cascade)
+  replies   CircleComment[] @relation("CircleCommentThread")
+  status    CirclePostStatus @default(PUBLISHED)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([postId, createdAt])
+  @@index([parentId])
+}
+
+model CircleReaction {
+  id        String   @id @default(cuid())
+  postId    String
+  post      CirclePost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([postId, userId])
+  @@index([userId, createdAt])
+}
+
+// -----------------------------------------------------------------------------
+// Institute mode — coaching centres managing their own cohorts
+// -----------------------------------------------------------------------------
+
+enum InstituteRole {
+  OWNER
+  TEACHER
+  STUDENT
+}
+
+enum InstituteStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+}
+
+model Institute {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  name      String
+  logoUrl   String?
+  contactEmail String?
+  contactPhone String?
+  /// Seats the institute has paid for. Membership writes check this.
+  seatLimit Int      @default(25)
+  status    InstituteStatus @default(PENDING)
+  /// Join code students enter to attach themselves to this institute.
+  joinCode  String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  members InstituteMember[]
+
+  @@index([status, name])
+}
+
+model InstituteMember {
+  id          String   @id @default(cuid())
+  instituteId String
+  institute   Institute @relation(fields: [instituteId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role        InstituteRole @default(STUDENT)
+  /// Free-text cohort label ("Feb Morning Batch") the institute sets.
+  batch       String?
+  joinedAt    DateTime @default(now())
+
+  @@unique([instituteId, userId])
+  @@index([instituteId, role])
+  @@index([userId])
 }

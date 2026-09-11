@@ -25,6 +25,7 @@
     "db:seed": "tsx prisma/seed.ts",
     "db:reset": "prisma migrate reset --force",
     "verify:storage": "tsx scripts/verify-storage.mts",
+    "sync:question-types": "tsx scripts/sync-question-types.ts",
     "migration:build": "tsx scripts/build-migration.ts"
   },
   "dependencies": {

@@ -4,7 +4,7 @@ import type { RecordedAudio } from './audio-recorder'
 
 /**
  * What a renderer produces. Every renderer writes into the same shape so the
- * player can submit any of the 18 task types through one code path.
+ * player can submit any task type through one code path.
  */
 export interface AnswerDraft {
   text: string

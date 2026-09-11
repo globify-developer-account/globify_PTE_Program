@@ -280,6 +280,49 @@ export async function minutesPracticedToday(userId: string): Promise<number> {
   return Math.round((result._sum.timeSpentSeconds ?? 0) / 60)
 }
 
+export interface PracticeCounts {
+  /** Questions submitted since midnight. */
+  today: number
+  /** Questions submitted ever. */
+  total: number
+  /** Distinct calendar days with at least one submission. */
+  days: number
+}
+
+/**
+ * The three counters on the study-stats card.
+ *
+ * Counting questions rather than minutes is deliberate: a learner comparing
+ * notes with someone else quotes "I've done 677" and means questions. Days are
+ * counted in the learner's own timezone, because a session that ends at 1am
+ * should belong to the evening it started in from their point of view — which
+ * is what `AT TIME ZONE` gives us.
+ */
+export async function getPracticeCounts(
+  userId: string,
+  timezone = 'UTC',
+): Promise<PracticeCounts> {
+  const [today, total, distinctDays] = await Promise.all([
+    prisma.attempt.count({
+      where: { userId, submittedAt: { gte: startOfDay(new Date()) } },
+    }),
+    prisma.attempt.count({ where: { userId, submittedAt: { not: null } } }),
+    // Prisma has no DISTINCT-on-an-expression, so the day bucketing is raw SQL.
+    // The timezone is passed as a bound parameter, never interpolated.
+    prisma.$queryRaw<Array<{ count: bigint }>>`
+      SELECT COUNT(DISTINCT DATE("submittedAt" AT TIME ZONE ${timezone})) AS count
+      FROM "Attempt"
+      WHERE "userId" = ${userId} AND "submittedAt" IS NOT NULL
+    `,
+  ])
+
+  return {
+    today,
+    total,
+    days: Number(distinctDays[0]?.count ?? 0),
+  }
+}
+
 /** Runs the whole rollup after an attempt is scored. */
 export async function refreshProgressForAttempt(
   userId: string,

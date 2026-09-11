@@ -15,9 +15,12 @@ export const QUESTION_TYPE_CODES = [
   'DESCRIBE_IMAGE',
   'RETELL_LECTURE',
   'ANSWER_SHORT_QUESTION',
+  'SUMMARIZE_GROUP_DISCUSSION',
+  'RESPOND_TO_SITUATION',
   // Writing
   'SUMMARIZE_WRITTEN_TEXT',
   'ESSAY',
+  'WRITE_EMAIL',
   // Reading
   'READING_MCQ_SINGLE',
   'READING_MCQ_MULTIPLE',
@@ -29,11 +32,34 @@ export const QUESTION_TYPE_CODES = [
   'LISTENING_MCQ_SINGLE',
   'LISTENING_MCQ_MULTIPLE',
   'LISTENING_FILL_BLANKS',
+  'HIGHLIGHT_CORRECT_SUMMARY',
+  'SELECT_MISSING_WORD',
   'HIGHLIGHT_INCORRECT_WORDS',
   'WRITE_FROM_DICTATION',
 ] as const
 
 export type QuestionTypeCode = (typeof QUESTION_TYPE_CODES)[number]
+
+/**
+ * Pearson sells two PTE products that share most of their task list.
+ * A task is offered in one or both; `variants` on each definition says which,
+ * and the practice UI filters by the learner's selected variant.
+ */
+export const PTE_VARIANTS = ['ACADEMIC_UKVI', 'CORE'] as const
+export type PteVariant = (typeof PTE_VARIANTS)[number]
+
+export const PTE_VARIANT_META: Record<PteVariant, { label: string; short: string; blurb: string }> = {
+  ACADEMIC_UKVI: {
+    label: 'PTE Academic / UKVI',
+    short: 'PTE A / UKVI',
+    blurb: 'University admission and UK visa routes. Scored 10-90 across four skills.',
+  },
+  CORE: {
+    label: 'PTE Core',
+    short: 'PTE Core',
+    blurb: 'Canadian economic immigration (IRCC approved). Swaps in Write Email and Respond to a Situation.',
+  },
+}
 
 /** Renderer keys the practice engine can draw. */
 export type RendererKey =
@@ -64,6 +90,17 @@ export interface QuestionTypeDefinition {
   requiresTextResponse: boolean
   /** Scored by deterministic rules (choice/order/dictation) rather than an AI call. */
   autoScorable: boolean
+  /**
+   * Share of the total score this task contributes, as a percentage. Pearson
+   * does not publish exact figures; these are the community-accepted estimates
+   * students plan around. Values below one percent are stored as 0.5 and
+   * rendered "<1%" — see `formatScoreWeight`.
+   */
+  scoreWeight: number
+  /** Which PTE products offer this task. */
+  variants: PteVariant[]
+  /** Recently added by Pearson — surfaced with a "New" badge in the practice menu. */
+  isNew: boolean
   displayOrder: number
 }
 
@@ -81,6 +118,9 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: true,
     requiresTextResponse: false,
     autoScorable: false,
+    scoreWeight: 4,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
     displayOrder: 1,
   },
   {
@@ -96,6 +136,9 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: true,
     requiresTextResponse: false,
     autoScorable: false,
+    scoreWeight: 7,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
     displayOrder: 2,
   },
   {
@@ -111,6 +154,9 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: true,
     requiresTextResponse: false,
     autoScorable: false,
+    scoreWeight: 15,
+    variants: ['ACADEMIC_UKVI'],
+    isNew: false,
     displayOrder: 3,
   },
   {
@@ -126,6 +172,9 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: true,
     requiresTextResponse: false,
     autoScorable: false,
+    scoreWeight: 6,
+    variants: ['ACADEMIC_UKVI'],
+    isNew: false,
     displayOrder: 4,
   },
   {
@@ -141,7 +190,47 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: true,
     requiresTextResponse: false,
     autoScorable: false,
+    scoreWeight: 2,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
     displayOrder: 5,
+  },
+  {
+    code: 'SUMMARIZE_GROUP_DISCUSSION',
+    name: 'Summarize Group Discussion',
+    shortName: 'SGD',
+    section: 'SPEAKING',
+    renderer: 'speaking-audio-prompt',
+    description:
+      'Listen to three speakers discuss a topic, then summarise the discussion in your own words.',
+    skills: ['oralFluency', 'pronunciation', 'content', 'listening', 'vocabulary'],
+    defaultTimeLimitSeconds: 120,
+    defaultPreparationSeconds: 10,
+    requiresAudioResponse: true,
+    requiresTextResponse: false,
+    autoScorable: false,
+    scoreWeight: 9,
+    variants: ['ACADEMIC_UKVI'],
+    isNew: true,
+    displayOrder: 6,
+  },
+  {
+    code: 'RESPOND_TO_SITUATION',
+    name: 'Respond to a Situation',
+    shortName: 'RTS',
+    section: 'SPEAKING',
+    renderer: 'speaking-audio-prompt',
+    description: 'Listen to an everyday scenario and give an appropriate spoken response.',
+    skills: ['oralFluency', 'pronunciation', 'content', 'listening'],
+    defaultTimeLimitSeconds: 40,
+    defaultPreparationSeconds: 20,
+    requiresAudioResponse: true,
+    requiresTextResponse: false,
+    autoScorable: false,
+    scoreWeight: 6,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: true,
+    displayOrder: 7,
   },
   {
     code: 'SUMMARIZE_WRITTEN_TEXT',
@@ -149,14 +238,17 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     shortName: 'SWT',
     section: 'WRITING',
     renderer: 'writing-text',
-    description: 'Summarise the passage in a single sentence of 5–75 words.',
+    description: 'Summarise the passage in a single sentence of 5-75 words.',
     skills: ['content', 'form', 'grammar', 'vocabulary'],
     defaultTimeLimitSeconds: 600,
     defaultPreparationSeconds: null,
     requiresAudioResponse: false,
     requiresTextResponse: true,
     autoScorable: false,
-    displayOrder: 6,
+    scoreWeight: 7,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
+    displayOrder: 8,
   },
   {
     code: 'ESSAY',
@@ -164,14 +256,35 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     shortName: 'WE',
     section: 'WRITING',
     renderer: 'writing-text',
-    description: 'Write a 200–300 word argumentative essay on the given topic.',
+    description: 'Write a 200-300 word argumentative essay on the given topic.',
     skills: ['content', 'form', 'grammar', 'vocabulary', 'writtenDiscourse', 'spelling'],
     defaultTimeLimitSeconds: 1200,
     defaultPreparationSeconds: null,
     requiresAudioResponse: false,
     requiresTextResponse: true,
     autoScorable: false,
-    displayOrder: 7,
+    scoreWeight: 7,
+    variants: ['ACADEMIC_UKVI'],
+    isNew: false,
+    displayOrder: 9,
+  },
+  {
+    code: 'WRITE_EMAIL',
+    name: 'Write Email',
+    shortName: 'WEM',
+    section: 'WRITING',
+    renderer: 'writing-text',
+    description: 'Write a short email of 50-120 words addressing every point in the prompt.',
+    skills: ['content', 'form', 'grammar', 'vocabulary', 'writtenDiscourse', 'spelling'],
+    defaultTimeLimitSeconds: 540,
+    defaultPreparationSeconds: null,
+    requiresAudioResponse: false,
+    requiresTextResponse: true,
+    autoScorable: false,
+    scoreWeight: 8,
+    variants: ['CORE'],
+    isNew: false,
+    displayOrder: 10,
   },
   {
     code: 'READING_MCQ_SINGLE',
@@ -186,7 +299,10 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: false,
     requiresTextResponse: false,
     autoScorable: true,
-    displayOrder: 8,
+    scoreWeight: 0.5,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
+    displayOrder: 11,
   },
   {
     code: 'READING_MCQ_MULTIPLE',
@@ -201,7 +317,10 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: false,
     requiresTextResponse: false,
     autoScorable: true,
-    displayOrder: 9,
+    scoreWeight: 1,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
+    displayOrder: 12,
   },
   {
     code: 'REORDER_PARAGRAPHS',
@@ -216,11 +335,14 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: false,
     requiresTextResponse: false,
     autoScorable: true,
-    displayOrder: 10,
+    scoreWeight: 3,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
+    displayOrder: 13,
   },
   {
     code: 'READING_FILL_BLANKS',
-    name: 'Reading: Fill in the Blanks',
+    name: 'Fill in the Blanks (Drag and Drop)',
     shortName: 'R-FIB',
     section: 'READING',
     renderer: 'fill-blanks-dropdown',
@@ -231,11 +353,14 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: false,
     requiresTextResponse: false,
     autoScorable: true,
-    displayOrder: 11,
+    scoreWeight: 6,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
+    displayOrder: 14,
   },
   {
     code: 'READING_WRITING_FILL_BLANKS',
-    name: 'Reading & Writing: Fill in the Blanks',
+    name: 'Fill in the Blanks (Dropdown)',
     shortName: 'RW-FIB',
     section: 'READING',
     renderer: 'fill-blanks-dropdown',
@@ -246,7 +371,10 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: false,
     requiresTextResponse: false,
     autoScorable: true,
-    displayOrder: 12,
+    scoreWeight: 7,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
+    displayOrder: 15,
   },
   {
     code: 'SUMMARIZE_SPOKEN_TEXT',
@@ -254,18 +382,21 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     shortName: 'SST',
     section: 'LISTENING',
     renderer: 'writing-text',
-    description: 'Listen to a lecture and summarise it in 50–70 words.',
+    description: 'Listen to a lecture and summarise it in 50-70 words.',
     skills: ['listening', 'content', 'form', 'grammar', 'vocabulary', 'spelling'],
     defaultTimeLimitSeconds: 600,
     defaultPreparationSeconds: null,
     requiresAudioResponse: false,
     requiresTextResponse: true,
     autoScorable: false,
-    displayOrder: 13,
+    scoreWeight: 4,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
+    displayOrder: 16,
   },
   {
     code: 'LISTENING_MCQ_SINGLE',
-    name: 'Listening: Multiple Choice, Single Answer',
+    name: 'Multiple Choice, Single Answer',
     shortName: 'L-MCQ',
     section: 'LISTENING',
     renderer: 'choice-single',
@@ -276,11 +407,14 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: false,
     requiresTextResponse: false,
     autoScorable: true,
-    displayOrder: 14,
+    scoreWeight: 0.5,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
+    displayOrder: 17,
   },
   {
     code: 'LISTENING_MCQ_MULTIPLE',
-    name: 'Listening: Multiple Choice, Multiple Answers',
+    name: 'Multiple Choice, Multiple Answers',
     shortName: 'L-MCM',
     section: 'LISTENING',
     renderer: 'choice-multiple',
@@ -291,11 +425,14 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: false,
     requiresTextResponse: false,
     autoScorable: true,
-    displayOrder: 15,
+    scoreWeight: 1,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
+    displayOrder: 18,
   },
   {
     code: 'LISTENING_FILL_BLANKS',
-    name: 'Listening: Fill in the Blanks',
+    name: 'Fill in the Blanks',
     shortName: 'L-FIB',
     section: 'LISTENING',
     renderer: 'fill-blanks-typed',
@@ -306,7 +443,47 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: false,
     requiresTextResponse: false,
     autoScorable: true,
-    displayOrder: 16,
+    scoreWeight: 3,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
+    displayOrder: 19,
+  },
+  {
+    code: 'HIGHLIGHT_CORRECT_SUMMARY',
+    name: 'Highlight Correct Summary',
+    shortName: 'HCS',
+    section: 'LISTENING',
+    renderer: 'choice-single',
+    description: 'Listen to the recording and choose the paragraph that best summarises it.',
+    skills: ['listening', 'reading', 'content'],
+    defaultTimeLimitSeconds: 150,
+    defaultPreparationSeconds: null,
+    requiresAudioResponse: false,
+    requiresTextResponse: false,
+    autoScorable: true,
+    scoreWeight: 0.5,
+    variants: ['ACADEMIC_UKVI'],
+    isNew: false,
+    displayOrder: 20,
+  },
+  {
+    code: 'SELECT_MISSING_WORD',
+    name: 'Select Missing Word',
+    shortName: 'SMW',
+    section: 'LISTENING',
+    renderer: 'choice-single',
+    description:
+      'The last word or phrase is bleeped out — choose the option that completes the recording.',
+    skills: ['listening', 'content'],
+    defaultTimeLimitSeconds: 120,
+    defaultPreparationSeconds: null,
+    requiresAudioResponse: false,
+    requiresTextResponse: false,
+    autoScorable: true,
+    scoreWeight: 1,
+    variants: ['ACADEMIC_UKVI'],
+    isNew: false,
+    displayOrder: 21,
   },
   {
     code: 'HIGHLIGHT_INCORRECT_WORDS',
@@ -321,7 +498,10 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: false,
     requiresTextResponse: false,
     autoScorable: true,
-    displayOrder: 17,
+    scoreWeight: 4,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
+    displayOrder: 22,
   },
   {
     code: 'WRITE_FROM_DICTATION',
@@ -336,7 +516,10 @@ export const QUESTION_TYPES: QuestionTypeDefinition[] = [
     requiresAudioResponse: false,
     requiresTextResponse: false,
     autoScorable: true,
-    displayOrder: 18,
+    scoreWeight: 5,
+    variants: ['ACADEMIC_UKVI', 'CORE'],
+    isNew: false,
+    displayOrder: 23,
   },
 ]
 
@@ -348,6 +531,36 @@ export function questionType(code: string): QuestionTypeDefinition | undefined {
 
 export function questionTypesBySection(section: PteSection): QuestionTypeDefinition[] {
   return QUESTION_TYPES.filter((type) => type.section === section)
+}
+
+/** Tasks offered in one PTE product, in menu order. */
+export function questionTypesForVariant(
+  variant: PteVariant,
+  section?: PteSection,
+): QuestionTypeDefinition[] {
+  return QUESTION_TYPES.filter(
+    (type) => type.variants.includes(variant) && (section === undefined || type.section === section),
+  )
+}
+
+/** Below one percent reads "<1%"; everything else is a whole percentage. */
+export function formatScoreWeight(weight: number): string {
+  return weight < 1 ? '<1%' : `${weight}%`
+}
+
+/** URL segment for a task code: READ_ALOUD -> read-aloud. */
+export function typeSlug(code: string): string {
+  return code.toLowerCase().replace(/_/g, '-')
+}
+
+/** Inverse of `typeSlug`. */
+export function codeFromTypeSlug(slug: string): string {
+  return slug.toUpperCase().replace(/-/g, '_')
+}
+
+/** Canonical practice URL for one task type. */
+export function practiceHref(type: QuestionTypeDefinition): string {
+  return `/practice/${SECTION_META[type.section].slug}/${typeSlug(type.code)}`
 }
 
 export const SECTIONS: PteSection[] = ['SPEAKING', 'WRITING', 'READING', 'LISTENING']

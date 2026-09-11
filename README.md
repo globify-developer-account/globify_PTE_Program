@@ -1,7 +1,7 @@
 # Globify PTE Premium
 
 An AI-assisted PTE Academic preparation platform built for
-**Globify Consultants** — practice across all 18 task types, immediate scoring,
+**Globify Consultants** — practice across every PTE task type, immediate scoring,
 full-length mock tests, progress analytics and subscription billing.
 
 > Scores produced by this platform are **AI Estimated Scores**, generated for
@@ -57,7 +57,7 @@ is labelled as such in the UI.
 
 ## What it does
 
-**Practice.** All 18 PTE Academic task types across 11 renderers. Speaking tasks
+**Practice.** Every PTE Academic and PTE Core task type, across 11 renderers. Speaking tasks
 use a browser recorder that reproduces the exam's preparation countdown and
 auto-stop, because a student who has only practised with a manual start button
 is not ready for the test.
