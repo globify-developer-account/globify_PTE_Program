@@ -42,6 +42,23 @@ export default async function PracticePage() {
         <StartPracticeButton count={5} label="Quick 5-question session" />
       </div>
 
+      <Card>
+        <CardBody className="flex flex-wrap items-center justify-between gap-4">
+          <div className="min-w-0">
+            <p className="text-sm font-medium text-navy-900">Preparing for IELTS instead?</p>
+            <p className="mt-1 text-xs text-ink-500">
+              IELTS Writing Task 1 and Task 2 are scored against the four official criteria and reported as a band.
+            </p>
+          </div>
+          <Link
+            href="/practice/ielts"
+            className="shrink-0 text-sm font-medium text-brand-600 hover:text-brand-700"
+          >
+            IELTS practice
+          </Link>
+        </CardBody>
+      </Card>
+
       {!quota.unlimited ? (
         <Card>
           <CardBody className="flex flex-wrap items-center justify-between gap-4">

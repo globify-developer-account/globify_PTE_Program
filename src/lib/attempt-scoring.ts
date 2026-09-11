@@ -1,12 +1,14 @@
 import 'server-only'
-import type { Prisma, PteSection, ScoreSource } from '@prisma/client'
+import type { IeltsVariant, Prisma, PteSection, ScoreScale, ScoreSource } from '@prisma/client'
 import { prisma } from './db'
 import { assertQuota, consumeQuota, type Entitlements } from './access'
 import { HttpError, notFound } from './http'
-import { runAi, isSimulated, type SpeakingScore, type WritingScore } from './ai'
+import { runAi, isSimulated, type IeltsWritingScore, type SpeakingScore, type WritingScore } from './ai'
 import { transcriptionProvider } from './ai'
 import { storage } from './storage'
 import { questionType } from './pte/question-types'
+import { ieltsQuestionType, type IeltsQuestionTypeDefinition } from './exams/ielts/question-types'
+import { bandToNormalized, criteriaBand, roundToHalfBand } from './exams/ielts/bands'
 import { parseCorrectAnswer, parseSelection } from './pte/schemas'
 import { contentOverlap, scoreByRules, type RuleScore } from './pte/scoring'
 import { refreshProgressForAttempt } from './progress'
@@ -30,6 +32,10 @@ export interface ScoredAttempt {
   breakdown: Record<string, number>
   /** True when the score came from the simulated provider, not a real one. */
   simulated: boolean
+  /** Which scale `overall` is reported on. */
+  scale: ScoreScale
+  /** IELTS band, when this attempt was scored on the band scale. */
+  band: number | null
   feedback: {
     summary: string[]
     strengths: string[]
@@ -90,13 +96,19 @@ export async function scoreAttempt(
   await prisma.attempt.update({ where: { id: attempt.id }, data: { status: 'SCORING' } })
 
   try {
-    const scored = definition?.autoScorable
-      ? await scoreWithRules(attempt)
-      : section === 'SPEAKING'
-        ? await scoreSpeakingAttempt(attempt, userId, entitlements)
-        : await scoreWritingAttempt(attempt, userId, entitlements)
+    // IELTS tasks are dispatched first: the PTE catalogue does not know their
+    // codes, so `definition` is undefined for them and the PTE branches below
+    // would silently treat an IELTS essay as a PTE one.
+    const ielts = ieltsQuestionType(type.code)
+    const scored = ielts
+      ? await scoreIeltsAttempt(attempt, ielts, userId, entitlements)
+      : definition?.autoScorable
+        ? await scoreWithRules(attempt)
+        : section === 'SPEAKING'
+          ? await scoreSpeakingAttempt(attempt, userId, entitlements)
+          : await scoreWritingAttempt(attempt, userId, entitlements)
 
-    await refreshProgressForAttempt(userId, section)
+    await refreshProgressForAttempt(userId, section, type.exam)
     await bumpQuestionStats(attempt.questionId, scored.overall)
 
     return {
@@ -138,6 +150,8 @@ async function scoreWithRules(
 
   return {
     attemptId: attempt.id,
+    scale: 'PTE_10_90' as ScoreScale,
+    band: null,
     overall: result.scaled,
     source: 'RULE',
     isCorrect: result.isCorrect,
@@ -226,6 +240,8 @@ async function scoreSpeakingAttempt(
 
   return {
     attemptId: attempt.id,
+    scale: 'PTE_10_90' as ScoreScale,
+    band: null,
     overall,
     source: 'AI',
     isCorrect: null,
@@ -347,6 +363,8 @@ async function scoreWritingAttempt(
 
   return {
     attemptId: attempt.id,
+    scale: 'PTE_10_90' as ScoreScale,
+    band: null,
     overall,
     source: 'AI',
     isCorrect: null,
@@ -365,9 +383,151 @@ async function scoreWritingAttempt(
 
 // --- persistence --------------------------------------------------------------
 
+
+// --- IELTS --------------------------------------------------------------------
+
+/**
+ * IELTS attempts.
+ *
+ * Only Writing is wired up today. The other sections have catalogue entries so
+ * content can be authored against them, but no renderer and no scorer, so they
+ * fail loudly here rather than being quietly marked by the PTE rules — which
+ * would report a 10-90 score for a task assessed in bands.
+ */
+async function scoreIeltsAttempt(
+  attempt: AttemptWithQuestion,
+  definition: IeltsQuestionTypeDefinition,
+  userId: string,
+  entitlements?: Entitlements,
+): Promise<Omit<ScoredAttempt, 'correctAnswer' | 'explanation' | 'sampleAnswer'>> {
+  if (definition.section === 'WRITING') {
+    return scoreIeltsWritingAttempt(attempt, definition, userId, entitlements)
+  }
+  throw new HttpError(
+    501,
+    `IELTS ${definition.section.toLowerCase()} is not available yet. Only Writing is scored in this release.`,
+    'not_implemented',
+  )
+}
+
+async function scoreIeltsWritingAttempt(
+  attempt: AttemptWithQuestion,
+  definition: IeltsQuestionTypeDefinition,
+  userId: string,
+  entitlements?: Entitlements,
+): Promise<Omit<ScoredAttempt, 'correctAnswer' | 'explanation' | 'sampleAnswer'>> {
+  const answer = attempt.answer!
+  const response = (answer.text ?? '').trim()
+  if (!response) throw new HttpError(400, 'No written response was saved for this attempt.', 'no_text')
+
+  await assertQuota(userId, 'ai_writing', entitlements)
+
+  const profile = await prisma.profile.findUnique({
+    where: { userId },
+    select: { targetBand: true, ieltsVariant: true },
+  })
+
+  const taskNumber = definition.code === 'IELTS_WRITING_TASK2' ? 2 : 1
+  const variant: IeltsVariant | null = attempt.question.variant ?? definition.variant
+  const wordLimitMin = attempt.question.wordLimitMin ?? definition.wordLimitMin
+
+  const result = await runAi('IELTS_WRITING_SCORE', userId, (provider) =>
+    provider.scoreIeltsWriting({
+      questionType: definition.code,
+      questionTitle: attempt.question.title,
+      prompt: attempt.question.prompt ?? attempt.question.title,
+      figureDescription: attempt.question.passage,
+      variant,
+      taskNumber,
+      response,
+      wordLimitMin,
+      targetBand: profile?.targetBand ?? 7,
+    }),
+  )
+
+  const payload: IeltsWritingScore = result.data
+  const words = countWords(response)
+
+  // Every band the provider returned is re-derived here rather than trusted:
+  // a model response is untrusted input, and a band that is not a half step is
+  // not a band a student can be shown.
+  const task = roundToHalfBand(clamp(payload.task, 0, 9))
+  const coherence = roundToHalfBand(clamp(payload.coherence_cohesion, 0, 9))
+  const lexical = roundToHalfBand(clamp(payload.lexical_resource, 0, 9))
+  const grammar = roundToHalfBand(clamp(payload.grammatical_range_accuracy, 0, 9))
+
+  // Under-length is a rule, not an opinion: IELTS caps the task criterion at
+  // band 5 for a short response however good the prose is.
+  const underLength = wordLimitMin !== null && words < wordLimitMin
+  const cappedTask = underLength ? Math.min(5, task) : task
+
+  const band = criteriaBand([cappedTask, coherence, lexical, grammar])
+  const overall = bandToNormalized(band)
+
+  const breakdown: Record<string, number> = {
+    task: cappedTask,
+    coherenceCohesion: coherence,
+    lexicalResource: lexical,
+    grammaticalRangeAccuracy: grammar,
+  }
+
+  await persistScore(attempt.id, {
+    source: 'AI',
+    overall,
+    scale: 'IELTS_BAND',
+    band,
+    isCorrect: null,
+    breakdown,
+  })
+
+  await persistAnalysis(attempt.id, {
+    provider: result.provider,
+    model: result.model,
+    feature: 'IELTS_WRITING_SCORE',
+    result: payload as unknown as Prisma.InputJsonValue,
+    strengths: toStringList(payload.strengths),
+    improvements: toStringList(payload.improvements),
+    suggestions: toStringList(payload.how_to_improve),
+    suggestedRewrite: payload.suggested_rewrite?.slice(0, 4000) ?? null,
+    usage: result.usage,
+    latencyMs: result.latencyMs,
+  })
+
+  await prisma.answer.update({ where: { attemptId: attempt.id }, data: { wordCount: words } })
+  await consumeQuota(userId, 'ai_writing')
+
+  const summary = toStringList(payload.feedback)
+  if (underLength) {
+    summary.unshift(
+      `Your response is ${words} words. This task requires at least ${wordLimitMin}, and an under-length answer cannot score above band 5 for ${taskNumber === 2 ? 'Task Response' : 'Task Achievement'}.`,
+    )
+  }
+
+  return {
+    attemptId: attempt.id,
+    overall,
+    scale: 'IELTS_BAND',
+    band,
+    source: 'AI',
+    isCorrect: null,
+    breakdown,
+    simulated: isSimulated(result.provider),
+    feedback: {
+      summary,
+      strengths: toStringList(payload.strengths),
+      improvements: toStringList(payload.improvements),
+      suggestions: toStringList(payload.how_to_improve),
+      suggestedRewrite: payload.suggested_rewrite ?? null,
+    },
+    detail: null,
+  }
+}
+
 interface ScoreRecord {
   source: ScoreSource
   overall: number
+  scale?: ScoreScale
+  band?: number | null
   rawScore?: number
   maxRawScore?: number
   isCorrect: boolean | null
@@ -378,6 +538,8 @@ async function persistScore(attemptId: string, record: ScoreRecord): Promise<voi
   const data = {
     source: record.source,
     overall: record.overall,
+    scale: record.scale ?? ('PTE_10_90' as ScoreScale),
+    band: record.band ?? null,
     rawScore: record.rawScore ?? null,
     maxRawScore: record.maxRawScore ?? null,
     isCorrect: record.isCorrect,
@@ -397,7 +559,7 @@ async function persistScore(attemptId: string, record: ScoreRecord): Promise<voi
 interface AnalysisRecord {
   provider: string
   model: string
-  feature: 'SPEAKING_SCORE' | 'WRITING_SCORE'
+  feature: 'SPEAKING_SCORE' | 'WRITING_SCORE' | 'IELTS_WRITING_SCORE' | 'IELTS_SPEAKING_SCORE'
   result: Prisma.InputJsonValue
   strengths: string[]
   improvements: string[]

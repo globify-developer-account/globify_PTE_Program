@@ -1,5 +1,5 @@
 import 'server-only'
-import type { Difficulty, PteSection, Prisma } from '@prisma/client'
+import type { Difficulty, Exam, PteSection, Prisma } from '@prisma/client'
 import { prisma } from './db'
 import { assertQuota, consumeQuota, getEntitlements, type Entitlements } from './access'
 import { badRequest, notFound } from './http'
@@ -147,6 +147,8 @@ export async function toPublicQuestion(row: QuestionRow): Promise<PublicQuestion
 
 export interface StartSessionInput {
   userId: string
+  /** Defaults to PTE so existing callers keep their behaviour. */
+  exam?: Exam | null
   section?: PteSection | null
   typeCode?: string | null
   difficulty?: Difficulty | null
@@ -169,7 +171,11 @@ export async function startPracticeSession(
   const where: Prisma.QuestionWhereInput = {
     status: 'PUBLISHED',
     ...(input.typeCode ? { questionType: { code: input.typeCode } } : {}),
-    ...(input.section && !input.typeCode ? { questionType: { section: input.section } } : {}),
+    // A section alone is ambiguous now that two exams share the section names,
+    // so a section-wide session is always scoped to one exam.
+    ...(input.section && !input.typeCode
+      ? { questionType: { section: input.section, exam: input.exam ?? 'PTE' } }
+      : {}),
     ...(input.difficulty ? { difficulty: input.difficulty } : {}),
     // Free accounts only ever see free questions — enforced here, on the server.
     ...(ent.isPremium ? {} : { isPremium: false }),
@@ -410,9 +416,13 @@ export interface TypeSummary {
   averageScore: number | null
 }
 
-export async function getTypeSummaries(userId: string, section?: PteSection): Promise<TypeSummary[]> {
+export async function getTypeSummaries(
+  userId: string,
+  section?: PteSection,
+  exam: Exam = 'PTE',
+): Promise<TypeSummary[]> {
   const types = await prisma.questionType.findMany({
-    where: { isActive: true, ...(section ? { section } : {}) },
+    where: { isActive: true, exam, ...(section ? { section } : {}) },
     orderBy: { displayOrder: 'asc' },
     select: {
       code: true,
@@ -425,7 +435,11 @@ export async function getTypeSummaries(userId: string, section?: PteSection): Pr
   })
 
   const attempts = await prisma.attempt.findMany({
-    where: { userId, status: 'SCORED', ...(section ? { question: { questionType: { section } } } : {}) },
+    where: {
+      userId,
+      status: 'SCORED',
+      question: { questionType: { exam, ...(section ? { section } : {}) } },
+    },
     select: {
       score: { select: { overall: true } },
       question: { select: { questionType: { select: { code: true } } } },

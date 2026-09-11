@@ -20,6 +20,8 @@ const PRIVATE_PREFIXES = [
   '/subscription',
   '/notifications',
   '/ai-tools',
+  '/writing-improvement',
+  '/conversations',
   '/checkout',
 ]
 

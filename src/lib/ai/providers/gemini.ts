@@ -17,6 +17,13 @@ import {
   writingPrompt,
 } from '../prompts'
 import {
+  IELTS_SCORING_SYSTEM_PROMPT,
+  IELTS_SPEAKING_JSON_SCHEMA,
+  IELTS_WRITING_JSON_SCHEMA,
+  ieltsSpeakingPrompt,
+  ieltsWritingPrompt,
+} from '../ielts-prompts'
+import {
   AiProviderError,
   progressAnalysisSchema,
   recommendationSchema,
@@ -35,6 +42,12 @@ import {
   type WritingImprovementInput,
   type WritingScore,
   type WritingScoreInput,
+  ieltsSpeakingScoreSchema,
+  ieltsWritingScoreSchema,
+  type IeltsSpeakingScore,
+  type IeltsSpeakingScoreInput,
+  type IeltsWritingScore,
+  type IeltsWritingScoreInput,
 } from '../types'
 import { parseJson } from './anthropic'
 
@@ -151,6 +164,24 @@ export const geminiProvider: AIProvider = {
       prompt: writingPrompt(input),
       jsonSchema: WRITING_JSON_SCHEMA,
       schema: writingScoreSchema,
+    })
+  },
+
+  scoreIeltsWriting(input: IeltsWritingScoreInput): Promise<AiResult<IeltsWritingScore>> {
+    return call({
+      system: IELTS_SCORING_SYSTEM_PROMPT,
+      prompt: ieltsWritingPrompt(input),
+      jsonSchema: IELTS_WRITING_JSON_SCHEMA,
+      schema: ieltsWritingScoreSchema,
+    })
+  },
+
+  scoreIeltsSpeaking(input: IeltsSpeakingScoreInput): Promise<AiResult<IeltsSpeakingScore>> {
+    return call({
+      system: IELTS_SCORING_SYSTEM_PROMPT,
+      prompt: ieltsSpeakingPrompt(input),
+      jsonSchema: IELTS_SPEAKING_JSON_SCHEMA,
+      schema: ieltsSpeakingScoreSchema,
     })
   },
   improveWriting(input: WritingImprovementInput): Promise<AiResult<WritingImprovement>> {

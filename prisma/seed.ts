@@ -3,9 +3,12 @@ import { randomUUID } from 'node:crypto'
 import { PrismaClient, type Difficulty, type Prisma, type PteSection } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 import { SEED_QUESTIONS } from './seed-data/questions'
+import { IELTS_SEED_QUESTIONS, IELTS_SEED_QUESTION_TYPES } from './seed-data/ielts'
 import { SEED_DRILLS, SEED_DRILL_CATEGORIES } from './seed-data/drills'
 import { splitIntoSegments, tokenize } from '../src/lib/drills/diff'
 import { SEED_WRITING_EXERCISES } from './seed-data/writing-exercises'
+import { SEED_COURSES } from './seed-data/courses'
+import { SEED_CONVERSATION_TOPICS } from './seed-data/conversation-topics'
 
 /**
  * Seeds a complete, demonstrable installation: the task catalogue, a question
@@ -65,7 +68,7 @@ const PLANS = [
       'Detailed score breakdowns and feedback',
       'Progress analytics and recommendations',
     ],
-    limits: { aiSpeakingPerMonth: 60, aiWritingPerMonth: 40, mockTestsPerMonth: 4, practicePerDay: -1, teacherReviews: 0, advancedAnalytics: true },
+    limits: { aiSpeakingPerMonth: 60, aiWritingPerMonth: 40, aiConversationsPerMonth: 20, mockTestsPerMonth: 4, practicePerDay: -1, teacherReviews: 0, advancedAnalytics: true },
   },
   {
     code: 'premium',
@@ -86,7 +89,7 @@ const PLANS = [
       'Priority WhatsApp support',
       'Premium question bank and templates',
     ],
-    limits: { aiSpeakingPerMonth: -1, aiWritingPerMonth: -1, mockTestsPerMonth: -1, practicePerDay: -1, teacherReviews: 5, advancedAnalytics: true },
+    limits: { aiSpeakingPerMonth: -1, aiWritingPerMonth: -1, aiConversationsPerMonth: -1, mockTestsPerMonth: -1, practicePerDay: -1, teacherReviews: 5, advancedAnalytics: true },
   },
   {
     code: 'intensive',
@@ -106,7 +109,7 @@ const PLANS = [
       'Score guarantee guidance from our consultants',
       'Priority access to new mock tests',
     ],
-    limits: { aiSpeakingPerMonth: -1, aiWritingPerMonth: -1, mockTestsPerMonth: -1, practicePerDay: -1, teacherReviews: 20, advancedAnalytics: true },
+    limits: { aiSpeakingPerMonth: -1, aiWritingPerMonth: -1, aiConversationsPerMonth: -1, mockTestsPerMonth: -1, practicePerDay: -1, teacherReviews: 20, advancedAnalytics: true },
   },
 ] as const
 
@@ -240,7 +243,29 @@ async function main() {
       update: data,
     })
   }
-  console.log(`  ${QUESTION_TYPES.length} question types`)
+  for (const type of IELTS_SEED_QUESTION_TYPES) {
+    const data = {
+      name: type.name,
+      shortName: type.shortName,
+      exam: 'IELTS' as const,
+      section: type.section as PteSection,
+      renderer: type.renderer,
+      description: type.description,
+      skills: [...type.skills],
+      defaultTimeLimitSeconds: type.time,
+      defaultPreparationSeconds: type.prep,
+      requiresAudioResponse: type.audio,
+      requiresTextResponse: type.text,
+      isActive: true,
+      displayOrder: type.order,
+    }
+    await prisma.questionType.upsert({
+      where: { code: type.code },
+      create: { code: type.code, ...data },
+      update: data,
+    })
+  }
+  console.log(`  ${QUESTION_TYPES.length} PTE + ${IELTS_SEED_QUESTION_TYPES.length} IELTS question types`)
 
   // 3. Categories
   const categories = [
@@ -373,7 +398,40 @@ async function main() {
       update: data,
     })
   }
-  console.log(`  ${SEED_QUESTIONS.length} questions`)
+  for (const question of IELTS_SEED_QUESTIONS) {
+    const questionTypeId = typeIds.get(question.typeCode)
+    if (!questionTypeId) continue
+
+    const data = {
+      questionTypeId,
+      categoryId,
+      title: question.title,
+      prompt: question.prompt,
+      // Academic Task 1 carries its figure description here; the assessor
+      // reads it as figureDescription.
+      passage: question.passage ?? null,
+      variant: question.variant,
+      options: [] as object,
+      correctAnswer: {} as object,
+      sampleAnswer: question.sampleAnswer ?? null,
+      difficulty: (question.difficulty ?? 'MEDIUM') as Difficulty,
+      status: 'PUBLISHED' as const,
+      tags: question.tags ?? [],
+      wordLimitMin: question.wordLimitMin,
+      // IELTS states a floor, never a ceiling — an over-long answer is not
+      // penalised for length, so wordLimitMax stays null.
+      wordLimitMax: null,
+      isPremium: question.isPremium ?? false,
+      createdById: admin.id,
+    }
+
+    await prisma.question.upsert({
+      where: { code: question.code },
+      create: { code: question.code, ...data },
+      update: data,
+    })
+  }
+  console.log(`  ${SEED_QUESTIONS.length} PTE + ${IELTS_SEED_QUESTIONS.length} IELTS questions`)
 
   // 7b. Dictation & shadowing drills
   //
@@ -550,6 +608,150 @@ async function main() {
     })
   }
   console.log(`  ${SEED_WRITING_EXERCISES.length} writing improvement exercises`)
+
+  // 10b. Conversation topics
+  for (const topic of SEED_CONVERSATION_TOPICS) {
+    const data = {
+      title: topic.title,
+      subtitle: topic.subtitle,
+      description: topic.description,
+      category: topic.category,
+      level: topic.level,
+      emoji: topic.emoji,
+      personaName: topic.personaName,
+      personaRole: topic.personaRole,
+      scenario: topic.scenario,
+      openingLine: topic.openingLine,
+      goals: topic.goals,
+      starterPhrases: topic.starterPhrases,
+      targetLanguage: topic.targetLanguage,
+      isPremium: topic.isPremium,
+      status: 'PUBLISHED' as const,
+      displayOrder: topic.displayOrder,
+    }
+    await prisma.conversationTopic.upsert({
+      where: { slug: topic.slug },
+      create: { slug: topic.slug, ...data },
+      update: data,
+    })
+  }
+  console.log(`  ${SEED_CONVERSATION_TOPICS.length} conversation topics`)
+
+  // 10c. Courses
+  //
+  // Lessons reference work that already exists rather than duplicating it:
+  // `questionCodes` attaches bank questions that run through the practice
+  // player, and `drillSlug` points a dictation or shadowing lesson at a seeded
+  // drill. A video lesson is published with its transcript and cues but no
+  // `videoUrl` — the recording is uploaded per installation, and the lesson is
+  // complete the moment it is attached.
+  for (const course of SEED_COURSES) {
+    const courseData = {
+      title: course.title,
+      subtitle: course.subtitle,
+      description: course.description,
+      section: course.section,
+      level: course.level,
+      isPremium: course.isPremium,
+      tags: course.tags,
+      status: 'PUBLISHED' as const,
+      displayOrder: course.displayOrder,
+    }
+    const saved = await prisma.course.upsert({
+      where: { slug: course.slug },
+      create: { slug: course.slug, ...courseData },
+      update: courseData,
+      select: { id: true },
+    })
+
+    // Modules are matched by title, which is the only natural key they have.
+    const moduleIds = new Map<string, string>()
+    for (const [index, module] of course.modules.entries()) {
+      const existing = await prisma.courseModule.findFirst({
+        where: { courseId: saved.id, title: module.title },
+        select: { id: true },
+      })
+      const moduleData = {
+        title: module.title,
+        description: module.description ?? null,
+        order: index + 1,
+      }
+      const savedModule = existing
+        ? await prisma.courseModule.update({
+            where: { id: existing.id },
+            data: moduleData,
+            select: { id: true },
+          })
+        : await prisma.courseModule.create({
+            data: { courseId: saved.id, ...moduleData },
+            select: { id: true },
+          })
+      moduleIds.set(module.title, savedModule.id)
+    }
+
+    for (const [index, lesson] of course.lessons.entries()) {
+      const lessonData = {
+        moduleId: lesson.module ? (moduleIds.get(lesson.module) ?? null) : null,
+        number: lesson.number,
+        title: lesson.title,
+        summary: lesson.summary ?? null,
+        kind: lesson.kind,
+        // Spread into fresh literals: Prisma's JSON input type will not accept a
+        // named interface, which has no index signature.
+        content: {
+          ...(lesson.body ? { body: lesson.body } : {}),
+          keyPoints: lesson.keyPoints ?? [],
+          cues: (lesson.cues ?? []).map((cue) => ({ ...cue })),
+          terms: (lesson.terms ?? []).map((term) => ({ ...term })),
+          ...(lesson.drillSlug ? { drillSlug: lesson.drillSlug } : {}),
+          ...(lesson.source ? { source: { ...lesson.source } } : {}),
+        } satisfies Prisma.InputJsonObject,
+        estimatedMinutes: lesson.estimatedMinutes,
+        isPremium: lesson.isPremium ?? false,
+        status: 'PUBLISHED' as const,
+        order: index + 1,
+      }
+      const savedLesson = await prisma.lesson.upsert({
+        where: { courseId_slug: { courseId: saved.id, slug: lesson.slug } },
+        create: { courseId: saved.id, slug: lesson.slug, ...lessonData },
+        update: lessonData,
+        select: { id: true },
+      })
+
+      for (const [position, code] of (lesson.questionCodes ?? []).entries()) {
+        const question = await prisma.question.findUnique({
+          where: { code },
+          select: { id: true },
+        })
+        // A lesson may name a question the installation does not have. Skip it
+        // rather than failing the whole seed.
+        if (!question) continue
+        await prisma.lessonQuestion.upsert({
+          where: {
+            lessonId_questionId: { lessonId: savedLesson.id, questionId: question.id },
+          },
+          create: { lessonId: savedLesson.id, questionId: question.id, order: position + 1 },
+          update: { order: position + 1 },
+        })
+      }
+    }
+
+    // Denormalised totals the course cards read — see refreshCourseTotals().
+    const published = await prisma.lesson.findMany({
+      where: { courseId: saved.id, status: 'PUBLISHED' },
+      select: { estimatedMinutes: true },
+    })
+    await prisma.course.update({
+      where: { id: saved.id },
+      data: {
+        lessonCount: published.length,
+        estimatedMinutes: published.reduce((sum, row) => sum + row.estimatedMinutes, 0),
+      },
+    })
+  }
+  console.log(
+    `  ${SEED_COURSES.length} courses (${SEED_COURSES.reduce((sum, course) => sum + course.lessons.length, 0)} lessons — attach video in /admin/courses)`,
+  )
 
   // 11. Announcement
   const existingAnnouncement = await prisma.announcement.findFirst({
@@ -730,7 +932,7 @@ async function main() {
     for (const [section, stats] of sectionTotals) {
       const average = Math.round(stats.total / stats.count)
       await prisma.progress.upsert({
-        where: { userId_section: { userId: user.id, section } },
+        where: { userId_exam_section: { userId: user.id, exam: 'PTE', section } },
         create: {
           userId: user.id,
           section,

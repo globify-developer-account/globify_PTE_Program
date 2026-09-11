@@ -109,7 +109,7 @@ export const SEED_CONVERSATION_TOPICS: SeedConversationTopic[] = [
       'I was named after.',
       "It's quite a common name where I'm from.",
     ],
-    targetLanguage: ['it means', 'named after', "it's derived from", 'it's pronounced'],
+    targetLanguage: ['it means', 'named after', "it's derived from", "it's pronounced"],
     isPremium: false,
     displayOrder: 3,
   },

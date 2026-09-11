@@ -1,5 +1,5 @@
 import 'server-only'
-import type { PteSection, Prisma } from '@prisma/client'
+import type { Exam, PteSection, Prisma } from '@prisma/client'
 import { prisma } from './db'
 import { SECTIONS } from './pte/question-types'
 import { addDays, startOfDay } from './utils'
@@ -85,12 +85,19 @@ export function overallEstimate(sections: SectionProgress[]): number {
 }
 
 /** Recomputes one section from the student's scored attempts. */
-export async function recomputeSectionProgress(userId: string, section: PteSection): Promise<void> {
+export async function recomputeSectionProgress(
+  userId: string,
+  section: PteSection,
+  exam: Exam = 'PTE',
+): Promise<void> {
   const attempts = await prisma.attempt.findMany({
     where: {
       userId,
       status: 'SCORED',
-      question: { questionType: { section } },
+      // Scoped to one exam: PTE and IELTS attempts share the Attempt table and
+      // the four section names, so without this an IELTS essay would be rolled
+      // into the student's PTE writing estimate.
+      question: { questionType: { section, exam } },
     },
     orderBy: { submittedAt: 'desc' },
     take: 200,
@@ -104,8 +111,8 @@ export async function recomputeSectionProgress(userId: string, section: PteSecti
   const scored = attempts.filter((attempt) => attempt.score !== null)
   if (scored.length === 0) {
     await prisma.progress.upsert({
-      where: { userId_section: { userId, section } },
-      create: { userId, section },
+      where: { userId_exam_section: { userId, exam, section } },
+      create: { userId, exam, section },
       update: { estimatedScore: 0, accuracy: 0, attemptsCount: 0 },
     })
     return
@@ -142,7 +149,7 @@ export async function recomputeSectionProgress(userId: string, section: PteSecti
   )
 
   await prisma.progress.upsert({
-    where: { userId_section: { userId, section } },
+    where: { userId_exam_section: { userId, exam: 'PTE', section } },
     create: {
       userId,
       section,
@@ -195,7 +202,7 @@ export async function writeDailySnapshot(userId: string): Promise<void> {
   }
 
   await prisma.progressSnapshot.upsert({
-    where: { userId_date: { userId, date } },
+    where: { userId_exam_date: { userId, exam: 'PTE', date } },
     create: { userId, date, ...values },
     update: values,
   })
@@ -274,8 +281,12 @@ export async function minutesPracticedToday(userId: string): Promise<number> {
 }
 
 /** Runs the whole rollup after an attempt is scored. */
-export async function refreshProgressForAttempt(userId: string, section: PteSection): Promise<void> {
-  await recomputeSectionProgress(userId, section)
+export async function refreshProgressForAttempt(
+  userId: string,
+  section: PteSection,
+  exam: Exam = 'PTE',
+): Promise<void> {
+  await recomputeSectionProgress(userId, section, exam)
   await writeDailySnapshot(userId)
   await touchStreak(userId)
 }

@@ -18,6 +18,13 @@ import {
   writingPrompt,
 } from '../prompts'
 import {
+  IELTS_SCORING_SYSTEM_PROMPT,
+  IELTS_SPEAKING_JSON_SCHEMA,
+  IELTS_WRITING_JSON_SCHEMA,
+  ieltsSpeakingPrompt,
+  ieltsWritingPrompt,
+} from '../ielts-prompts'
+import {
   AiProviderError,
   progressAnalysisSchema,
   recommendationSchema,
@@ -36,6 +43,12 @@ import {
   type WritingImprovementInput,
   type WritingScore,
   type WritingScoreInput,
+  ieltsSpeakingScoreSchema,
+  ieltsWritingScoreSchema,
+  type IeltsSpeakingScore,
+  type IeltsSpeakingScoreInput,
+  type IeltsWritingScore,
+  type IeltsWritingScoreInput,
 } from '../types'
 
 const DEFAULT_MODEL = 'claude-opus-5'
@@ -170,6 +183,25 @@ export const anthropicProvider: AIProvider = {
       jsonSchema: WRITING_JSON_SCHEMA,
       schema: writingScoreSchema,
       maxTokens: 6000,
+    })
+  },
+
+  scoreIeltsWriting(input: IeltsWritingScoreInput): Promise<AiResult<IeltsWritingScore>> {
+    return call({
+      system: IELTS_SCORING_SYSTEM_PROMPT,
+      prompt: ieltsWritingPrompt(input),
+      jsonSchema: IELTS_WRITING_JSON_SCHEMA,
+      schema: ieltsWritingScoreSchema,
+      maxTokens: 6000,
+    })
+  },
+
+  scoreIeltsSpeaking(input: IeltsSpeakingScoreInput): Promise<AiResult<IeltsSpeakingScore>> {
+    return call({
+      system: IELTS_SCORING_SYSTEM_PROMPT,
+      prompt: ieltsSpeakingPrompt(input),
+      jsonSchema: IELTS_SPEAKING_JSON_SCHEMA,
+      schema: ieltsSpeakingScoreSchema,
     })
   },
 

@@ -6,6 +6,7 @@ import type { PublicQuestion } from '@/lib/practice'
 import { AiEstimateBadge } from '@/components/dashboard/ai-estimate'
 import { Button } from '@/components/ui/button'
 import { Meter } from '@/components/charts/score-ring'
+import { formatBand } from '@/lib/exams/ielts/bands'
 import { cn } from '@/lib/utils'
 
 const TRAIT_LABELS: Record<string, string> = {
@@ -19,6 +20,11 @@ const TRAIT_LABELS: Record<string, string> = {
   development: 'Development',
   spelling: 'Spelling',
   listening: 'Listening',
+  // IELTS assessment criteria.
+  task: 'Task achievement / response',
+  coherenceCohesion: 'Coherence and cohesion',
+  lexicalResource: 'Lexical resource',
+  grammaticalRangeAccuracy: 'Grammatical range and accuracy',
 }
 
 function bandTone(score: number): { label: string; className: string } {
@@ -41,6 +47,11 @@ export function AttemptResult({
 }) {
   const band = bandTone(result.overall)
   const traits = Object.entries(result.breakdown).filter(([, value]) => typeof value === 'number')
+  // IELTS reports a band out of 9; the normalised 0-90 number it is stored
+  // alongside is an internal comparison value and is never shown here.
+  const isIelts = result.scale === 'IELTS_BAND'
+  const headline = isIelts ? formatBand(result.band ?? 0) : String(result.overall)
+  const traitMax = isIelts ? 9 : 90
 
   return (
     <div className="space-y-5">
@@ -51,9 +62,9 @@ export function AttemptResult({
             <p className="text-sm text-ink-500">Your result</p>
             <p className="mt-1 flex items-baseline gap-2">
               <span className="text-[40px] font-semibold leading-none text-navy-900 tabular">
-                {result.overall}
+                {headline}
               </span>
-              <span className="text-sm text-ink-400">/ 90</span>
+              <span className="text-sm text-ink-400">{isIelts ? '/ 9' : '/ 90'}</span>
               <span className={cn('rounded-full px-2.5 py-1 text-xs font-semibold', band.className)}>
                 {band.label}
               </span>
@@ -79,9 +90,11 @@ export function AttemptResult({
               <div key={key}>
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-ink-600">{TRAIT_LABELS[key] ?? key}</span>
-                  <span className="font-medium text-navy-900 tabular">{score}</span>
+                  <span className="font-medium text-navy-900 tabular">
+                    {isIelts ? formatBand(score) : score}
+                  </span>
                 </div>
-                <Meter value={score} max={90} className="mt-1.5" height={5} />
+                <Meter value={score} max={traitMax} className="mt-1.5" height={5} />
               </div>
             ))}
           </div>

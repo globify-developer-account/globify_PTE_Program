@@ -4,6 +4,10 @@ import type {
   AIProvider,
   AiResult,
   EditCategory,
+  IeltsSpeakingScore,
+  IeltsSpeakingScoreInput,
+  IeltsWritingScore,
+  IeltsWritingScoreInput,
   ProgressAnalysis,
   ProgressAnalysisInput,
   RecommendationInput,
@@ -18,6 +22,7 @@ import type {
   WritingScore,
   WritingScoreInput,
 } from '../types'
+import { criteriaBand, roundToHalfBand } from '../../exams/ielts/bands'
 
 /**
  * Simulated provider used in demo mode and in tests.
@@ -191,11 +196,16 @@ function applyRule(text: string, rule: Rule): { text: string; edit: WritingImpro
   }
 }
 
+/** "teachers" -> "Teachers", for reporting a sentence-start fix as a word. */
+function capitalise(word: string): string {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}
+
 function mechanicalFixes(text: string): { text: string; edits: WritingImprovement['edits'] } {
   const edits: WritingImprovement['edits'] = []
   let working = text
 
-  const doubleSpace = working.match(/\S {2,}\S/)
+  const doubleSpace = working.match(/\S+ {2,}\S+/)
   if (doubleSpace) {
     working = working.replace(/ {2,}/g, ' ')
     edits.push({
@@ -206,7 +216,7 @@ function mechanicalFixes(text: string): { text: string; edits: WritingImprovemen
     })
   }
 
-  const spaceBefore = working.match(/\w\s+[,.;:!?]/)
+  const spaceBefore = working.match(/\w+\s+[,.;:!?]/)
   if (spaceBefore) {
     working = working.replace(/\s+([,.;:!?])/g, '$1')
     edits.push({
@@ -217,12 +227,12 @@ function mechanicalFixes(text: string): { text: string; edits: WritingImprovemen
     })
   }
 
-  const missingSpace = working.match(/\w[,;:.!?][A-Za-z]/)
+  const missingSpace = working.match(/\w+[,;:.!?][A-Za-z]\w*/)
   if (missingSpace) {
     working = working.replace(/([,;:])(?=[A-Za-z])/g, '$1 ').replace(/([.!?])(?=[A-Za-z])/g, '$1 ')
     edits.push({
       original: missingSpace[0],
-      replacement: `${missingSpace[0].slice(0, 2)} ${missingSpace[0].slice(2)}`,
+      replacement: missingSpace[0].replace(/([,;:.!?])/, '$1 '),
       category: 'PUNCTUATION',
       explanation: 'Leave a space after punctuation so the next word is readable.',
     })
@@ -250,12 +260,12 @@ function mechanicalFixes(text: string): { text: string; edits: WritingImprovemen
     })
   }
 
-  const lowerStart = working.match(/(?:^|[.!?]\s+)([a-z])/)
+  const lowerStart = working.match(/(?:^|[.!?]\s+)([a-z]\w*)/)
   if (lowerStart) {
     working = working.replace(/(^|[.!?]\s+)([a-z])/g, (_all, lead: string, letter: string) => lead + letter.toUpperCase())
     edits.push({
-      original: lowerStart[0].trim(),
-      replacement: lowerStart[0].trim().toUpperCase(),
+      original: lowerStart[1] ?? lowerStart[0].trim(),
+      replacement: capitalise(lowerStart[1] ?? lowerStart[0].trim()),
       category: 'PUNCTUATION',
       explanation: 'Every sentence starts with a capital letter.',
     })
@@ -459,6 +469,147 @@ export const demoProvider: AIProvider = {
       improvements: overall < input.targetScore ? ['Focus on developing each paragraph with a supporting example.'] : [],
       how_to_improve: ['Write one practice response a day and re-read it for linking words before submitting.'],
       suggested_rewrite: sentences[0] ? `${sentences[0].trim()}, which directly supports the position taken above.` : '',
+    })
+  },
+
+  async scoreIeltsWriting(input: IeltsWritingScoreInput): Promise<AiResult<IeltsWritingScore>> {
+    const response = input.response.trim()
+    const words = countWords(response)
+    const min = input.wordLimitMin ?? (input.taskNumber === 2 ? 250 : 150)
+    const taskCriterion = input.taskNumber === 2 ? 'Task Response' : 'Task Achievement'
+
+    if (words === 0) {
+      return noResult<IeltsWritingScore>({
+        overall_band: 0,
+        task: 0,
+        coherence_cohesion: 0,
+        lexical_resource: 0,
+        grammatical_range_accuracy: 0,
+        meets_word_count: false,
+        word_count: 0,
+        feedback: ['No response was submitted, so no band can be awarded.'],
+        strengths: [],
+        improvements: ['Write a first draft — an unattempted task always scores band 0.'],
+        how_to_improve: ['Plan for five minutes, then write continuously until you pass the word count.'],
+        suggested_rewrite: '',
+      })
+    }
+
+    const meetsWordCount = words >= min
+    const sentences = response.split(/[.!?]+/).filter((part) => part.trim().length > 0)
+    const avgSentenceLength = words / Math.max(sentences.length, 1)
+    const variety = lexicalVariety(response)
+    const connectives = (response.match(CONNECTIVES) ?? []).length
+    const lengthRatio = Math.min(1, words / Math.max(min, 1))
+
+    // An under-length response cannot pass band 5 on the task criterion — the
+    // same rule the real prompt states, applied here so demo mode teaches the
+    // student the same lesson a live provider would.
+    const rawTask = 4 + lengthRatio * 2.5
+    const task = roundToHalfBand(meetsWordCount ? rawTask : Math.min(5, rawTask))
+    const coherence = roundToHalfBand(4 + Math.min(connectives, 6) * 0.5)
+    const lexical = roundToHalfBand(3.5 + variety * 5)
+    const grammar = roundToHalfBand(
+      5 + (avgSentenceLength >= 12 && avgSentenceLength <= 24 ? 1 : 0) - (avgSentenceLength > 34 ? 1.5 : 0),
+    )
+
+    const feedback: string[] = []
+    if (!meetsWordCount) {
+      feedback.push(
+        `${taskCriterion}: your answer is ${min - words} words short of the ${min}-word minimum, which caps this criterion at band 5.`,
+      )
+    }
+    if (connectives === 0) {
+      feedback.push('Coherence and Cohesion: you used no linking words, so the relationship between your ideas is left implicit.')
+    }
+    if (avgSentenceLength > 34) {
+      feedback.push('Grammatical Range and Accuracy: your average sentence runs long, which makes errors harder to avoid.')
+    }
+    if (feedback.length === 0) {
+      feedback.push(`${taskCriterion}: you met the length requirement and addressed the prompt directly.`)
+    }
+
+    return noResult<IeltsWritingScore>({
+      overall_band: criteriaBand([task, coherence, lexical, grammar]),
+      task,
+      coherence_cohesion: coherence,
+      lexical_resource: lexical,
+      grammatical_range_accuracy: grammar,
+      meets_word_count: meetsWordCount,
+      word_count: words,
+      feedback,
+      strengths: meetsWordCount ? ['You wrote a full-length response within the task requirements.'] : [],
+      improvements:
+        criteriaBand([task, coherence, lexical, grammar]) < input.targetBand
+          ? ['Develop each paragraph with one specific example rather than a second general statement.']
+          : [],
+      how_to_improve: ['Write one timed response a day and check it for linking words before you submit.'],
+      suggested_rewrite: sentences[0] ? `${sentences[0].trim()}, which is the point this paragraph goes on to support.` : '',
+    })
+  },
+
+  async scoreIeltsSpeaking(input: IeltsSpeakingScoreInput): Promise<AiResult<IeltsSpeakingScore>> {
+    const transcript = input.transcript.trim()
+    const words = countWords(transcript)
+
+    if (words === 0) {
+      return noResult<IeltsSpeakingScore>({
+        overall_band: 0,
+        fluency_coherence: 0,
+        lexical_resource: 0,
+        grammatical_range_accuracy: 0,
+        pronunciation: 0,
+        feedback: ['No speech was detected, so no band can be awarded.'],
+        strengths: [],
+        improvements: ['Check your microphone, then record again and speak until the timer stops.'],
+        recommendations: ['Practise speaking for the full time even when you run out of ideas.'],
+      })
+    }
+
+    const seconds = Math.max(1, Math.round((input.audioDurationMs ?? 0) / 1000))
+    const wordsPerMinute = (words / seconds) * 60
+    const fillers = (transcript.match(FILLERS) ?? []).length
+    const fillerRatio = fillers / Math.max(words, 1)
+    const variety = lexicalVariety(transcript)
+    const sentences = transcript.split(/[.!?]+/).filter((part) => part.trim().length > 0)
+    const avgSentenceLength = words / Math.max(sentences.length, 1)
+
+    // Part 2 is a long turn: a talk well under a minute is a fluency problem
+    // regardless of how well the words themselves are chosen.
+    const expectedSeconds = input.partNumber === 2 ? 90 : 40
+    const durationRatio = Math.min(1, seconds / expectedSeconds)
+
+    const fluency = roundToHalfBand(
+      4 + durationRatio * 2.5 + (wordsPerMinute >= 110 && wordsPerMinute <= 170 ? 0.5 : 0) - fillerRatio * 12,
+    )
+    const lexical = roundToHalfBand(3.5 + variety * 5)
+    const grammar = roundToHalfBand(5 + (avgSentenceLength >= 10 ? 1 : 0) - (avgSentenceLength > 34 ? 1.5 : 0))
+    // Inferred from the transcript only — the simulated provider has no audio.
+    const pronunciation = roundToHalfBand(5.5 - fillerRatio * 8)
+
+    const feedback: string[] = [
+      'Pronunciation here is inferred from your transcript — hesitations, repetitions and pace — not from acoustic analysis.',
+    ]
+    if (input.partNumber === 2 && seconds < 60) {
+      feedback.push(`Fluency and Coherence: your long turn ran ${seconds} seconds, short of the one to two minutes Part 2 expects.`)
+    }
+    if (fillerRatio > 0.04) {
+      feedback.push(`Fluency and Coherence: ${fillers} filler words interrupted your delivery.`)
+    }
+    if (variety < 0.4) {
+      feedback.push('Lexical Resource: you repeated a small set of words rather than reaching for less common alternatives.')
+    }
+
+    return noResult<IeltsSpeakingScore>({
+      overall_band: criteriaBand([fluency, lexical, grammar, pronunciation]),
+      fluency_coherence: fluency,
+      lexical_resource: lexical,
+      grammatical_range_accuracy: grammar,
+      pronunciation,
+      feedback,
+      strengths: durationRatio >= 1 ? ['You spoke for the full time the task allows.'] : [],
+      improvements: fillerRatio > 0.04 ? ['Pause silently instead of filling the gap with "um" or "you know".'] : [],
+      recommendations: ['Record the same cue card twice and keep the version with fewer hesitations.'],
     })
   },
 

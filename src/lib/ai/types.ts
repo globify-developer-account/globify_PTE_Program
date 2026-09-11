@@ -45,6 +45,53 @@ export const writingScoreSchema = z.object({
 export type WritingScore = z.infer<typeof writingScoreSchema>
 
 /**
+ * IELTS band, 0-9.
+ *
+ * Bands are reported in half steps, but this schema deliberately accepts any
+ * number in range: a model that answers 6.3 is telling us something useful,
+ * and rejecting the payload would fail the whole scoring call. The rounding to
+ * a reportable half band happens in the scoring pipeline, alongside the other
+ * clamping a provider response goes through before it is written.
+ */
+const band = z.number().min(0).max(9)
+
+/**
+ * The four published IELTS Writing criteria. Task 1 is assessed on Task
+ * Achievement and Task 2 on Task Response — the same slot under two names, so
+ * the payload carries one `task` field and the prompt says which it means.
+ */
+export const ieltsWritingScoreSchema = z.object({
+  overall_band: band,
+  task: band,
+  coherence_cohesion: band,
+  lexical_resource: band,
+  grammatical_range_accuracy: band,
+  /** Whether the response met the stated minimum word count. */
+  meets_word_count: z.boolean().optional().default(true),
+  word_count: z.number().int().nonnegative().optional(),
+  feedback: bullets,
+  strengths: bullets.optional().default([]),
+  improvements: bullets.optional().default([]),
+  how_to_improve: bullets.optional().default([]),
+  suggested_rewrite: z.string().max(4000).optional(),
+})
+export type IeltsWritingScore = z.infer<typeof ieltsWritingScoreSchema>
+
+/** The four published IELTS Speaking criteria. */
+export const ieltsSpeakingScoreSchema = z.object({
+  overall_band: band,
+  fluency_coherence: band,
+  lexical_resource: band,
+  grammatical_range_accuracy: band,
+  pronunciation: band,
+  feedback: bullets,
+  strengths: bullets.optional().default([]),
+  improvements: bullets.optional().default([]),
+  recommendations: bullets.optional().default([]),
+})
+export type IeltsSpeakingScore = z.infer<typeof ieltsSpeakingScoreSchema>
+
+/**
  * Rewrite payload for the writing improvement tool.
  *
  * This is deliberately not a scoring schema. The tool exists so a student can
@@ -138,6 +185,36 @@ export interface WritingScoreInput {
   targetScore: number
 }
 
+export interface IeltsWritingScoreInput {
+  /** IELTS_WRITING_TASK1_ACADEMIC, IELTS_WRITING_TASK1_GENERAL or IELTS_WRITING_TASK2. */
+  questionType: string
+  questionTitle: string
+  prompt: string
+  /** Academic Task 1 describes a figure; this is what the figure shows. */
+  figureDescription?: string | null
+  variant: 'ACADEMIC' | 'GENERAL_TRAINING' | null
+  /** 1 or 2 — decides Task Achievement vs Task Response and the word floor. */
+  taskNumber: 1 | 2
+  response: string
+  wordLimitMin?: number | null
+  /** The student's target band, 0-9. */
+  targetBand: number
+}
+
+export interface IeltsSpeakingScoreInput {
+  /** IELTS_SPEAKING_PART1, _PART2 or _PART3. */
+  questionType: string
+  questionTitle: string
+  /** 1, 2 or 3 — Part 2 is the cue card and is judged as one long turn. */
+  partNumber: 1 | 2 | 3
+  /** The examiner questions or the cue card, as the student saw them. */
+  prompt: string
+  /** One entry per recorded answer; Part 2 has exactly one. */
+  transcript: string
+  audioDurationMs?: number | null
+  targetBand: number
+}
+
 export interface WritingImprovementInput {
   /** Mirrors WritingTaskKind. FREEFORM means the student brought their own text. */
   taskKind: 'ESSAY' | 'SUMMARIZE_WRITTEN_TEXT' | 'SUMMARIZE_SPOKEN_TEXT' | 'FREEFORM'
@@ -195,6 +272,8 @@ export interface AIProvider {
   readonly available: boolean
   scoreSpeaking(input: SpeakingScoreInput): Promise<AiResult<SpeakingScore>>
   scoreWriting(input: WritingScoreInput): Promise<AiResult<WritingScore>>
+  scoreIeltsWriting(input: IeltsWritingScoreInput): Promise<AiResult<IeltsWritingScore>>
+  scoreIeltsSpeaking(input: IeltsSpeakingScoreInput): Promise<AiResult<IeltsSpeakingScore>>
   improveWriting(input: WritingImprovementInput): Promise<AiResult<WritingImprovement>>
   generateRecommendation(input: RecommendationInput): Promise<AiResult<RecommendationPayload>>
   analyzeProgress(input: ProgressAnalysisInput): Promise<AiResult<ProgressAnalysis>>
@@ -225,4 +304,9 @@ export const FEATURE_LABEL: Record<AiFeature, string> = {
   RECOMMENDATION: 'Recommendations',
   PROGRESS_ANALYSIS: 'Progress analysis',
   WRITING_IMPROVEMENT: 'Writing improvement',
+  CONVERSATION: 'Conversation turn',
+  CONVERSATION_REPORT: 'Conversation report',
+  SPEECH_SYNTHESIS: 'Speech synthesis',
+  IELTS_WRITING_SCORE: 'IELTS writing evaluation',
+  IELTS_SPEAKING_SCORE: 'IELTS speaking evaluation',
 }

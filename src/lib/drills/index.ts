@@ -112,8 +112,6 @@ export interface DrillFeedback {
   progress: DrillModeProgress
 }
 
-const MODES: DrillMode[] = ['DICTATION', 'SHADOWING']
-
 // --- reading ------------------------------------------------------------------
 
 export async function listDrillCategories() {
@@ -266,21 +264,6 @@ export async function getDrillProgress(
   return result
 }
 
-/** Recent drill work for the dashboard and progress pages. */
-export async function recentDrillAttempts(userId: string, take = 5) {
-  return prisma.drillAttempt.findMany({
-    where: { userId },
-    orderBy: { createdAt: 'desc' },
-    take,
-    select: {
-      id: true,
-      mode: true,
-      accuracy: true,
-      createdAt: true,
-      drill: { select: { slug: true, title: true } },
-    },
-  })
-}
 
 // --- submitting ---------------------------------------------------------------
 
@@ -525,5 +508,3 @@ async function rollUpProgress(
 
   return { ...counters, completedAt }
 }
-
-export { MODES as DRILL_MODES }

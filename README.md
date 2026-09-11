@@ -141,6 +141,7 @@ only in environment variables, so a compromised admin session cannot read them.
 | [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) | Deploying to Hostinger, step by step |
 | [`docs/GO-LIVE.md`](docs/GO-LIVE.md) | Pre-launch checklist |
 | [`docs/AI.md`](docs/AI.md) | AI providers, prompts, cost control |
+| [`docs/CONVERSATIONS.md`](docs/CONVERSATIONS.md) | AI Conversations: scenarios, speech, correction policy |
 | [`docs/PAYMENTS.md`](docs/PAYMENTS.md) | Payment flows and webhook contract |
 | [`docs/TESTING.md`](docs/TESTING.md) | What is tested and how to extend it |
 | [`.env.production.example`](.env.production.example) | Every production variable, explained |
