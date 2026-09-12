@@ -62,6 +62,11 @@ export const env = {
     monthlyBudgetUsd: int('AI_MONTHLY_BUDGET_USD', 0),
     maxRetries: int('AI_MAX_RETRIES', 2),
     timeoutMs: int('AI_TIMEOUT_MS', 45_000),
+    /** Claude Platform on AWS — only read when AI_API_KEY is an AWS Console key. */
+    aws: {
+      region: str('AWS_REGION') || str('AWS_DEFAULT_REGION'),
+      workspaceId: str('ANTHROPIC_AWS_WORKSPACE_ID'),
+    },
   },
 
   payments: {

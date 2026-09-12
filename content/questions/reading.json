@@ -1,0 +1,169 @@
+[
+  {
+    "typeCode": "READING_MCQ_SINGLE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "The lighthouse lens",
+      "tags": ["history", "technology"],
+      "passage": "For centuries, lighthouses struggled with a simple problem: a flame produces light in every direction, but sailors only need to see the light that travels towards the sea. Early keepers placed polished metal mirrors behind their lamps, yet much of the light was still lost, and the mirrors quickly tarnished in the salty air. In the 1820s, the French physicist Augustin Fresnel proposed a different solution. Instead of one enormous, heavy glass lens, which would have been almost impossible to manufacture, he arranged many thin rings of glass around a central lamp. Each ring was angled to bend light into a single horizontal beam. The design used far less glass than a conventional lens of the same power, and it captured most of the light that mirrors had wasted. Lighthouses fitted with Fresnel lenses could be seen from dramatically greater distances, and the design spread rapidly around the world. Although modern lighthouses now rely on electric lamps and automated systems, the same principle survives in car headlights, projectors and even some solar power plants.",
+      "question": "According to the passage, what was the main advantage of Fresnel's design?",
+      "options": [
+        { "text": "It replaced the flame with a brighter electric lamp", "correct": false },
+        { "text": "It directed more of the lamp's light into a beam while using less glass", "correct": true },
+        { "text": "It stopped metal mirrors from tarnishing in salty air", "correct": false },
+        { "text": "It made it cheap to manufacture a single very large lens", "correct": false }
+      ],
+      "explanation": "The passage says the angled rings bent light into one beam, used far less glass than a conventional lens and captured light that mirrors had wasted. Electric lamps came much later, the design replaced mirrors rather than protecting them, and it avoided making one large lens instead of making that cheaper."
+    }
+  },
+  {
+    "typeCode": "READING_MCQ_SINGLE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Heritage languages in migrant families",
+      "tags": ["linguistics", "society"],
+      "passage": "Linguists who study migrant communities often describe a pattern known as the three-generation shift. The first generation, who arrive as adults, usually continue to speak their original language at home and learn the new language only partially. Their children grow up bilingual, speaking the heritage language with their parents but using the majority language at school and with friends. By the third generation, the heritage language has frequently been reduced to a few phrases, and grandchildren may struggle to hold a conversation with their grandparents. The pattern is not inevitable. Communities that maintain dense social networks, run weekend language schools or live close together tend to preserve their languages for longer. However, many researchers argue that the decisive factor is rarely the attitude of parents, most of whom want their children to remain bilingual. Rather, it is the practical pressure on children themselves, who quickly notice which language gives them status among their peers and access to opportunities.",
+      "question": "According to the passage, what is usually the decisive reason a heritage language is lost?",
+      "options": [
+        { "text": "Parents discourage their children from speaking it at home", "correct": false },
+        { "text": "Children respond to the social and practical advantages of the majority language", "correct": true },
+        { "text": "Weekend language schools teach the heritage language poorly", "correct": false },
+        { "text": "First-generation migrants never learn the majority language", "correct": false }
+      ],
+      "explanation": "The passage names pressure on children, who notice which language brings status and opportunity, as the decisive factor. It says most parents want their children to stay bilingual, presents weekend schools as helping preservation, and says the first generation learns the new language partially rather than not at all."
+    }
+  },
+  {
+    "typeCode": "READING_MCQ_MULTIPLE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Green roofs",
+      "tags": ["architecture", "environment"],
+      "passage": "Green roofs, which cover a building's roof with a layer of soil and plants, have become a popular feature of sustainable architecture. Their most widely documented benefit is thermal. The planted layer insulates the building, keeping upper floors cooler in summer and reducing heat loss in winter, which lowers energy use for air conditioning and heating. Green roofs also absorb a significant proportion of rainfall, releasing it slowly through evaporation and delaying the flow of water into overloaded drains during storms. In dense cities, they provide small but valuable habitats for insects and birds. The limitations, however, are considerable. A green roof adds substantial weight, so older buildings often need structural reinforcement before one can be installed, and this can make the project uneconomic. The plants also require irrigation during dry periods, at least until they are established, and a poorly installed waterproof membrane can lead to expensive leaks. Claims that green roofs significantly clean city air are also frequently overstated; a single roof removes only a tiny fraction of the pollution produced by nearby traffic.",
+      "question": "Which of the following are presented in the passage as drawbacks of green roofs? Choose all that apply.",
+      "options": [
+        { "text": "Older buildings may need costly structural strengthening", "correct": true },
+        { "text": "They increase heat loss from buildings in winter", "correct": false },
+        { "text": "Poorly installed waterproofing can cause leaks", "correct": true },
+        { "text": "The plants may need watering during dry weather", "correct": true },
+        { "text": "They attract insects that damage the roof structure", "correct": false }
+      ],
+      "explanation": "The passage lists reinforcement costs for older buildings, irrigation in dry periods and leaks from a poorly installed membrane as limitations. It says green roofs reduce winter heat loss, and it describes insect habitats as a benefit, never as a source of damage."
+    }
+  },
+  {
+    "typeCode": "READING_MCQ_MULTIPLE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Citizen science data",
+      "tags": ["science", "research methods"],
+      "passage": "Citizen science projects invite members of the public to collect scientific data, from counting garden birds to photographing distant galaxies. Their appeal to researchers is obvious: volunteers can gather observations across areas and time periods far larger than any professional team could cover. A national butterfly survey, for instance, may draw on thousands of participants recording sightings over several decades, producing a record of population change that would otherwise be unaffordable. Such projects also have educational value, since participants often develop a lasting interest in the subjects they study. Nevertheless, scientists who use citizen data must deal with distinctive problems. Volunteers tend to record observations where they live and at weekends, so data are concentrated in accessible areas and at particular times. Participants also differ widely in skill; a beginner may confuse similar species, while an experienced naturalist will not. Rather than discarding such data, researchers increasingly correct for these biases statistically, for example by modelling each observer's reliability. Critics nonetheless argue that for rare or easily confused species, only records verified by experts should be trusted.",
+      "question": "According to the passage, which of the following are problems with data collected by citizen scientists? Choose all that apply.",
+      "options": [
+        { "text": "Observations cluster in easily reached places and at certain times", "correct": true },
+        { "text": "Volunteers vary in their ability to identify species correctly", "correct": true },
+        { "text": "Long-term projects are too expensive to run", "correct": false },
+        { "text": "Participants usually lose interest after a short time", "correct": false },
+        { "text": "Statistical corrections make the data impossible to use", "correct": false }
+      ],
+      "explanation": "The passage identifies geographic and timing bias and differences in volunteer skill. It presents citizen science as a way to make long-term records affordable, says participants often develop a lasting interest, and describes statistical correction as a way of keeping the data useful."
+    }
+  },
+  {
+    "typeCode": "REORDER_PARAGRAPHS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The development of penicillin",
+      "tags": ["medicine", "history"],
+      "paragraphs_in_order": [
+        "In 1928, Alexander Fleming noticed that a mould growing on one of his laboratory dishes had killed the bacteria around it.",
+        "He named the active substance penicillin, but he was unable to purify it in useful quantities and eventually turned to other work.",
+        "More than a decade later, a team at Oxford led by Howard Florey and Ernst Chain succeeded where he had failed, extracting enough of the drug to test it on patients.",
+        "Their results prompted large-scale production during the Second World War, and penicillin soon saved countless lives."
+      ],
+      "explanation": "The sequence is chronological. The discovery comes first; \"He named\" refers back to Fleming; \"More than a decade later\" and \"where he had failed\" follow his abandoned work; and \"Their results\" refers to the Oxford team."
+    }
+  },
+  {
+    "typeCode": "REORDER_PARAGRAPHS",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Introducing a congestion charge",
+      "tags": ["urban planning", "policy"],
+      "paragraphs_in_order": [
+        "For years, the city's council tried to reduce traffic by building wider roads and adding new car parks.",
+        "These measures, however, only encouraged more people to drive, and journey times through the centre continued to rise.",
+        "Frustrated by this failure, the council proposed a daily charge for vehicles entering the central zone during working hours.",
+        "The plan was initially unpopular, with local businesses warning that shoppers would stay away.",
+        "Yet within a year of its introduction, traffic had fallen noticeably, and many of the same businesses reported stable or even rising sales."
+      ],
+      "explanation": "The opening sentence introduces the council's first approach. \"These measures\" refers back to it, \"this failure\" summarises its result, \"The plan\" refers to the proposed charge, and \"Yet\" contrasts the early opposition with the eventual outcome."
+    }
+  },
+  {
+    "typeCode": "READING_FILL_BLANKS",
+    "difficulty": "EASY",
+    "content": {
+      "title": "How cacti survive the desert",
+      "tags": ["biology", "plants"],
+      "passage": "Cacti are well {{1}} to life in the desert. Instead of broad leaves, most species have sharp spines, which reduce water loss and {{2}} animals from eating the plant. Their thick stems store large amounts of water after rare rainstorms, allowing them to {{3}} long periods of drought. Many cacti also open their pores only at night, when the air is cooler and less moisture {{4}} into the atmosphere.",
+      "blanks": [
+        { "answer": "adapted", "distractors": ["attracted", "invited", "opposed"] },
+        { "answer": "discourage", "distractors": ["encourage", "invite", "require"] },
+        { "answer": "survive", "distractors": ["cause", "end", "prefer"] },
+        { "answer": "escapes", "distractors": ["arrives", "falls", "remains"] }
+      ],
+      "explanation": "\"Well adapted to\" describes suiting an environment; spines \"discourage animals from\" eating the plant; stored water lets cacti \"survive\" drought; and opening pores in cool air means less moisture \"escapes\"."
+    }
+  },
+  {
+    "typeCode": "READING_FILL_BLANKS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Why onions make us cry",
+      "tags": ["chemistry", "food"],
+      "passage": "Cutting an onion damages its cells and releases enzymes that {{1}} down sulphur compounds inside the plant. This reaction produces a volatile gas that drifts upwards and {{2}} the surface of the eyes. Nerves in the eye detect the irritation, and tear glands respond by producing tears to {{3}} the chemical away. Chilling an onion before cutting it slows the reaction, which is why many cooks {{4}} this simple technique.",
+      "blanks": [
+        { "answer": "break", "distractors": ["calm", "sit", "turn"] },
+        { "answer": "irritates", "distractors": ["decorates", "polishes", "repairs"] },
+        { "answer": "wash", "distractors": ["invite", "lock", "paint"] },
+        { "answer": "recommend", "distractors": ["forbid", "forget", "regret"] }
+      ],
+      "explanation": "Enzymes \"break down\" compounds; the gas \"irritates\" the eyes, which the next sentence confirms; tears \"wash\" the chemical away; and \"which is why\" signals that cooks \"recommend\" the technique."
+    }
+  },
+  {
+    "typeCode": "READING_WRITING_FILL_BLANKS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Microplastics",
+      "tags": ["environment", "health"],
+      "passage": "Microplastics, fragments of plastic smaller than five millimetres, have now been {{1}} in almost every environment scientists have examined, from deep ocean trenches to mountain snow. Some are manufactured at this size, but most form when larger items gradually {{2}} down under sunlight and waves. Because the particles are so small, they are easily {{3}} by marine animals, and researchers are still investigating what {{4}} this may have on human health when contaminated seafood is eaten. Reducing plastic waste at its source is widely considered more {{5}} than attempting to remove particles already in the sea.",
+      "blanks": [
+        { "answer": "detected", "distractors": ["detecting", "detection", "detective"] },
+        { "answer": "break", "distractors": ["breaks", "broke", "breaking"] },
+        { "answer": "ingested", "distractors": ["ingest", "ingesting", "ingestion"] },
+        { "answer": "effect", "distractors": ["affect", "effective", "effectively"] },
+        { "answer": "practical", "distractors": ["practice", "practically", "practise"] }
+      ],
+      "explanation": "\"Have been\" needs the past participle \"detected\"; the plural subject \"items\" takes \"break\" in the present tense; the passive \"are easily\" needs \"ingested\"; \"what effect this may have\" needs a noun; and \"more ... than\" needs the adjective \"practical\"."
+    }
+  },
+  {
+    "typeCode": "READING_WRITING_FILL_BLANKS",
+    "difficulty": "HARD",
+    "content": {
+      "title": "School start times and teenage sleep",
+      "tags": ["education", "health"],
+      "passage": "During adolescence, the body's internal clock shifts so that teenagers naturally feel sleepy later in the evening. This change is {{1}} rather than a sign of laziness, yet most schools begin early in the morning, {{2}} many students to wake before their bodies are ready. Several districts that have {{3}} start times by as little as an hour report better attendance and alertness. Critics point to the {{4}} of rescheduling buses and after-school activities, although supporters argue that these costs are {{5}} by the benefits to students' health.",
+      "blanks": [
+        { "answer": "biological", "distractors": ["biology", "biologically", "biologist"] },
+        { "answer": "forcing", "distractors": ["forced", "force", "forces"] },
+        { "answer": "delayed", "distractors": ["delay", "delaying", "delays"] },
+        { "answer": "inconvenience", "distractors": ["inconvenient", "inconveniently", "convenient"] },
+        { "answer": "outweighed", "distractors": ["outweigh", "outweighing", "overweight"] }
+      ],
+      "explanation": "\"Is ... rather than\" needs the adjective \"biological\"; the participle clause after the comma needs \"forcing\"; \"have\" forms the present perfect with \"delayed\"; \"the ... of\" needs the noun \"inconvenience\"; and the passive \"are ... by\" needs \"outweighed\", not the similar-looking \"overweight\"."
+    }
+  }
+]

@@ -1,6 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk'
 import type { ZodType, ZodTypeDef } from 'zod'
 import { env } from '../../../env'
+import { anthropicClient } from '../../anthropic-client'
 import { AiProviderError, type AiResult } from '../../types'
 import { parseJson } from '../../providers/anthropic'
 import {
@@ -46,13 +47,6 @@ function costMicros(modelId: string, promptTokens: number, completionTokens: num
   return Math.round(promptTokens * rate.input + completionTokens * rate.output)
 }
 
-let cached: Anthropic | null = null
-function client(): Anthropic {
-  if (!env.ai.apiKey) throw new AiProviderError('AI_API_KEY is not configured.', 'anthropic')
-  cached ??= new Anthropic({ apiKey: env.ai.apiKey, maxRetries: 0, timeout: env.ai.timeoutMs })
-  return cached
-}
-
 async function call<T>(options: {
   system: string
   prompt: string
@@ -66,7 +60,7 @@ async function call<T>(options: {
 
   let message: Anthropic.Message
   try {
-    message = await client().messages.create({
+    message = await anthropicClient().messages.create({
       model: modelId,
       max_tokens: options.maxTokens ?? 1500,
       system: options.system,

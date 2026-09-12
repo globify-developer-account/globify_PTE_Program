@@ -1,0 +1,118 @@
+[
+  {
+    "typeCode": "READ_ALOUD",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Light in the deep ocean",
+      "tags": ["marine biology", "science"],
+      "passage": "Far below the reach of sunlight, most deep-sea animals produce their own light. Some use brief flashes to startle predators, while others dangle glowing lures to attract prey. A few species of fish even emit red light, a colour most deep-sea creatures cannot detect, which allows them to illuminate their surroundings without revealing their position."
+    }
+  },
+  {
+    "typeCode": "READ_ALOUD",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Why bridges need expansion joints",
+      "tags": ["engineering", "physics"],
+      "passage": "Steel and concrete expand measurably as temperatures rise, and a long bridge can lengthen by many centimetres between a winter night and a summer afternoon. Engineers accommodate this movement with expansion joints, the interlocking metal teeth that motorists feel as a rhythmic bump. Without them, accumulated thermal stress would eventually crack the deck or buckle its supporting girders."
+    }
+  },
+  {
+    "typeCode": "REPEAT_SENTENCE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Seminar room change",
+      "tags": ["campus"],
+      "sentence": "Tomorrow's seminar will take place in the main lecture theatre instead."
+    }
+  },
+  {
+    "typeCode": "REPEAT_SENTENCE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Submitting a draft chapter",
+      "tags": ["academic"],
+      "sentence": "Please submit your draft chapter to your supervisor at least two weeks before the meeting."
+    }
+  },
+  {
+    "typeCode": "RETELL_LECTURE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "How honeybees choose a new home",
+      "tags": ["biology", "animal behaviour"],
+      "lecture": "When a honeybee colony outgrows its hive, roughly half the workers leave with the old queen and cluster on a nearby branch. What happens next is a remarkably democratic process. A few hundred scout bees fly out to inspect possible nest sites, such as hollow trees. Each scout returns and performs a waggle dance, and the more promising the site, the longer and more vigorously she dances. Other scouts visit the advertised sites and, if they agree, begin dancing for them too. Support for weaker sites gradually fades, and within a day or two the swarm reaches consensus and flies to the chosen location together.",
+      "sample_answer": "The lecture describes how a honeybee swarm chooses a new nest. When a colony becomes too large, about half the bees leave with the queen and wait on a branch. Several hundred scouts inspect possible sites and advertise good ones with a waggle dance, dancing longer for better sites. Other scouts check these sites and join in, support for weaker options fades, and the swarm soon agrees on one location and moves there."
+    }
+  },
+  {
+    "typeCode": "RETELL_LECTURE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Parking minimums and housing",
+      "tags": ["urban planning", "economics"],
+      "lecture": "Most drivers think of parking as free, but the cost has simply been moved elsewhere. In many cities, planning rules require every new apartment or shop to provide a minimum number of parking spaces. Building those spaces is expensive, particularly underground, and developers pass that expense on through higher rents and prices, so people who do not own cars end up subsidising those who do. The requirement also consumes land that could have held housing, which spreads the city outward and makes driving even more necessary. Several cities have now abolished these minimums, allowing developers to decide how much parking the market actually wants.",
+      "sample_answer": "The lecture argues that free parking is not really free. Planning rules in many cities force new buildings to include minimum parking spaces, which are costly to build, so the expense is passed on through higher rents and prices, meaning non-drivers subsidise drivers. These rules also use land that could provide housing, encouraging urban sprawl and car dependence, which is why some cities have removed parking minimums."
+    }
+  },
+  {
+    "typeCode": "ANSWER_SHORT_QUESTION",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Pumping blood",
+      "tags": ["human body"],
+      "question": "What organ pumps blood around the human body?",
+      "answer": "heart"
+    }
+  },
+  {
+    "typeCode": "ANSWER_SHORT_QUESTION",
+    "difficulty": "EASY",
+    "content": {
+      "title": "One hundred years",
+      "tags": ["general knowledge"],
+      "question": "What do we call a period of one hundred years?",
+      "answer": "century"
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_GROUP_DISCUSSION",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "A four-day working week",
+      "tags": ["work", "society"],
+      "discussion": "Speaker A: I think a four-day week would benefit almost everyone. Trials in several countries found that staff were less stressed, took fewer sick days, and produced roughly the same amount of work in less time. Many also said they would not want to return to five days.\nSpeaker B: Those results sound impressive, but most of the companies in the trials were office-based and volunteered to take part. A hospital or a factory cannot simply close for a day, so for many workers it would mean longer shifts rather than more free time.\nSpeaker C: I agree it will not suit every industry, but I don't think that means rejecting the idea. Employers could offer it where it works, and measure output rather than hours. My real concern is fairness: if only well-paid professionals get the extra day, the gap between different kinds of workers could grow.",
+      "sample_answer": "The speakers discuss a four-day working week. The first speaker supports it, citing trials where staff were less stressed, took fewer sick days and kept the same output. The second speaker doubts the evidence, noting that trial companies were mostly office-based volunteers, and that hospitals or factories would need longer shifts instead. The third speaker accepts it will not suit every industry but suggests offering it where practical, while worrying that it could widen inequality between well-paid professionals and other workers."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_GROUP_DISCUSSION",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Phones in schools",
+      "tags": ["education", "technology"],
+      "discussion": "Speaker A: Our school banned phones during lessons and breaks last year, and teachers noticed the difference within weeks. Students concentrated for longer, and there was far less online bullying happening during the school day.\nSpeaker B: I understand why schools want that, but I think a total ban avoids the real problem. Young people will use phones for the rest of their lives, so schools should be teaching them to manage their attention, not just removing the device for seven hours.\nSpeaker C: The research is actually less clear than either of you suggests. Some studies link bans to better exam results, especially for weaker students, but others find almost no effect. It probably depends on how the ban is enforced and what the school does alongside it, such as teaching digital skills.\nSpeaker A: That's fair, although I'd still rather start with the ban and add the teaching.",
+      "sample_answer": "The speakers discuss banning mobile phones in schools. The first speaker reports that a ban at their school improved concentration and reduced online bullying, and still prefers starting with a ban. The second speaker argues that a total ban ignores the real issue, since schools should teach students to manage their attention. The third speaker points out that the evidence is mixed, with some studies showing better results for weaker students and others no effect, so success probably depends on enforcement and accompanying digital-skills teaching."
+    }
+  },
+  {
+    "typeCode": "RESPOND_TO_SITUATION",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Returning a damaged laptop",
+      "tags": ["campus", "everyday"],
+      "situation": "You have borrowed a laptop from your university's IT department for a week. On the third day, you accidentally spilled coffee on the keyboard, and some of the keys have stopped working. You need to return the laptop to the IT department today. What would you say to the member of staff at the help desk?",
+      "sample_answer": "Hello, I'm returning the laptop I borrowed from you a few days ago. I'm afraid I have to let you know that I accidentally spilled some coffee on the keyboard yesterday, and since then a few of the keys haven't worked. I'm really sorry about the damage. I'm happy to pay for the repair or a replacement keyboard, so could you tell me what the next step is and whether you need me to fill in any forms?"
+    }
+  },
+  {
+    "typeCode": "RESPOND_TO_SITUATION",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Study group venue closed",
+      "tags": ["campus", "everyday"],
+      "situation": "You are organising a study group for an upcoming exam, and five classmates have agreed to meet in the library on Thursday evening. This morning, the library announced that it will close early on Thursday for maintenance. One of the classmates, who lives far from campus, has already arranged transport. What would you say to her when you call her?",
+      "sample_answer": "Hi, I'm calling about our study session on Thursday. I've just heard that the library is closing early that day for maintenance, so unfortunately we can't meet there in the evening. I know you've already booked transport to get to campus, and I'm sorry for the inconvenience. Would it work for you if we met online instead, or moved the session to Friday afternoon? If you'd still prefer to meet in person, I could check whether one of the seminar rooms is free."
+    }
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "typeCode": "SUMMARIZE_SPOKEN_TEXT",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The spacing effect",
+      "tags": ["psychology", "learning"],
+      "lecture": "Today I want to talk about one of the most reliable findings in the psychology of learning, which is known as the spacing effect. If you study the same material for three hours, you will remember much more of it a month later if you spread those three hours across several days than if you do them all in one evening. This has been demonstrated with vocabulary, mathematics, medical procedures and even motor skills such as typing. So why does cramming feel so effective? The answer is that it produces strong short-term performance. Immediately after a long session, the material feels familiar, and students mistake that familiarity for lasting knowledge. Spaced practice, by contrast, feels harder, because each time you return to the material you have partly forgotten it and must work to retrieve it. That effort is precisely what strengthens memory. The practical lesson is simple, though it requires planning. Rather than reserving revision for the week before an exam, students should revisit each topic briefly at increasing intervals, perhaps a day, then a week, then a month after first learning it.",
+      "sample_answer": "The lecture explains the spacing effect: material studied across several days is remembered far better than the same amount studied in one session. Cramming feels effective because it creates short-term familiarity, which students confuse with lasting knowledge, whereas spaced practice feels harder because forgotten material must be retrieved, and that effort strengthens memory. Students should therefore revisit topics at increasing intervals."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_SPOKEN_TEXT",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Why some invasive species spread",
+      "tags": ["ecology", "environment"],
+      "lecture": "When a species is introduced to a new region, the most common outcome is not an ecological disaster but quiet failure. Most introduced plants and animals never establish a breeding population at all, and of those that do, only a small minority spread aggressively enough to be called invasive. Ecologists have spent decades trying to predict which ones will become problems, and several patterns have emerged. The first is sometimes called enemy release. In its native range, a species is held in check by predators, parasites and diseases that have evolved alongside it. In a new environment, those enemies are usually absent, so the newcomer can devote more energy to growth and reproduction. The second pattern concerns disturbance. Invasive species tend to thrive in habitats that humans have already altered, such as roadsides, farmland and drained wetlands, where native species are under stress. The third is sheer numbers. The more individuals that are released, and the more often, the greater the chance that some survive long enough to adapt. For managers, the implication is clear: preventing repeated introductions is far cheaper and more effective than attempting to remove a species once it has spread.",
+      "sample_answer": "The lecture explains that most introduced species fail, and only a few become invasive. Three patterns help predict success: enemy release, where newcomers escape the predators and diseases that controlled them at home; disturbance, since invaders thrive in human-altered habitats; and sheer numbers, as larger and repeated releases succeed more often. Therefore, preventing repeated introductions is cheaper and more effective than later removal."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_SINGLE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Campus bike-share scheme",
+      "tags": ["campus", "transport"],
+      "transcript": "Good morning, everyone. I'd like to give you a quick update on the new bike-share scheme that starts on campus next month. There will be twelve docking stations, including one outside each residence hall and two beside the main library. Students can use a bike for up to forty-five minutes at no cost, which should be more than enough to get between any two buildings. If you keep a bike longer than that, a small charge is added to your student account for each extra half hour. You'll need to register through the university app before your first ride, and please remember that helmets are not provided, so bring your own. Finally, if you find a damaged bike, report it in the app rather than returning it to a dock, so that maintenance staff can collect it.",
+      "question": "What happens if a student keeps a bike for more than forty-five minutes?",
+      "options": [
+        { "text": "The bike locks automatically until it is returned", "correct": false },
+        { "text": "A charge is added to the student's account", "correct": true },
+        { "text": "The bike must be returned to the main library", "correct": false },
+        { "text": "The student loses access to the scheme for a month", "correct": false }
+      ],
+      "explanation": "The speaker says a small charge is added to the student account for each extra half hour. Automatic locking and losing access are never mentioned, and the library is only named as the location of two docking stations."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_SINGLE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Durable Roman concrete",
+      "tags": ["engineering", "history"],
+      "transcript": "Engineers have long been puzzled by Roman concrete. Harbour walls built two thousand years ago are still standing, while many modern concrete structures in seawater begin to crumble within decades. The Romans mixed lime with volcanic ash, but exactly why the result was so durable remained unclear until recently. The answer appears to lie in a slow chemical reaction. When seawater seeps into the Roman material, it reacts with the ash and slowly grows new mineral crystals inside the tiny cracks, so the concrete actually becomes stronger over time. Modern concrete is designed to be as inert as possible once it sets, which means that any crack simply lets water in and allows the steel reinforcement to corrode. Some researchers now hope to borrow the Roman approach, although it sets far more slowly and would not suit every construction project.",
+      "question": "According to the speaker, why has Roman harbour concrete lasted so long?",
+      "options": [
+        { "text": "Its steel reinforcement resists corrosion in seawater", "correct": false },
+        { "text": "Seawater reacts with the volcanic ash to grow crystals in its cracks", "correct": true },
+        { "text": "It sets much more quickly than modern concrete", "correct": false },
+        { "text": "It was designed to stay completely inert after setting", "correct": false }
+      ],
+      "explanation": "The speaker explains that seawater reacts with the ash and grows mineral crystals inside cracks, strengthening the material. Steel reinforcement and an inert design describe modern concrete, and the Roman mix is said to set far more slowly."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_MULTIPLE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "What employers look for at interviews",
+      "tags": ["careers", "employment"],
+      "transcript": "In this session, I want to share what employers tell us they look for at graduate interviews. The first point may seem obvious, but many candidates still arrive without having researched the organisation. You don't need to memorise its history, but you should understand what it does, who its customers are and what challenges it currently faces. Second, prepare specific examples. When an interviewer asks about teamwork or problem-solving, a vague claim that you are a good team player is far less convincing than a short story about a real situation, what you did and what happened as a result. Third, and this surprises many students, employers value good questions at the end of an interview almost as much as good answers. Asking about how success is measured in the role, for example, shows genuine interest. What matters much less than students expect is having a perfect academic record. Most recruiters told us that a strong degree gets you to the interview, but it rarely decides who gets the job.",
+      "question": "According to the speaker, which of the following do employers value at graduate interviews? Choose all that apply.",
+      "options": [
+        { "text": "Knowing what the organisation does and the challenges it faces", "correct": true },
+        { "text": "Having memorised the organisation's history in detail", "correct": false },
+        { "text": "Specific examples drawn from real situations", "correct": true },
+        { "text": "Thoughtful questions asked at the end of the interview", "correct": true },
+        { "text": "A perfect academic record", "correct": false }
+      ],
+      "explanation": "The speaker recommends researching the organisation, preparing specific examples and asking good questions at the end. They say candidates do not need to memorise its history, and that a perfect academic record matters much less than students expect."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_MULTIPLE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "The deep-sea mining debate",
+      "tags": ["environment", "resources"],
+      "transcript": "Interest in mining the deep sea floor has grown rapidly, and the reason is largely the energy transition. Batteries for electric vehicles require metals such as cobalt, nickel and manganese, and vast fields of potato-sized nodules containing these metals lie on the abyssal plains of the Pacific. Supporters argue that collecting nodules from the sea floor could be less damaging than land mining, which often involves clearing forests and displacing communities. The scientific objections, however, are serious. The deep sea is among the least studied environments on Earth, and surveys of nodule fields regularly discover species that have never been described. Many of these animals live attached to the nodules themselves, so removing the nodules removes their habitat, and recovery could take centuries or longer because life at those depths grows extremely slowly. Sediment plumes stirred up by mining vehicles could also spread over wide areas. Several governments and companies have therefore called for a pause until the ecological risks are better understood, while others argue that careful regulation, rather than delay, is the responsible way forward.",
+      "question": "Which concerns about deep-sea mining does the speaker mention? Choose all that apply.",
+      "options": [
+        { "text": "Animals living on the nodules would lose their habitat", "correct": true },
+        { "text": "Sediment plumes could spread across wide areas", "correct": true },
+        { "text": "The metals in the nodules are unsuitable for batteries", "correct": false },
+        { "text": "Mining the sea floor would displace coastal communities", "correct": false },
+        { "text": "Deep-sea ecosystems would take only a few years to recover", "correct": false }
+      ],
+      "explanation": "The speaker raises habitat loss for animals attached to nodules and the spread of sediment plumes. The nodules contain battery metals, displacing communities is linked to land mining, and recovery is said to take centuries or longer."
+    }
+  },
+  {
+    "typeCode": "LISTENING_FILL_BLANKS",
+    "difficulty": "EASY",
+    "content": {
+      "title": "The university writing centre",
+      "tags": ["campus", "academic skills"],
+      "passage": "Welcome to the university's writing centre. Our {{1}} are free for all enrolled students, and each session lasts about fifty minutes. You can book an appointment online, but we also keep a few places open every afternoon for students who simply {{2}} in. Please bring a printed or digital copy of your {{3}}, along with the assignment instructions, so that your tutor understands exactly what your lecturer expects.",
+      "answers": ["services", "drop", "draft"]
+    }
+  },
+  {
+    "typeCode": "LISTENING_FILL_BLANKS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "How glaciers shape valleys",
+      "tags": ["geography", "earth science"],
+      "passage": "Glaciers are sometimes described as rivers of ice, because they {{1}} slowly downhill under their own weight. Their speed varies enormously: some advance only a few metres each year, while others travel several kilometres. As a glacier moves, it {{2}} rocks from the valley floor and grinds them against the bedrock, carving the distinctive U-shaped valleys found in many mountain regions. When temperatures rise and the ice {{3}}, it leaves behind ridges of rubble called moraines, which reveal how far the glacier once {{4}}.",
+      "answers": ["flow", "plucks", "retreats", "extended"]
+    }
+  }
+]

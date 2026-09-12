@@ -26,9 +26,11 @@
     "db:reset": "prisma migrate reset --force",
     "verify:storage": "tsx scripts/verify-storage.mts",
     "sync:question-types": "tsx scripts/sync-question-types.ts",
+    "content:generate": "tsx scripts/generate-questions.ts",
     "migration:build": "tsx scripts/build-migration.ts"
   },
   "dependencies": {
+    "@anthropic-ai/aws-sdk": "^0.7.1",
     "@anthropic-ai/sdk": "^0.116.0",
     "@prisma/client": "^6.3.1",
     "bcryptjs": "^3.0.2",

@@ -1,0 +1,96 @@
+[
+  {
+    "typeCode": "HIGHLIGHT_CORRECT_SUMMARY",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Why restaurants keep menus short",
+      "tags": ["business", "decision-making"],
+      "transcript": "Many of the most successful restaurants offer surprisingly short menus, and there are good business reasons for this. Every dish on a menu requires its own ingredients, and ingredients that are used in only one or two dishes are more likely to spoil before they are sold. A shorter menu therefore reduces waste and allows the kitchen to buy fresher produce in smaller quantities. It also makes the kitchen faster and more consistent, because cooks prepare the same dishes repeatedly and become highly skilled at them. There is a benefit for customers, too. Research on decision-making suggests that when people face too many options, they take longer to choose and are often less satisfied with their final choice. A focused menu helps diners decide quickly and feel confident that whatever they order is something the restaurant does well.",
+      "options": [
+        { "text": "Short menus benefit restaurants by reducing food waste, allowing fresher ingredients to be bought in smaller amounts, and making kitchens faster and more consistent. They also help customers, who can choose more quickly and feel more satisfied when they are not overwhelmed by options.", "correct": true },
+        { "text": "Restaurants with short menus are more successful mainly because they can charge higher prices. Customers assume that a limited menu means expensive, high-quality ingredients, and they are willing to pay more for dishes that seem exclusive.", "correct": false },
+        { "text": "Short menus reduce waste and speed up kitchens, but customers generally dislike them. Research shows that diners prefer a wide range of options and are more satisfied when they can choose from many different dishes.", "correct": false },
+        { "text": "Restaurants should offer as many dishes as possible, because a long menu attracts a wider range of customers. Although this creates some food waste, cooks who prepare many different dishes become more skilled and flexible.", "correct": false }
+      ],
+      "explanation": "Only the first summary covers both the kitchen benefits (less waste, fresher produce, speed and consistency) and the customer benefit of easier choices. The others introduce pricing, which the speaker never mentions, or reverse what the research on choice says."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_CORRECT_SUMMARY",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Why ice floats",
+      "tags": ["science", "chemistry"],
+      "transcript": "Most substances become denser when they freeze, so their solid form sinks in the liquid. Water is a striking exception. As water cools below about four degrees Celsius, its molecules begin arranging themselves into an open, hexagonal structure held together by hydrogen bonds, and when it freezes, this structure makes it expand by about nine percent, so ice floats. The consequences for life are profound. In winter, lakes freeze from the top down rather than from the bottom up. The layer of ice at the surface insulates the water beneath it, which remains liquid at around four degrees, the temperature at which water is densest. Fish and other organisms can therefore survive the winter below the ice. If ice sank, lakes in cold regions could freeze solid, and much aquatic life as we know it might never have evolved.",
+      "options": [
+        { "text": "Water becomes denser when it freezes, which is why lakes freeze from the bottom up. Fish survive the winter by moving to the surface, where the water stays at about four degrees and remains liquid.", "correct": false },
+        { "text": "Unlike most substances, water expands when it freezes, so ice floats. As a result, lakes freeze from the top, and the surface ice insulates liquid water below at around four degrees, allowing aquatic organisms to survive winter. Without this property, cold lakes might freeze completely.", "correct": true },
+        { "text": "Ice floats because hydrogen bonds make it heavier than liquid water. This causes lakes to freeze from the top, but the ice layer cools the water beneath it so quickly that few organisms survive in cold regions.", "correct": false },
+        { "text": "Most substances expand when they freeze, and water behaves in the same way. This common property explains why lakes freeze solid in very cold regions and why aquatic life is rare there.", "correct": false }
+      ],
+      "explanation": "The second summary correctly states that water expands on freezing, that lakes freeze from the top, and that insulated water below lets life survive. The others claim water gets denser, call ice heavier, or treat water as typical of other substances."
+    }
+  },
+  {
+    "typeCode": "SELECT_MISSING_WORD",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Field trip reminder",
+      "tags": ["campus", "announcement"],
+      "transcript": "Good afternoon. Before we finish today, I want to remind you about next week's field trip to the coastal nature reserve. The bus will leave from the main entrance at eight o'clock sharp, and it cannot wait for anyone who is late. The weather forecast suggests it may rain, so please wear sturdy boots and bring a waterproof jacket. We'll be walking for most of the day, and there are no shops at the reserve, so make sure you pack enough food and water.",
+      "missing_ending": "food and water.",
+      "distractors": ["textbooks and notes", "money for souvenirs", "sunscreen and sunglasses"],
+      "explanation": "The speaker says there are no shops and the group will walk all day, so students must bring their own food and water. Souvenir money is pointless without shops, sunscreen does not fit a rainy forecast, and textbooks are unrelated to a day of walking."
+    }
+  },
+  {
+    "typeCode": "SELECT_MISSING_WORD",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Simultaneous discoveries",
+      "tags": ["history of science"],
+      "transcript": "Historians of science often point out that important discoveries are rarely the work of a lone genius. Calculus was developed independently by Newton and Leibniz, and the theory of evolution by natural selection occurred to both Darwin and Wallace at almost the same time. These coincidences are not as strange as they first appear. When the necessary tools, data and ideas are available to many researchers at once, it becomes likely that more than one of them will reach the same conclusion. In this sense, many great discoveries were not so much invented as simply waiting to be found.",
+      "missing_ending": "waiting to be found.",
+      "distractors": ["forgotten by history", "impossible to explain", "invented by committees"],
+      "explanation": "The talk argues that discoveries become likely once the right tools and ideas are widely available, so they were \"waiting to be found\". The other endings contradict that argument or introduce ideas the speaker never raises."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_INCORRECT_WORDS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Early commercial flights",
+      "tags": ["history", "aviation"],
+      "transcript": "The first commercial airlines in the 1920s carried only a handful of passengers, and flights were noisy, cold and frequently delayed by bad weather. Because aircraft could not fly high enough to avoid storms, pilots often had to land in fields and wait for conditions to improve. Tickets were extremely expensive, so most early passengers were wealthy business travellers rather than tourists.",
+      "displayed_text": "The first commercial airlines in the 1920s carried only a handful of passengers, and flights were noisy, cold and occasionally delayed by bad weather. Because aircraft could not fly high enough to avoid mountains, pilots often had to land in farms and wait for conditions to improve. Tickets were extremely expensive, so most early passengers were retired business travellers rather than tourists."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_INCORRECT_WORDS",
+    "difficulty": "HARD",
+    "content": {
+      "title": "How bats navigate",
+      "tags": ["biology", "animal behaviour"],
+      "transcript": "Most bats find their way in darkness using echolocation. They emit rapid, high-pitched calls, usually beyond the range of human hearing, and listen for the echoes that bounce back from nearby objects. By analysing the delay and the direction of each echo, a bat can judge the distance, size and even texture of an insect in flight. Some species increase the rate of their calls as they approach prey, producing a rapid buzz just before capture.",
+      "displayed_text": "Most bats find their way in caves using echolocation. They emit loud, high-pitched calls, usually beyond the range of human hearing, and listen for the echoes that bounce back from nearby objects. By analysing the strength and the direction of each echo, a bat can judge the distance, size and even texture of an object in flight. Some species increase the rate of their calls as they approach prey, producing a rapid buzz just before landing."
+    }
+  },
+  {
+    "typeCode": "WRITE_FROM_DICTATION",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Career fair location",
+      "tags": ["campus"],
+      "sentence": "The career fair will be held in the sports hall on Friday."
+    }
+  },
+  {
+    "typeCode": "WRITE_FROM_DICTATION",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Peer feedback on writing",
+      "tags": ["academic"],
+      "sentence": "Peer feedback can significantly improve the clarity and structure of academic writing."
+    }
+  }
+]

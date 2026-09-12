@@ -1,0 +1,62 @@
+[
+  {
+    "typeCode": "SUMMARIZE_WRITTEN_TEXT",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Light pollution and wildlife",
+      "tags": ["environment", "wildlife"],
+      "passage": "Artificial light at night has spread so widely that, in much of Europe and North America, true darkness is now rare. For people the change is mostly an inconvenience, but for many other species it is a serious hazard. Most songbirds migrate at night, navigating partly by the stars and partly by the faint glow of the horizon. Brightly lit cities disrupt both cues. Birds are drawn towards illuminated towers, where they circle until exhausted or collide with glass, and researchers estimate that collisions with buildings kill hundreds of millions of birds each year in the United States alone. Insects suffer too: moths that would otherwise pollinate night-flowering plants spend the night orbiting street lamps, and the plants they neglect set less fruit. Unlike many environmental problems, however, light pollution can be reversed almost instantly. Several cities now run campaigns that ask building owners to switch off decorative lighting during peak migration weeks, and studies of these programmes show sharp falls in bird deaths. Replacing white street lights with warmer, shielded fittings that direct light downwards also helps, and often saves energy at the same time. The obstacle is less technical than cultural, since many people associate bright lighting with safety and prosperity, even though its effect on crime is debated.",
+      "sample_answer": "Artificial night lighting disorients nocturnally migrating birds and distracts pollinating moths, causing vast numbers of bird deaths and reduced plant reproduction, but unlike most environmental harms it can be reversed immediately through measures such as switching off decorative lighting during migration and installing shielded, warmer street lights, with the main obstacle being cultural attachment to bright lighting rather than any technical difficulty."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_WRITTEN_TEXT",
+    "difficulty": "HARD",
+    "content": {
+      "title": "How the shipping container changed trade",
+      "tags": ["economics", "history"],
+      "passage": "Before the 1950s, loading a cargo ship was slow, costly and labour-intensive. Goods arrived at the dock in sacks, barrels and crates of every size, and teams of dockworkers carried them aboard piece by piece, a process that could keep a vessel in port for a week or more. Theft and damage were routine, and handling charges often made up a large share of the total cost of shipping. The standard steel container transformed this system not through any technical breakthrough, since a metal box is hardly an invention, but through standardisation. Once ports, ships, lorries and trains all adopted boxes of the same dimensions, cargo could move from a factory to a distant warehouse without ever being unpacked. Loading times fell from days to hours, insurance costs dropped, and ships grew dramatically larger. The consequences extended well beyond transport. Because moving goods across oceans became cheap, manufacturers could locate factories wherever labour and materials were least expensive, and complex supply chains spanning several continents became practical. Traditional port cities also changed, as container terminals required vast areas of flat land and far fewer workers, leaving many historic waterfronts derelict. Economists still debate how much of the growth in world trade since the 1960s the container explains, but few doubt that it ranks among the most influential innovations of the twentieth century.",
+      "sample_answer": "The standardised shipping container, whose importance lay in uniform dimensions rather than technical novelty, replaced slow, costly and theft-prone manual loading with sealed boxes that moved seamlessly between ships, lorries and trains, cutting loading times and costs so sharply that it enabled global supply chains and relocated manufacturing, while also transforming traditional port cities, making it one of the twentieth century's most influential innovations."
+    }
+  },
+  {
+    "typeCode": "ESSAY",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Roads or public transport",
+      "tags": ["transport", "policy"],
+      "topic": "Some people argue that governments should invest heavily in public transport rather than building new roads. Others believe road building remains essential. Discuss both views and give your own opinion.",
+      "sample_answer": "Transport policy shapes how cities grow, how much time people spend travelling and how much pollution they breathe. Whether scarce public money should go into roads or into public transport is therefore a question with long-lasting consequences.\n\nSupporters of road building point out that most journeys, especially outside large cities, are still made by car. Rural communities, delivery companies and emergency services all depend on a reliable road network, and congestion imposes real costs on businesses. From this perspective, neglecting roads would harm the economy and penalise people who have no practical alternative to driving.\n\nAdvocates of public transport respond that new roads rarely solve congestion for long. Additional capacity tends to encourage additional driving, a pattern often described as induced demand, so traffic returns within a few years. Trains, trams and buses, by contrast, move far more people per metre of street, produce lower emissions per passenger, and give access to jobs and education to those who cannot afford a car.\n\nIn my opinion, the strongest policy combines both approaches but shifts the balance clearly towards public transport in urban areas. Cities have limited space, and only mass transit can move large numbers of people efficiently within it. Roads should still be maintained and, in rural regions, improved, since buses and freight need them too. However, spending billions on new urban motorways while public transport remains unreliable is a poor use of public funds.\n\nIn conclusion, both roads and public transport are necessary, but governments should prioritise investment that moves the most people with the least environmental damage."
+    }
+  },
+  {
+    "typeCode": "ESSAY",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Free entry to museums",
+      "tags": ["culture", "society"],
+      "topic": "Many museums and galleries now charge high entry fees, while others remain free. To what extent do you agree that access to cultural institutions should be free for everyone?",
+      "sample_answer": "Museums and galleries preserve a society's shared heritage, yet they are expensive to run. Whether visitors should pay for entry raises questions about fairness, funding and the purpose of these institutions. I largely agree that access should be free, although some limited charges can be justified.\n\nThe main argument for free entry is equality of access. Entry fees fall hardest on families with low incomes, students and young people, precisely the groups who may benefit most from exposure to art, science and history. Where national museums have abolished charges, visitor numbers have typically risen substantially, which suggests that price is a real barrier rather than a minor inconvenience. Moreover, collections are often funded by taxpayers or were donated for public benefit, so charging the public to see them seems difficult to justify.\n\nOn the other hand, museums face rising costs for conservation, security and staff, and public funding is not unlimited. Ticket revenue can pay for new exhibitions, educational programmes and building maintenance. Critics also argue that tourists, who contribute little through local taxes, should reasonably pay something towards the institutions they visit.\n\nIn my view, the best approach is to keep permanent collections free while charging for special temporary exhibitions, which are costly to organise. Museums can also invite voluntary donations and offer paid memberships to raise additional income. This model protects the principle that everyone may encounter their cultural heritage without cost, while giving institutions the resources they need to survive.\n\nIn conclusion, free access to core collections should be the norm, supplemented by modest charges for optional extras."
+    }
+  },
+  {
+    "typeCode": "WRITE_EMAIL",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Leaving Tuesday club training",
+      "tags": ["campus", "email"],
+      "task": "You recently joined a university sports club, but a new part-time job means you can no longer attend its Tuesday training sessions. Write an email to the club secretary. In your email, you should:\n- explain why you cannot attend on Tuesdays\n- ask whether there are other sessions you could join\n- ask about a refund of your membership fee",
+      "sample_answer": "Dear Club Secretary,\n\nI joined the badminton club at the start of this term and have really enjoyed the sessions so far. Unfortunately, I have just started a part-time job at a local café, and my shifts are every Tuesday evening, so I can no longer attend Tuesday training.\n\nCould you tell me whether the club runs sessions on any other days that I could join instead? If there are no suitable alternatives, I would like to ask whether it is possible to receive a partial refund of my membership fee.\n\nThank you for your help, and I look forward to hearing from you.\n\nBest regards,\nAlex"
+    }
+  },
+  {
+    "typeCode": "WRITE_EMAIL",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Late and damaged textbook",
+      "tags": ["shopping", "email"],
+      "task": "You ordered a textbook online for your course, but it arrived two weeks late and the cover was damaged. Your first assignment is due soon. Write an email to the online bookshop's customer service team. In your email, you should:\n- describe the problems with your order\n- explain how the delay has affected you\n- say what you would like the company to do",
+      "sample_answer": "Dear Customer Service Team,\n\nI am writing about my recent order of an introductory economics textbook. The book was due to arrive on 3 March, but it was not delivered until 17 March, and when I opened the package, the front cover was badly torn.\n\nThe delay has caused me real difficulty, because I needed the book to prepare my first assignment, which is due next week. As a result, I have had to rely on library copies that are often unavailable.\n\nI would be grateful if you could send a replacement copy by express delivery at no extra cost, or alternatively provide a refund for the delivery charge.\n\nYours faithfully,\nJordan Lee"
+    }
+  }
+]
