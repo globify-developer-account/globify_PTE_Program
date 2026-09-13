@@ -27,6 +27,7 @@
     "verify:storage": "tsx scripts/verify-storage.mts",
     "sync:question-types": "tsx scripts/sync-question-types.ts",
     "content:generate": "tsx scripts/generate-questions.ts",
+    "accounts:create": "tsx scripts/create-accounts.ts",
     "migration:build": "tsx scripts/build-migration.ts"
   },
   "dependencies": {
