@@ -71,7 +71,7 @@ The minimum set for a working deployment:
 
 | Variable | Value |
 |---|---|
-| `NEXT_PUBLIC_APP_URL` | `https://your-domain.com` — no trailing slash, https |
+| `NEXT_PUBLIC_APP_URL` | `https://pte.globifytech.com` — no trailing slash, https |
 | `NODE_ENV` | `production` |
 | `DEMO_MODE` | `false` |
 | `DATABASE_URL` | the **rotated**, pooled Neon string |
@@ -191,7 +191,7 @@ it is confirmed by an administrator in the dashboard.
 For Stripe:
 
 1. Stripe dashboard → **Developers → Webhooks → Add endpoint**
-2. URL: `https://your-domain.com/api/webhooks/payments/stripe`
+2. URL: `https://pte.globifytech.com/api/webhooks/payments/stripe`
 3. Events: `checkout.session.completed`,
    `checkout.session.async_payment_succeeded`,
    `checkout.session.async_payment_failed`, `checkout.session.expired`,
@@ -213,7 +213,7 @@ A replayed delivery cannot activate a subscription twice.
 1. Google Cloud Console → **APIs & Services → Credentials → OAuth client ID**
 2. Application type: **Web application**
 3. Authorised redirect URI, exactly:
-   `https://your-domain.com/api/auth/google/callback`
+   `https://pte.globifytech.com/api/auth/google/callback`
 4. Put the client ID and secret in the environment
 
 Leave both blank and the Google button does not render at all.
