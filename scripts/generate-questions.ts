@@ -5,7 +5,7 @@ import Anthropic from '@anthropic-ai/sdk'
 import { PrismaClient } from '@prisma/client'
 import { z } from 'zod'
 import { env } from '../src/lib/env'
-import { anthropicClient } from '../src/lib/ai/anthropic-client'
+import { contentGenerationClient } from '../src/lib/ai/anthropic-client'
 import { parseJson } from '../src/lib/ai/providers/anthropic'
 import {
   GENERATABLE_TYPES,
@@ -43,9 +43,10 @@ import type { QuestionTypeCode } from '../src/lib/pte/question-types'
  * keeping generated items in their own range means a re-seed never overwrites them.
  *
  * --dry-run validates and prints instead of saving, and needs no database.
- * Calling Claude requires AI_API_KEY (plus AWS_REGION and
- * ANTHROPIC_AWS_WORKSPACE_ID for a Claude Platform on AWS key). The question
- * types must already exist in the database: run `npm run sync:question-types`.
+ * Calling Claude uses CONTENT_AI_API_KEY, never the scoring key in AI_API_KEY
+ * (plus AWS_REGION and ANTHROPIC_AWS_WORKSPACE_ID when it is a Claude Platform
+ * on AWS key). The question types must already exist in the database: run
+ * `npm run sync:question-types`.
  */
 
 const DIFFICULTIES: GenerationDifficulty[] = ['EASY', 'MEDIUM', 'HARD']
@@ -137,9 +138,7 @@ async function save(typeCode: QuestionTypeCode, difficulty: GenerationDifficulty
 let claude: Anthropic | null = null
 
 async function askClaude(prompt: string, jsonSchema: Record<string, unknown>): Promise<unknown> {
-  // Generation is a batch job, not a request a student is waiting on, so it can
-  // afford the SDK's own retries and a long timeout.
-  claude ??= anthropicClient().withOptions({ maxRetries: 3, timeout: 5 * 60_000 })
+  claude ??= contentGenerationClient()
   const message = await claude.beta.messages.create({
     model: env.ai.model || 'claude-opus-5',
     max_tokens: 16000,
@@ -153,10 +152,7 @@ async function askClaude(prompt: string, jsonSchema: Record<string, unknown>): P
   if (message.stop_reason === 'refusal') throw new GenerationError('The model declined this request.')
   if (message.stop_reason === 'max_tokens') throw new GenerationError('The response was cut off.')
 
-  const text = message.content
-    .filter((block): block is Anthropic.Beta.BetaTextBlock => block.type === 'text')
-    .map((block) => block.text)
-    .join('')
+  const text = message.content.map((block) => (block.type === 'text' ? block.text : '')).join('')
   return parseJson(text)
 }
 

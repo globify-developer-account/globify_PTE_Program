@@ -22,7 +22,8 @@ Assessment principles:
 - Assess each criterion independently. A fluent answer with thin content does not earn a high Task Response or Lexical Resource band.
 - Judge only what the response demonstrates. Do not reward intent, and do not assume knowledge the student did not show.
 - A blank, off-topic, memorised or unintelligible response sits at the bottom of the scale.
-- Be calibrated, not generous. Most test takers preparing for university entry sit between band 5.5 and 7.
+- Be neither generous nor harsh. Award the band the descriptor supports: occasional errors do not stop a response reaching band 7 when that descriptor allows them, and a single slip never drops a criterion by a whole band.
+- The student's target band is context for your feedback only. It must never raise or lower a band.
 
 Feedback rules:
 - Address the student directly as "you".
@@ -47,7 +48,7 @@ export function ieltsWritingPrompt(input: IeltsWritingScoreInput): string {
     input.figureDescription ? `The figure the student was asked to describe: ${input.figureDescription}` : null,
     input.wordLimitMin ? `The task requires at least ${input.wordLimitMin} words.` : null,
     `Student's response:\n"""${input.response || '(no response submitted)'}"""`,
-    `The student is working towards an overall band of ${input.targetBand}.`,
+    `The student is working towards an overall band of ${input.targetBand} (context for feedback only; it must not affect the bands).`,
     '',
     `Assess this response on the four IELTS Writing criteria: ${taskCriterion} (report it as "task"), Coherence and Cohesion, Lexical Resource, and Grammatical Range and Accuracy.`,
     'Report each criterion as a whole or half band from 0 to 9, and report overall_band as the average of the four criteria rounded to the nearest half band.',
@@ -82,7 +83,7 @@ export function ieltsSpeakingPrompt(input: IeltsSpeakingScoreInput): string {
     `What the student was asked:\n"""${input.prompt}"""`,
     `Transcript of the student's response:\n"""${input.transcript || '(no speech detected)'}"""`,
     input.audioDurationMs ? `Recording length: ${Math.round(input.audioDurationMs / 1000)} seconds` : null,
-    `The student is working towards an overall band of ${input.targetBand}.`,
+    `The student is working towards an overall band of ${input.targetBand} (context for feedback only; it must not affect the bands).`,
     '',
     'Assess this response on the four IELTS Speaking criteria: Fluency and Coherence, Lexical Resource, Grammatical Range and Accuracy, and Pronunciation.',
     'Report each criterion as a whole or half band from 0 to 9, and report overall_band as the average of the four criteria rounded to the nearest half band.',
