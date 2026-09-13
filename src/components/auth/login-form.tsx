@@ -6,24 +6,30 @@ import { useState, type FormEvent } from 'react'
 import { AlertCircle, Lock, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/field'
-import { AuthDivider, GoogleButton } from './google-button'
+import { AuthDivider, OAuthButtons, oauthProviderLabel } from './oauth-buttons'
 import { ANALYTICS_EVENTS, track } from '@/lib/analytics'
+import type { OAuthProviderId } from '@/lib/auth/oauth-state'
 
-const ERROR_MESSAGES: Record<string, string> = {
-  google_unavailable: 'Google sign-in is not configured on this deployment. Use your email and password.',
-  google_cancelled: 'Google sign-in was cancelled.',
-  google_state_mismatch: 'That sign-in link expired. Please try again.',
-  google_failed: 'We could not complete Google sign-in. Please try again.',
-  account_suspended: 'This account is suspended. Please contact support.',
-  registration_disabled: 'New registrations are paused right now.',
-  session_expired: 'Your session expired. Please sign in again.',
+function errorMessage(code: string, provider: string): string {
+  const messages: Record<string, string> = {
+    oauth_unavailable: `${provider} sign-in is not configured on this deployment. Use your email and password.`,
+    oauth_cancelled: `${provider} sign-in was cancelled.`,
+    oauth_state_mismatch: 'That sign-in link expired. Please try again.',
+    oauth_failed: `We could not complete ${provider} sign-in. Please try again.`,
+    oauth_no_email: `Your ${provider} account did not share an email address. Allow email access when asked, or sign up with email instead.`,
+    oauth_account_exists: `An account with your ${provider} email already exists. Sign in with your password instead.`,
+    account_suspended: 'This account is suspended. Please contact support.',
+    registration_disabled: 'New registrations are paused right now.',
+    session_expired: 'Your session expired. Please sign in again.',
+  }
+  return messages[code] ?? 'Sign-in failed. Please try again.'
 }
 
 export function LoginForm({
-  googleEnabled = false,
+  oauthProviders = [],
   hideSignUp = false,
 }: {
-  googleEnabled?: boolean
+  oauthProviders?: OAuthProviderId[]
   /** The admin sign-in page reuses this form but must not advertise sign-up. */
   hideSignUp?: boolean
 }) {
@@ -34,7 +40,7 @@ export function LoginForm({
 
   const [pending, setPending] = useState(false)
   const [error, setError] = useState<string | null>(
-    initialError ? (ERROR_MESSAGES[initialError] ?? 'Sign-in failed. Please try again.') : null,
+    initialError ? errorMessage(initialError, oauthProviderLabel(searchParams.get('provider'))) : null,
   )
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -94,10 +100,10 @@ export function LoginForm({
         </p>
       ) : null}
 
-      {googleEnabled ? (
+      {oauthProviders.length > 0 ? (
         <>
           <div className="mt-6">
-            <GoogleButton next={nextPath} label="Sign in with Google" />
+            <OAuthButtons providers={oauthProviders} verb="Sign in" next={nextPath} />
           </div>
           <AuthDivider label="or sign in with email" />
         </>

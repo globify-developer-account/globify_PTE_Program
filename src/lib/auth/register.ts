@@ -11,7 +11,12 @@ import { hashPassword } from './password'
 export interface RegisterInput {
   name: string
   email: string
-  password: string
+  /** Null for accounts created through Google or Facebook; they can set one later. */
+  password: string | null
+  /** Set when a sign-in provider has already confirmed the address. */
+  emailVerified?: boolean
+  avatarUrl?: string | null
+  oauthAccount?: { provider: string; providerAccountId: string }
   phone?: string | null
   targetScore?: number
   country?: string | null
@@ -50,7 +55,7 @@ export async function registerUser(input: RegisterInput): Promise<User> {
 
   const settings = await getSettings()
   const [passwordHash, referralCode] = await Promise.all([
-    hashPassword(input.password),
+    input.password === null ? null : hashPassword(input.password),
     generateReferralCode(input.name),
   ])
 
@@ -59,9 +64,14 @@ export async function registerUser(input: RegisterInput): Promise<User> {
       email,
       name: input.name.trim(),
       passwordHash,
+      emailVerified: input.emailVerified ? new Date() : null,
       role: input.role ?? 'STUDENT',
+      // Created in the same write so a failure cannot leave an account that
+      // exists but is not linked to the identity that created it.
+      oauthAccounts: input.oauthAccount ? { create: input.oauthAccount } : undefined,
       profile: {
         create: {
+          avatarUrl: input.avatarUrl ?? null,
           phone: input.phone?.trim() || null,
           country: input.country?.trim() || 'Pakistan',
           studyDestination: input.studyDestination?.trim() || null,

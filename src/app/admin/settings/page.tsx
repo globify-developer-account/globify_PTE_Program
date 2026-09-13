@@ -29,6 +29,7 @@ export default async function AdminSettingsPage() {
     { label: 'Storage driver', value: env.storage.driver, configured: env.storage.driver === 'local' || Boolean(env.storage.bucket) },
     { label: 'Email provider', value: env.email.provider, configured: env.email.provider === 'console' || Boolean(env.email.apiKey) },
     { label: 'Google sign-in', value: env.auth.google.clientId ? 'configured' : 'not configured', configured: Boolean(env.auth.google.clientId) },
+    { label: 'Facebook sign-in', value: env.auth.facebook.appId ? 'configured' : 'not configured', configured: Boolean(env.auth.facebook.appId) },
     { label: 'Demo mode', value: env.demoMode ? 'on' : 'off', configured: true },
   ]
 

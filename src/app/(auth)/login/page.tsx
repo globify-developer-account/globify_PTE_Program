@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import { LoginForm } from '@/components/auth/login-form'
 import { Skeleton } from '@/components/ui/states'
 import { getCurrentUser, isStaffRole } from '@/lib/auth/session'
-import { googleEnabled } from '@/lib/auth/google'
+import { enabledOAuthProviders } from '@/lib/auth/oauth'
 import { pageMetadata } from '@/lib/metadata'
 
 export const dynamic = 'force-dynamic'
@@ -20,7 +20,7 @@ export default async function LoginPage() {
 
   return (
     <Suspense fallback={<Skeleton className="h-96 w-full" />}>
-      <LoginForm googleEnabled={googleEnabled()} />
+      <LoginForm oauthProviders={enabledOAuthProviders()} />
     </Suspense>
   )
 }

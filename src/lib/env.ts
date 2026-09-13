@@ -50,6 +50,12 @@ export const env = {
       clientId: str('GOOGLE_CLIENT_ID'),
       clientSecret: str('GOOGLE_CLIENT_SECRET'),
     },
+    facebook: {
+      appId: str('FACEBOOK_APP_ID'),
+      appSecret: str('FACEBOOK_APP_SECRET'),
+      /** Only for "Facebook Login for Business" apps. */
+      configId: str('FACEBOOK_CONFIG_ID'),
+    },
   },
 
   ai: {

@@ -7,15 +7,16 @@ import { AlertCircle, Lock, Mail, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Checkbox, Input, Select } from '@/components/ui/field'
 import { passwordStrength } from '@/lib/auth/password'
-import { AuthDivider, GoogleButton } from './google-button'
+import { AuthDivider, OAuthButtons } from './oauth-buttons'
 import { ANALYTICS_EVENTS, track } from '@/lib/analytics'
+import type { OAuthProviderId } from '@/lib/auth/oauth-state'
 import { cn } from '@/lib/utils'
 
 type Errors = Record<string, string>
 
 const STRENGTH_COLORS = ['bg-ink-200', 'bg-red-400', 'bg-amber-400', 'bg-lime-500', 'bg-green-600']
 
-export function RegisterForm({ googleEnabled }: { googleEnabled: boolean }) {
+export function RegisterForm({ oauthProviders }: { oauthProviders: OAuthProviderId[] }) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const referralFromUrl = searchParams.get('ref') ?? ''
@@ -96,10 +97,26 @@ export function RegisterForm({ googleEnabled }: { googleEnabled: boolean }) {
         </p>
       ) : null}
 
-      {googleEnabled ? (
+      {oauthProviders.length > 0 ? (
         <>
           <div className="mt-6">
-            <GoogleButton label="Sign up with Google" />
+            <OAuthButtons providers={oauthProviders} verb="Sign up" referralCode={referralFromUrl || undefined} />
+            {/* The checkbox below only guards the email form, so say it here too. */}
+            <p className="mt-3 text-center text-xs leading-relaxed text-ink-500">
+              By continuing, you agree to the{' '}
+              <Link href="/terms" className="underline hover:text-ink-700">
+                Terms
+              </Link>
+              ,{' '}
+              <Link href="/privacy" className="underline hover:text-ink-700">
+                Privacy Policy
+              </Link>{' '}
+              and{' '}
+              <Link href="/ai-disclaimer" className="underline hover:text-ink-700">
+                AI Disclaimer
+              </Link>
+              .
+            </p>
           </div>
           <AuthDivider label="or sign up with email" />
         </>

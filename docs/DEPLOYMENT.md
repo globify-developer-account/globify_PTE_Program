@@ -208,15 +208,56 @@ A replayed delivery cannot activate a subscription twice.
 
 ---
 
-## Step 8 — Google sign-in (optional)
+## Step 8 — Google and Facebook sign-in (optional)
+
+Each provider is independent. Leave a provider's two variables blank and its
+button does not render at all.
+
+### Google
 
 1. Google Cloud Console → **APIs & Services → Credentials → OAuth client ID**
 2. Application type: **Web application**
 3. Authorised redirect URI, exactly:
    `https://pte.globifytech.com/api/auth/google/callback`
-4. Put the client ID and secret in the environment
+4. Put the client ID and secret in `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`
 
-Leave both blank and the Google button does not render at all.
+### Facebook
+
+1. [developers.facebook.com](https://developers.facebook.com/apps) → **Create app**
+   → use case **Authenticate and request data from users with Facebook Login**
+2. **Use cases → Facebook Login → Customize → Permissions**: make sure `email`
+   is added alongside `public_profile`
+3. **Facebook Login → Settings → Valid OAuth Redirect URIs**, exactly:
+   `https://pte.globifytech.com/api/auth/facebook/callback`
+   (keep **Use Strict Mode for redirect URIs** on)
+4. **App settings → Basic**: fill in the Privacy Policy URL
+   (`https://pte.globifytech.com/privacy`), Terms URL, app icon and category —
+   Meta will not let the app go live without them
+5. Copy the **App ID** and **App secret** into `FACEBOOK_APP_ID` and
+   `FACEBOOK_APP_SECRET`
+6. Switch the app from **Development** to **Live**. Until you do, only people
+   listed under **App roles** can sign in.
+
+If the app was created as **Facebook Login for Business** (Meta's dashboard
+shows a `config_id` in its login button snippet), create a configuration with
+the `email` and `public_profile` permissions and put its ID in
+`FACEBOOK_CONFIG_ID`. Consumer Facebook Login apps leave it blank.
+
+The site uses the server-side redirect flow, so the JavaScript SDK snippet Meta
+shows in its quickstart (`FB.init`, `fb:login-button`) is not needed.
+
+### How accounts are matched
+
+- A returning Google or Facebook user signs straight into the account they
+  created or linked before.
+- A Google user whose email matches an existing account is linked to it,
+  because Google confirms the person owns that address.
+- A Facebook user whose email matches an existing account is **not** linked:
+  Facebook does not confirm email ownership, so linking would let someone claim
+  another person's account. They are asked to sign in with their password.
+- Anyone else gets a new student account, unless registrations are paused.
+  Accounts created this way have no password; the student can set one from
+  **Forgot password**.
 
 ---
 

@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 import { RegisterForm } from '@/components/auth/register-form'
 import { Skeleton } from '@/components/ui/states'
 import { getCurrentUser } from '@/lib/auth/session'
-import { googleEnabled } from '@/lib/auth/google'
+import { enabledOAuthProviders } from '@/lib/auth/oauth'
 import { pageMetadata } from '@/lib/metadata'
 import { getSettings } from '@/lib/settings'
 
@@ -39,7 +39,7 @@ export default async function RegisterPage() {
 
   return (
     <Suspense fallback={<Skeleton className="h-[32rem] w-full" />}>
-      <RegisterForm googleEnabled={googleEnabled()} />
+      <RegisterForm oauthProviders={enabledOAuthProviders()} />
     </Suspense>
   )
 }
