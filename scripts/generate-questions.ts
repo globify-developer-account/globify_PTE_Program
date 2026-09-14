@@ -1,8 +1,8 @@
 import 'dotenv/config'
-import { readFileSync } from 'node:fs'
+import { readFileSync, statSync } from 'node:fs'
 import { parseArgs } from 'node:util'
 import Anthropic from '@anthropic-ai/sdk'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, type Prisma } from '@prisma/client'
 import { z } from 'zod'
 import { env } from '../src/lib/env'
 import { contentGenerationClient } from '../src/lib/ai/anthropic-client'
@@ -13,10 +13,12 @@ import {
   GenerationError,
   generationPrompt,
   generationSpec,
+  importSpec,
   type GenerationDifficulty,
   type QuestionDraft,
 } from '../src/lib/content/question-generation'
 import type { QuestionTypeCode } from '../src/lib/pte/question-types'
+import { attachBuiltMedia, builtMediaFor, readContentItems } from './lib/question-media'
 
 /**
  * Writes original PTE practice questions with Claude and saves them as drafts.
@@ -31,13 +33,20 @@ import type { QuestionTypeCode } from '../src/lib/pte/question-types'
  * way. Every item is validated before anything is written, and an item whose
  * title already exists for its type is skipped, so a file can be re-imported:
  *
- *   npm run content:generate -- --from content/questions.json
+ *   npm run content:generate -- --from content/questions/reading.json
+ *   npm run content:generate -- --from content/questions --publish   (every file in the folder)
  *   [{ "typeCode": "READ_ALOUD", "difficulty": "MEDIUM", "content": { "title": …, "tags": […], "passage": … } }]
  *
- * Nothing is published. Every question is created with status DRAFT and the
- * tag `ai-generated`; review it in /admin/questions before students see it.
- * Listening and audio-prompt tasks are created with a transcript only — attach
- * a recording before publishing them.
+ * By default nothing is published: every question is created with status DRAFT
+ * and the tag `ai-generated`; review it in /admin/questions before students see
+ * it. `--publish` (imports only) is for the reviewed bank in content/questions:
+ * it publishes new items and any matching drafts, numbering each one the way
+ * the admin screen does.
+ *
+ * Listening and audio-prompt tasks need a recording, and Describe Image needs
+ * its figure. Build both with `npm run content:media` first; an import links
+ * each question to the files built for it. Describe Image can only be
+ * imported, because its figure is drawn from the item's chart data.
  *
  * Codes take the form RA-AI-001. The seed bank upserts RA-001-style codes, so
  * keeping generated items in their own range means a re-seed never overwrites them.
@@ -59,6 +68,7 @@ const { values } = parseArgs({
     difficulty: { type: 'string' },
     topic: { type: 'string' },
     from: { type: 'string' },
+    publish: { type: 'boolean', default: false },
     'dry-run': { type: 'boolean', default: false },
   },
 })
@@ -114,23 +124,63 @@ async function nextCode(prefix: string): Promise<string> {
   return `${prefix}-AI-${String(next).padStart(3, '0')}`
 }
 
-async function save(typeCode: QuestionTypeCode, difficulty: GenerationDifficulty, question: QuestionDraft): Promise<string> {
-  const code = await nextCode(generationSpec(typeCode)!.prefix)
+/**
+ * Reserves the next "RA #12"-style number for a type. The same counter update
+ * as src/lib/pte/numbering, which is server-only and cannot be imported here.
+ */
+async function allocateTypeNumber(tx: Prisma.TransactionClient, typeId: string): Promise<number> {
+  const updated = await tx.questionType.update({
+    where: { id: typeId },
+    data: { lastTypeNumber: { increment: 1 } },
+    select: { lastTypeNumber: true },
+  })
+  return updated.lastTypeNumber
+}
+
+async function save(
+  typeCode: QuestionTypeCode,
+  difficulty: GenerationDifficulty,
+  question: QuestionDraft,
+  publish = false,
+): Promise<string> {
+  const code = await nextCode(importSpec(typeCode)!.prefix)
   if (!prisma) return code
 
-  await prisma.question.create({
-    data: {
-      code,
-      questionTypeId: await questionTypeId(typeCode),
-      ...question,
-      options: question.options as object,
-      correctAnswer: question.correctAnswer as object,
-      tags: [...question.tags, 'ai-generated'],
-      difficulty,
-      status: 'DRAFT',
-    },
+  const typeId = await questionTypeId(typeCode)
+  await prisma.$transaction(async (tx) => {
+    await tx.question.create({
+      data: {
+        code,
+        questionTypeId: typeId,
+        ...question,
+        ...builtMediaFor(typeCode, question.title),
+        options: question.options as object,
+        correctAnswer: question.correctAnswer as object,
+        tags: [...question.tags, 'ai-generated'],
+        difficulty,
+        status: publish ? 'PUBLISHED' : 'DRAFT',
+        typeNumber: publish ? await allocateTypeNumber(tx, typeId) : null,
+      },
+    })
   })
   return code
+}
+
+/** Publishes the draft with this title, if there is one, keeping any number it already has. */
+async function publishExisting(typeCode: QuestionTypeCode, title: string): Promise<boolean> {
+  const typeId = await questionTypeId(typeCode)
+  return prisma!.$transaction(async (tx) => {
+    const draft = await tx.question.findFirst({
+      where: { questionTypeId: typeId, title: { equals: title, mode: 'insensitive' }, status: 'DRAFT' },
+      select: { id: true, typeNumber: true },
+    })
+    if (!draft) return false
+    await tx.question.update({
+      where: { id: draft.id },
+      data: { status: 'PUBLISHED', typeNumber: draft.typeNumber ?? (await allocateTypeNumber(tx, typeId)) },
+    })
+    return true
+  })
 }
 
 // --- generate with Claude -------------------------------------------------------
@@ -230,18 +280,22 @@ const importFileSchema = z.array(
     typeCode: z.string(),
     difficulty: z.enum(['EASY', 'MEDIUM', 'HARD']),
     content: z.unknown(),
+    // Present when a whole folder is read, to point problems at the right file.
+    file: z.string().optional(),
+    index: z.number().optional(),
   }),
 )
 
 async function importFile(path: string) {
-  const parsed = importFileSchema.safeParse(JSON.parse(readFileSync(path, 'utf8')))
+  const raw: unknown = statSync(path).isDirectory() ? readContentItems(path) : JSON.parse(readFileSync(path, 'utf8'))
+  const parsed = importFileSchema.safeParse(raw)
   if (!parsed.success) fail(`${path} must be a JSON list of { typeCode, difficulty, content } items.`)
 
   // Validate the whole file first, so a bad item never leaves it half imported.
   const problems: string[] = []
   const items = parsed.data.flatMap((item, index) => {
-    const definition = generationSpec(item.typeCode)
-    const label = `#${index + 1} ${item.typeCode}`
+    const definition = importSpec(item.typeCode)
+    const label = item.file ? `${item.file} #${(item.index ?? index) + 1} ${item.typeCode}` : `#${index + 1} ${item.typeCode}`
     if (!definition) {
       problems.push(`${label}: no generator for this type`)
       return []
@@ -265,6 +319,7 @@ async function importFile(path: string) {
   console.log(`${items.length} item(s) valid${dryRun ? ' (dry run — nothing saved)' : ''}.\n`)
   let saved = 0
   let skipped = 0
+  let published = 0
   const titlesByType = new Map<string, Set<string>>()
 
   for (const { typeCode, difficulty, question } of items) {
@@ -275,18 +330,28 @@ async function importFile(path: string) {
     }
     if (titles.has(question.title.toLowerCase())) {
       skipped += 1
-      console.log(`  exists     ${typeCode.padEnd(28)} ${question.title}`)
+      if (values.publish && prisma && (await publishExisting(typeCode, question.title))) {
+        published += 1
+        console.log(`  published  ${typeCode.padEnd(28)} ${question.title}`)
+      }
       continue
     }
     titles.add(question.title.toLowerCase())
 
-    const code = await save(typeCode, difficulty, question)
+    const code = await save(typeCode, difficulty, question, values.publish)
     saved += 1
     console.log(`  ${code.padEnd(10)} ${typeCode.padEnd(28)} ${difficulty.padEnd(6)} ${question.title}`)
   }
 
-  console.log(`\nDone: ${saved} ${dryRun ? 'would be saved' : 'saved as drafts'}, ${skipped} already existed.`)
-  if (!dryRun && saved > 0) console.log('Review and publish them in /admin/questions.')
+  const outcome = dryRun ? 'would be saved' : values.publish ? 'saved and published' : 'saved as drafts'
+  const drafts = published > 0 ? ` (${published} existing draft(s) published)` : ''
+  console.log(`\nDone: ${saved} ${outcome}, ${skipped} already existed${drafts}.`)
+
+  if (prisma) {
+    const attached = await attachBuiltMedia(prisma)
+    console.log(`Linked ${attached.audio} recording(s) and ${attached.images} figure(s) to questions that had none.`)
+  }
+  if (!dryRun && saved > 0 && !values.publish) console.log('Review and publish them in /admin/questions.')
 }
 
 main()

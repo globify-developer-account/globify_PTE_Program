@@ -6,6 +6,8 @@
  * those markers; the matching answer key lives in `correctAnswer.blanks`.
  */
 
+import type { Chart } from '../../src/lib/content/charts'
+
 export interface SeedQuestion {
   code: string
   typeCode: string
@@ -15,6 +17,8 @@ export interface SeedQuestion {
   audioTranscript?: string
   imageUrl?: string
   audioUrl?: string
+  /** Describe Image only: the figure `npm run content:media` draws for this question. */
+  chart?: Chart
   options?: unknown
   correctAnswer?: unknown
   explanation?: string
@@ -87,6 +91,14 @@ export const SEED_QUESTIONS: SeedQuestion[] = [
       'Look at the chart below. In 25 seconds, prepare to describe what it shows. You will then have 40 seconds to speak.',
     sampleAnswer:
       'The bar chart shows installed renewable capacity between 2015 and 2024, measured in gigawatts. Capacity rises steadily across the whole period, from roughly 780 gigawatts in 2015 to just over 2,400 in 2024. Growth is modest until 2019 and then accelerates sharply, with the steepest single-year increase between 2021 and 2022. Overall, the chart shows capacity roughly tripling in under a decade.',
+    chart: {
+      type: 'bar',
+      title: 'Global installed renewable capacity, 2015–2024',
+      unit: 'GW',
+      yLabel: 'Capacity (gigawatts)',
+      categories: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+      series: [{ name: 'Renewable capacity', values: [785, 940, 1080, 1210, 1350, 1600, 1850, 2150, 2290, 2410] }],
+    },
     difficulty: 'MEDIUM',
     tags: ['chart', 'energy'],
   },
@@ -98,6 +110,19 @@ export const SEED_QUESTIONS: SeedQuestion[] = [
       'Look at the diagram below. In 25 seconds, prepare to describe what it shows. You will then have 40 seconds to speak.',
     sampleAnswer:
       'The diagram illustrates the water cycle. Solar energy evaporates water from oceans and lakes, forming vapour that rises and cools into clouds through condensation. The clouds release precipitation as rain or snow, which either runs off into rivers, infiltrates the soil as groundwater, or is taken up by plants and returned through transpiration. The cycle is continuous, with no beginning or end point.',
+    chart: {
+      type: 'process',
+      title: 'The water cycle',
+      cycle: true,
+      steps: [
+        'Sun heats oceans and lakes',
+        'Evaporation: water vapour rises',
+        'Condensation forms clouds',
+        'Precipitation as rain or snow',
+        'Runoff and infiltration to groundwater',
+        'Transpiration from plants',
+      ],
+    },
     difficulty: 'EASY',
     tags: ['diagram', 'science'],
   },

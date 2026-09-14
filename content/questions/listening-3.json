@@ -1,0 +1,427 @@
+[
+  {
+    "typeCode": "SUMMARIZE_SPOKEN_TEXT",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Why we procrastinate",
+      "tags": ["psychology", "study skills"],
+      "lecture": "Most people think of procrastination as a problem of time management, or even of laziness. Psychologists who study it have reached a rather different conclusion. Procrastination, they argue, is mainly a problem of managing emotions. When a task makes us feel anxious, bored, confused or afraid of failing, putting it off gives us immediate relief. That relief is rewarding, so the next time we face a similar task, the habit of delay is a little stronger. This explains why people often procrastinate on the tasks that matter most to them, such as an important application or a final year project, because those are exactly the tasks that carry the most emotional weight. It also explains why simply buying a better planner rarely helps. The strategies that do work tend to reduce the unpleasant feeling itself. Breaking a large task into a very small first step, for instance writing a single paragraph, makes it less threatening. Being kind to yourself after a period of delay also helps, because students who criticise themselves harshly tend to procrastinate even more the following time.",
+      "sample_answer": "The lecture argues that procrastination is mainly an emotional problem rather than poor time management or laziness. Delaying unpleasant tasks brings immediate relief, which strengthens the habit, so people often postpone their most important work. Effective strategies therefore reduce the negative feeling, such as starting with a very small step and treating yourself kindly, since harsh self-criticism leads to more procrastination."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_SPOKEN_TEXT",
+    "difficulty": "HARD",
+    "content": {
+      "title": "The hidden cost of cheap fashion",
+      "tags": ["environment", "business"],
+      "lecture": "Over the past two decades, the price of clothing in many countries has fallen in real terms, while the number of garments people buy has roughly doubled. This model, often called fast fashion, depends on producing new styles very quickly and selling them cheaply enough that customers treat clothes almost as disposable. The environmental consequences are considerable. Growing cotton requires large quantities of water and pesticides, and synthetic fabrics such as polyester are made from oil and release tiny plastic fibres every time they are washed. Because many garments are worn only a handful of times, huge volumes end up in landfill or are shipped abroad as second-hand clothing, where much of it cannot be resold. Recycling is often presented as the solution, but at present only a very small fraction of old clothing is turned into new fibre, because most garments blend several materials that are difficult to separate. For that reason, many researchers argue that the most effective change is simply to buy fewer, better-made clothes and to wear them for longer, rather than relying on technology to solve the problem later.",
+      "sample_answer": "The lecture explains that fast fashion has made clothing cheaper while doubling purchases, causing serious environmental damage. Cotton uses much water and pesticides, synthetic fabrics come from oil and shed plastic fibres, and rarely worn garments fill landfills or overseas markets. Recycling currently processes very little because mixed materials are hard to separate, so researchers recommend buying fewer, better clothes and wearing them longer."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_SPOKEN_TEXT",
+    "difficulty": "EASY",
+    "content": {
+      "title": "The benefits of learning a musical instrument",
+      "tags": ["music", "education"],
+      "lecture": "Parents often encourage children to learn a musical instrument, and there is growing evidence that the benefits go beyond music itself. Learning to play involves reading symbols, coordinating both hands, listening carefully and remembering long sequences, all at the same time. Studies that follow children over several years have found that those who receive regular music lessons tend to develop better listening skills, which can help them distinguish similar speech sounds and may support reading. Some research also suggests improvements in memory and attention. However, it is important not to exaggerate these findings. Many early studies compared children who chose to take lessons with children who did not, and families who pay for music lessons may differ in other ways, such as income or the time parents spend on education. More careful studies, which randomly assign children to music lessons or other activities, have found smaller effects than the headlines suggested. The most reliable conclusion is that music lessons offer real but modest benefits, and that children should be encouraged to play mainly because they enjoy it.",
+      "sample_answer": "The lecture discusses the benefits of learning an instrument. Playing combines reading, coordination, listening and memory, and long-term studies link lessons to better listening skills, possibly supporting reading, memory and attention. However, early studies were flawed because families choosing lessons differ in other ways, and randomised studies show smaller effects. Overall, benefits are real but modest, so enjoyment should be the main reason."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_SPOKEN_TEXT",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "How cities can reduce traffic congestion",
+      "tags": ["cities", "transport"],
+      "lecture": "When a road becomes congested, the obvious response is to build another lane. Transport researchers have found, however, that this rarely solves the problem for long. The effect is known as induced demand. When a road is widened, journeys become quicker at first, so people who previously travelled at other times, used other routes or took the train start driving on that road instead. Within a few years, traffic levels often return to where they were before, but now on a larger road. The same principle works in reverse. When roads have been closed or narrowed, traffic has frequently fallen in the surrounding area rather than simply moving elsewhere, because some people change their habits. So what does reduce congestion? The measures with the strongest evidence make driving at busy times more expensive or less convenient while making alternatives more attractive. Congestion charges, where drivers pay to enter the centre at peak hours, have reduced traffic in several cities. Frequent, reliable public transport and safe cycling routes give people realistic choices, which is essential if charges are to be accepted by the public.",
+      "sample_answer": "The lecture explains that widening congested roads rarely works because of induced demand: faster journeys attract extra drivers until traffic returns to previous levels. Conversely, closing roads often reduces traffic overall. The most effective approaches make peak-time driving costlier or less convenient, such as congestion charges, while providing reliable public transport and safe cycling routes so that the public accepts these measures."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_SPOKEN_TEXT",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Why some languages disappear",
+      "tags": ["language", "culture"],
+      "lecture": "Linguists estimate that around seven thousand languages are spoken in the world today, and that a large proportion of them could disappear by the end of this century. A language rarely dies because its speakers are suddenly lost. Far more often, the process is gradual and happens within families. Parents who speak a minority language decide, often for understandable reasons, that their children will have better opportunities in school and employment if they speak the national or global language instead. The children may understand their grandparents' language but never use it themselves, and within one or two generations there are no fluent speakers left. The loss matters for several reasons. Each language contains knowledge that may not be recorded elsewhere, such as names for local plants and their uses, and it shapes how a community expresses its identity and history. Revival is possible but difficult. The most successful programmes, such as language nests where young children are cared for entirely in the endangered language, combine community commitment with official support, including the use of the language in schools and public services.",
+      "sample_answer": "The lecture explains that many of the world's seven thousand languages may disappear this century, usually gradually as parents choose dominant languages for their children's opportunities. This loss removes unrecorded knowledge, such as plant names, and damages community identity. Revival is difficult but possible, particularly through programmes like language nests that combine community commitment with official support in schools and public services."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_SPOKEN_TEXT",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Why breakfast habits vary",
+      "tags": ["health", "nutrition"],
+      "lecture": "For many years, breakfast was described as the most important meal of the day, and people who skipped it were told they would gain weight and struggle to concentrate. Recent research presents a more complicated picture. Several long-term studies did find that people who ate breakfast tended to be healthier, but these studies could not show that breakfast itself was the cause. People who eat breakfast regularly may also exercise more, sleep better or smoke less. When researchers carried out controlled trials, randomly asking some adults to eat breakfast and others to skip it, the differences in weight were small. In some trials, breakfast eaters actually consumed more calories across the whole day. For children, however, the evidence is somewhat stronger. Children who arrive at school hungry often find it harder to pay attention, and school breakfast programmes have been linked to better behaviour and attendance. The sensible conclusion is that adults can follow their own appetite and routine, while making sure that children, particularly those from families with limited resources, have access to a nutritious meal before lessons begin.",
+      "sample_answer": "The lecture explains that breakfast's reputation as the most important meal is not strongly supported for adults. Long-term studies linked breakfast with health but could not prove causation, and controlled trials found small differences in weight. For children, evidence is stronger, as hunger affects attention and school breakfast programmes improve behaviour and attendance, so children should have access to breakfast."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_SPOKEN_TEXT",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Why companies offer loyalty programmes",
+      "tags": ["business", "marketing"],
+      "lecture": "Almost every supermarket, airline and coffee chain now offers some kind of loyalty programme, in which customers collect points or receive discounts for repeat purchases. At first sight, these programmes appear to be a way of rewarding existing customers and persuading them not to shop elsewhere. That is part of their purpose, but research suggests that the rewards themselves are not always very effective. Many members of loyalty schemes also belong to the schemes of competing businesses, and the discounts are often too small to change where people shop. The real value of these programmes for many companies lies in data. Every time a customer scans a card or uses an app, the business learns what that person buys, when they buy it and how they respond to offers. This information allows companies to plan stock, decide where to open new stores, and send personalised promotions designed to increase spending. Some businesses even earn money by sharing anonymised shopping data with manufacturers. For customers, the lesson is that loyalty points are rarely free; they are usually received in exchange for detailed information about their behaviour.",
+      "sample_answer": "The lecture explains that loyalty programmes appear to reward customers and discourage them from shopping elsewhere, but the rewards are often ineffective because people join competing schemes and discounts are small. Their main value is data about purchases, which helps companies plan stock, choose store locations, personalise promotions and sometimes earn money, so customers essentially exchange personal information for points."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_SPOKEN_TEXT",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Rewilding and ecosystem recovery",
+      "tags": ["ecology", "conservation"],
+      "lecture": "Traditional conservation has often focused on protecting particular species or maintaining landscapes in a fixed condition, for example by cutting grass or removing young trees to preserve a meadow. An approach known as rewilding takes a different view. Instead of managing every detail, rewilding aims to restore natural processes and then allow nature to shape the landscape with less human intervention. This may involve removing drainage from former wetlands, allowing rivers to flood naturally, or reintroducing animals that were lost from an area, such as beavers or large grazing species. Supporters point out that these animals can transform an ecosystem. Beaver dams, for instance, slow water, reduce flooding downstream and create pools used by insects, fish and birds. Critics raise several concerns. Farmers worry about damage to crops or livestock, and some conservationists fear that rare species dependent on carefully managed habitats could be lost. The outcome of rewilding is also, by definition, less predictable. Most specialists therefore see it not as a replacement for traditional conservation, but as one tool that works best when local communities are involved in planning from the beginning.",
+      "sample_answer": "The lecture compares traditional conservation, which maintains landscapes in fixed conditions, with rewilding, which restores natural processes such as flooding and reintroduces animals like beavers. Supporters say these animals transform ecosystems, reducing flooding and creating habitats. Critics worry about farm damage, loss of rare species and unpredictable outcomes. Specialists see rewilding as one useful tool, ideally planned with local communities."
+    }
+  },
+
+  {
+    "typeCode": "LISTENING_MCQ_SINGLE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "New library opening hours",
+      "tags": ["campus", "announcement"],
+      "transcript": "Good morning, everyone. I have a quick announcement about the main library. From next Monday, the library will be open twenty-four hours a day during the exam period, which runs for five weeks. However, the ground floor café will keep its normal hours and will close at eight in the evening. Between midnight and seven in the morning, only students with a valid university card will be allowed to enter, and you will need to scan your card at the entrance. Security staff will be on duty throughout the night. We also ask that you keep noise to a minimum on the upper floors, which are silent study areas. Group study rooms can still be booked online, but each booking is now limited to two hours so that more students have a chance to use them.",
+      "question": "What change will affect students who book group study rooms?",
+      "options": [
+        { "text": "Rooms can only be booked in person at the library desk", "correct": false },
+        { "text": "Each booking can last a maximum of two hours", "correct": true },
+        { "text": "Rooms will be closed between midnight and seven in the morning", "correct": false },
+        { "text": "Only students with a valid card can book rooms online", "correct": false }
+      ],
+      "explanation": "The speaker says group rooms can still be booked online but each booking is now limited to two hours. Booking in person is not mentioned, the midnight rule concerns entry to the library, and the card requirement applies to entering at night, not to booking."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_SINGLE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "How octopuses change colour",
+      "tags": ["biology", "marine life"],
+      "transcript": "Octopuses are famous for changing colour in a fraction of a second, and the mechanism behind this ability is remarkable. Their skin contains thousands of small elastic sacs of pigment, each surrounded by muscles connected directly to the nervous system. When the muscles contract, a sac is stretched open and its colour becomes visible; when they relax, the sac shrinks and the colour almost disappears. What puzzles researchers is that octopuses appear to be colour-blind, since their eyes contain only one type of light-sensitive cell. So how do they match their surroundings so accurately? One suggestion is that light-sensitive proteins found in the skin itself may help them detect the colours around them, although this has not yet been fully demonstrated.",
+      "question": "What aspect of octopus colour change does the speaker say is still puzzling?",
+      "options": [
+        { "text": "How the muscles around the pigment sacs are controlled", "correct": false },
+        { "text": "Why octopuses change colour so quickly", "correct": false },
+        { "text": "How they match colours despite apparently being colour-blind", "correct": true },
+        { "text": "Why their skin contains so many pigment sacs", "correct": false }
+      ],
+      "explanation": "The speaker explains the muscle mechanism clearly, then says researchers are puzzled about how octopuses match their surroundings when their eyes seem unable to see colour. The speed and number of sacs are described, not presented as mysteries."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_SINGLE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Measuring national wellbeing",
+      "tags": ["economics", "policy"],
+      "transcript": "For most of the last century, governments judged their success largely by growth in gross domestic product, the total value of goods and services produced. The measure is useful, but its limitations are well known. It counts spending on repairing damage after a flood as economic activity, while ignoring unpaid work such as caring for relatives, and it says nothing about how income is distributed. In response, several countries now publish wellbeing indicators alongside economic data, including measures of health, education, environmental quality and life satisfaction. My concern is not that these indicators are wrong, but that they are rarely used. Unless wellbeing measures are linked to budget decisions, with ministers required to explain how spending will affect them, they risk becoming an interesting annual report that changes very little.",
+      "question": "What is the speaker's main concern about wellbeing indicators?",
+      "options": [
+        { "text": "They measure life satisfaction inaccurately", "correct": false },
+        { "text": "They may not actually influence government decisions", "correct": true },
+        { "text": "They ignore unpaid work such as caring for relatives", "correct": false },
+        { "text": "They should replace gross domestic product completely", "correct": false }
+      ],
+      "explanation": "The speaker says the concern is not that the indicators are wrong but that they are rarely used, and unless they are linked to budgets they will change little. Ignoring unpaid work is a criticism of GDP, and the speaker never proposes replacing it."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_SINGLE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Volunteering at a food bank",
+      "tags": ["community", "volunteering"],
+      "transcript": "Thanks for coming to this information session about volunteering at the community food bank. We're looking for people who can give at least three hours a week for a minimum of two months, because training new volunteers takes time. Most of our volunteers sort donations and pack food parcels in the warehouse, but we also need drivers to collect donations from supermarkets. If you'd like to drive, you'll need a full licence held for at least two years. Please don't worry if you've never volunteered before, as every new volunteer completes a short induction covering food safety and lifting heavy boxes correctly. Sign-up forms are at the back of the room, and our coordinator will contact you within a week to arrange your first shift.",
+      "question": "Why does the food bank ask volunteers to commit for at least two months?",
+      "options": [
+        { "text": "Because training new volunteers takes time", "correct": true },
+        { "text": "Because drivers need to hold a licence for two years", "correct": false },
+        { "text": "Because the induction course lasts several weeks", "correct": false },
+        { "text": "Because donations are collected only once a month", "correct": false }
+      ],
+      "explanation": "The speaker directly links the minimum commitment to the time it takes to train new volunteers. The two-year licence applies only to drivers, the induction is described as short, and collection frequency is not mentioned."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_SINGLE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The spread of the potato",
+      "tags": ["history", "agriculture"],
+      "transcript": "The potato was first cultivated in the Andes of South America thousands of years ago, and it reached Europe in the sixteenth century. Surprisingly, it was not immediately popular. Many Europeans were suspicious of a plant that grew underground, and because it belongs to the same family as some poisonous plants, it was sometimes believed to cause illness. Its eventual success had less to do with taste than with practical advantages. Potatoes produce far more calories per field than wheat, they grow in poor soil and cooler climates, and because they are stored underground, they were harder for armies to destroy or steal during wars. Several governments actively promoted potato farming to prevent famine. By the nineteenth century, the potato had become essential to the diet of millions of people across Europe.",
+      "question": "According to the speaker, why did the potato eventually become widely grown in Europe?",
+      "options": [
+        { "text": "Europeans quickly came to prefer its taste to wheat", "correct": false },
+        { "text": "It offered practical advantages such as high yields and resilience", "correct": true },
+        { "text": "It was proven to cure several common illnesses", "correct": false },
+        { "text": "Armies introduced it to feed soldiers during wars", "correct": false }
+      ],
+      "explanation": "The speaker says its success had less to do with taste than practical advantages: more calories per field, tolerance of poor soil and cold, and protection from armies. It was once thought to cause illness, not cure it, and armies are mentioned as a threat rather than as the source."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_SINGLE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Remote work and innovation",
+      "tags": ["work", "innovation"],
+      "transcript": "Since remote work became common, there has been a lively debate about its effect on productivity. Many studies show that people working from home complete individual tasks at least as efficiently as they did in the office, and they save a considerable amount of time by not commuting. However, productivity and innovation are not the same thing. Research on how new ideas develop suggests that a significant proportion come from unplanned conversations between people who do not normally work together, for example colleagues from different departments meeting in a corridor. Remote teams tend to communicate mainly with the people they already work with, so these weaker connections gradually fade. The risk, then, is not that remote employees work less, but that organisations slowly become less creative in ways that are hard to notice or measure.",
+      "question": "What risk of remote work does the speaker emphasise?",
+      "options": [
+        { "text": "Employees will complete individual tasks less efficiently", "correct": false },
+        { "text": "Workers will spend more time communicating with their own team", "correct": false },
+        { "text": "Organisations may gradually lose the unplanned contact that generates ideas", "correct": true },
+        { "text": "Companies will be unable to measure employee productivity", "correct": false }
+      ],
+      "explanation": "The speaker concludes that the risk is not reduced work but a gradual loss of creativity, because the unplanned conversations between different departments fade. Individual efficiency is said to be unaffected, and measurement difficulty refers to creativity rather than productivity."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_SINGLE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Planning a dissertation timeline",
+      "tags": ["academic skills", "university"],
+      "transcript": "When you plan your dissertation, the most common mistake is to allow too little time for the final stages. Students usually estimate reasonably well how long it will take to read the literature and collect data, but they underestimate how long writing and revising will take. A good draft is rarely produced in one attempt. You will need time to reorganise chapters, check that your argument is consistent from beginning to end, format references and proofread carefully. My advice is to work backwards from the submission date. Reserve the final three weeks entirely for revision and checking, and aim to give your supervisor a complete draft at least a month before the deadline. That way, their feedback arrives while you still have time to act on it, rather than the night before you submit.",
+      "question": "What does the speaker recommend students do when planning their dissertation?",
+      "options": [
+        { "text": "Spend less time reading the literature", "correct": false },
+        { "text": "Plan backwards from the deadline and leave time for revision", "correct": true },
+        { "text": "Submit each chapter to the supervisor as soon as it is written", "correct": false },
+        { "text": "Collect data before deciding on the research question", "correct": false }
+      ],
+      "explanation": "The speaker advises working backwards from the submission date, reserving the last three weeks for revision and sending a full draft a month early. Reading time is said to be estimated well, and submitting chapters individually or collecting data first are not suggested."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_SINGLE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Why some birds migrate at night",
+      "tags": ["birds", "nature"],
+      "transcript": "Many people are surprised to learn that a large number of songbirds migrate at night rather than during the day. There are several good reasons for this. The air is usually cooler and calmer at night, so birds lose less water and use less energy while flying long distances. Travelling in darkness also reduces the risk of attack from birds of prey, which hunt mainly in daylight. In addition, night flight leaves the daytime free for feeding, so birds can rebuild their energy reserves before continuing their journey. To find their way, night migrants use the position of the stars and can also sense the earth's magnetic field. Unfortunately, bright city lights can confuse them, which is why some cities now switch off decorative lighting during peak migration periods.",
+      "question": "According to the speaker, why do some cities switch off decorative lights?",
+      "options": [
+        { "text": "To save energy during the cooler months", "correct": false },
+        { "text": "To help birds of prey hunt more easily", "correct": false },
+        { "text": "Because bright lights can confuse migrating birds", "correct": true },
+        { "text": "Because birds feed near buildings during the day", "correct": false }
+      ],
+      "explanation": "The speaker says bright city lights confuse night migrants, so some cities switch off decorative lighting during migration. Saving energy refers to the birds, not cities, and the other options are not given as reasons."
+    }
+  },
+
+  {
+    "typeCode": "LISTENING_MCQ_MULTIPLE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Preparing for a campus job fair",
+      "tags": ["careers", "campus"],
+      "transcript": "Next Thursday, more than sixty employers will attend the campus job fair in the sports hall, so I'd like to share a few tips to help you make the most of it. First, look at the list of employers on the careers website beforehand and choose five or six you really want to speak to. Walking around without a plan usually means you spend all your time in the longest queues. Second, bring several printed copies of your CV, although some employers will ask you to apply online afterwards. Third, prepare a short introduction of about thirty seconds explaining what you're studying and what kind of role interests you. You don't need to wear a suit, but smart, comfortable clothes are a good idea, because you'll be standing for a long time. Finally, ask each recruiter for their contact details and send a short thank-you email the next day. It helps them remember you among the hundreds of students they meet.",
+      "question": "Which of the following pieces of advice does the speaker give? Choose all that apply.",
+      "options": [
+        { "text": "Choose a small number of employers to visit in advance", "correct": true },
+        { "text": "Wear a formal suit to make a good impression", "correct": false },
+        { "text": "Prepare a brief introduction about yourself", "correct": true },
+        { "text": "Send a thank-you email to recruiters the next day", "correct": true },
+        { "text": "Apply online before attending the fair", "correct": false }
+      ],
+      "explanation": "The speaker recommends choosing five or six employers beforehand, preparing a thirty-second introduction, and emailing recruiters the next day. A suit is said to be unnecessary, and online applications are mentioned as something some employers request afterwards."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_MULTIPLE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The benefits and risks of vertical farming",
+      "tags": ["agriculture", "technology"],
+      "transcript": "Vertical farming involves growing crops indoors in stacked layers, usually under artificial lights and with nutrients delivered through water rather than soil. Its supporters highlight several advantages. Because the environment is controlled, crops can be grown all year round regardless of weather, and pesticides are rarely needed. Vertical farms use far less water than conventional agriculture, since water is recycled within the system, and they can be built close to cities, which shortens transport distances. However, the approach has a serious weakness, which is energy. Replacing sunlight with electric lighting is expensive, and several well-funded vertical farming companies have gone out of business when electricity prices rose. At present, the method is economical mainly for fast-growing, high-value crops such as salad leaves and herbs. Staple crops like wheat and rice need so much light for so long that growing them indoors makes little financial sense.",
+      "question": "Which advantages of vertical farming are mentioned by the speaker? Choose all that apply.",
+      "options": [
+        { "text": "Crops can be produced throughout the year", "correct": true },
+        { "text": "It uses less water than conventional farming", "correct": true },
+        { "text": "It has low electricity costs", "correct": false },
+        { "text": "It is suitable for growing staple crops such as wheat", "correct": false },
+        { "text": "Farms can be located near cities", "correct": true }
+      ],
+      "explanation": "The speaker lists year-round growing, reduced water use and closeness to cities as advantages. Energy is described as the main weakness, and staple crops are said to make little financial sense indoors."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_MULTIPLE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Evaluating online health information",
+      "tags": ["health", "media literacy"],
+      "transcript": "In this part of the workshop, we're going to look at how to judge health information you find online. The first question to ask is who produced it. Information from a university hospital or a national health service is generally more reliable than a page written by a company selling a supplement, even if both look equally professional. Second, check the date. Medical advice changes as new evidence appears, so an article from ten years ago may no longer be accurate. Third, look for references to published research, and be cautious when a claim is based entirely on personal stories, however moving they are. Something that helped one person may not work for most people. Interestingly, the number of times an article has been shared tells you very little about its accuracy; in fact, some studies suggest that misleading health stories spread faster than accurate ones, because they tend to be more surprising or emotional. Finally, remember that no website can replace advice from a doctor who knows your medical history.",
+      "question": "According to the speaker, which of the following help people judge online health information? Choose all that apply.",
+      "options": [
+        { "text": "Checking who produced the information", "correct": true },
+        { "text": "Considering how many times the article has been shared", "correct": false },
+        { "text": "Checking when the information was published", "correct": true },
+        { "text": "Looking for references to published research", "correct": true },
+        { "text": "Relying on personal stories from other patients", "correct": false }
+      ],
+      "explanation": "The speaker recommends checking the source, the date and references to research. Share counts are said to reveal little about accuracy, and listeners are warned to be cautious about claims based only on personal stories."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_MULTIPLE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Why bridges fail",
+      "tags": ["engineering", "safety"],
+      "transcript": "Bridge failures are rare, but when they occur, investigations usually reveal a combination of causes rather than a single dramatic event. One of the most common is scour, which happens when fast-flowing water, especially during floods, removes soil and stones from around the foundations. The bridge may look perfectly sound above the water while its supports are gradually being undermined. Another frequent factor is corrosion. Steel reinforcement inside concrete can rust if water and salt penetrate cracks, and because this happens out of sight, it can progress for years before it is detected. Overloading also plays a part, particularly on older bridges designed for lighter vehicles than those using them today. Design errors do occasionally cause collapses, but they are less common than many people assume. For this reason, engineers argue that regular inspection and maintenance, including underwater surveys after major floods, are the most effective ways to keep bridges safe.",
+      "question": "Which causes of bridge failure does the speaker describe as common or frequent? Choose all that apply.",
+      "options": [
+        { "text": "Scour around the foundations caused by flowing water", "correct": true },
+        { "text": "Corrosion of steel reinforcement", "correct": true },
+        { "text": "Errors in the original design", "correct": false },
+        { "text": "Lightning strikes during storms", "correct": false },
+        { "text": "Earthquakes damaging the supports", "correct": false }
+      ],
+      "explanation": "Scour is described as one of the most common causes and corrosion as another frequent factor. Design errors are said to be less common than people assume, and lightning and earthquakes are never mentioned."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_MULTIPLE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Starting a community garden",
+      "tags": ["community", "environment"],
+      "transcript": "Our neighbourhood community garden opened three years ago on an empty piece of land owned by the local council. People often ask how we got started, so here are the main lessons we learned. The first step was getting permission. We spent almost six months talking to the council before we received a lease, so be patient. Next, we tested the soil, because land that was previously used for buildings or industry can contain harmful substances. In our case, we built raised beds filled with new soil to be safe. We also found that clear rules are essential. Every member agrees to work in the garden for at least two hours a month and to share tools respectfully. Funding came mainly from a small annual membership fee and a grant from a local business. Today we have over forty members, and we donate surplus vegetables to the school next door.",
+      "question": "Which of the following steps did the speaker's group take? Choose all that apply.",
+      "options": [
+        { "text": "They obtained a lease from the council", "correct": true },
+        { "text": "They bought the land from a local business", "correct": false },
+        { "text": "They tested the soil and built raised beds", "correct": true },
+        { "text": "They agreed rules for members", "correct": true },
+        { "text": "They sold surplus vegetables to fund the garden", "correct": false }
+      ],
+      "explanation": "The group received a council lease, tested the soil and used raised beds, and set clear rules. The land belongs to the council, a local business provided a grant, and surplus vegetables are donated to a school rather than sold."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_MULTIPLE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "The psychology of eyewitness memory",
+      "tags": ["psychology", "law"],
+      "transcript": "Eyewitness testimony has traditionally been very persuasive in court, yet decades of psychological research show that memory is far less reliable than most people believe. Memory does not work like a video recording. Each time we recall an event, we partly reconstruct it, and new information can become mixed with the original experience. In well-known experiments, participants who watched a film of a car accident gave higher estimates of speed when asked how fast the cars were going when they smashed into each other, rather than when they hit each other. Stress also affects accuracy. When a weapon is present, witnesses tend to focus on it and remember less about the person holding it. Confidence is another problem. A witness may become more certain over time, particularly if they receive positive feedback, but that growing confidence does not mean their memory is becoming more accurate. As a result, many police forces have changed how they conduct identification procedures, for example by recording how confident a witness is at the first identification.",
+      "question": "Which factors does the speaker say can reduce the accuracy of eyewitness memory? Choose all that apply.",
+      "options": [
+        { "text": "The wording of questions asked afterwards", "correct": true },
+        { "text": "The presence of a weapon during the event", "correct": true },
+        { "text": "Recording a witness's confidence at the first identification", "correct": false },
+        { "text": "Watching a video recording of the event", "correct": false },
+        { "text": "Positive feedback that increases a witness's certainty", "correct": false }
+      ],
+      "explanation": "The accident experiment shows question wording changes recall, and a weapon draws attention away from the person. Recording first confidence is a police improvement, video recording is only a comparison, and feedback increases confidence without the speaker saying it makes memory less accurate."
+    }
+  },
+  {
+    "typeCode": "LISTENING_MCQ_MULTIPLE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Reducing food waste at home",
+      "tags": ["environment", "food"],
+      "transcript": "A large share of food waste happens not in shops or restaurants but in people's homes, so small changes in household habits can make a real difference. One of the simplest is planning meals for the week and writing a shopping list, which reduces impulse purchases of food that is never eaten. Another is understanding date labels. A best before date is about quality, so most foods are still safe to eat after it has passed, while a use by date is about safety and should be followed. Storage matters too. Keeping the fridge at the correct temperature, below five degrees, helps food last longer, and bread and cooked meals can be frozen before they spoil. Finally, it helps to put older food at the front of the fridge so that it gets used first. What does not help very much is buying large discount packs, because households often cannot use the extra quantity before it goes off.",
+      "question": "Which of the following does the speaker recommend to reduce household food waste? Choose all that apply.",
+      "options": [
+        { "text": "Planning meals and using a shopping list", "correct": true },
+        { "text": "Throwing away all food once its best before date has passed", "correct": false },
+        { "text": "Keeping the fridge below five degrees", "correct": true },
+        { "text": "Buying large discount packs to save money", "correct": false },
+        { "text": "Freezing bread and cooked meals before they spoil", "correct": true }
+      ],
+      "explanation": "The speaker recommends meal planning with a list, keeping the fridge below five degrees and freezing food before it spoils. Food is usually safe after its best before date, and large discount packs are said not to help."
+    }
+  },
+
+  {
+    "typeCode": "LISTENING_FILL_BLANKS",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Orientation week welcome",
+      "tags": ["campus", "orientation"],
+      "passage": "Welcome to orientation week. Over the next five days, you will have the chance to explore the campus, meet other new students and learn about the {{1}} available to you. Please collect your student card from the main office before Wednesday, because you will need it to enter the library and borrow books. On Thursday afternoon, each department will hold an information {{2}}, where you can meet your lecturers and ask questions about your {{3}}.",
+      "answers": ["services", "session", "timetable"]
+    }
+  },
+  {
+    "typeCode": "LISTENING_FILL_BLANKS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "How vaccines train the immune system",
+      "tags": ["medicine", "biology"],
+      "passage": "Vaccines work by preparing the immune system to recognise a {{1}} before a person is exposed to the real disease. Most vaccines contain a weakened or inactive form of the germ, or a harmless part of it. The body responds by producing antibodies and memory cells. If the person later encounters the actual infection, these cells {{2}} it quickly, and the immune system can respond much faster. This is why vaccinated people usually experience milder {{3}}, or none at all.",
+      "answers": ["pathogen", "recognise", "symptoms"]
+    }
+  },
+  {
+    "typeCode": "LISTENING_FILL_BLANKS",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Supply and demand in housing",
+      "tags": ["economics", "housing"],
+      "passage": "House prices in many large cities have risen much faster than wages over the last twenty years. Economists usually explain this in terms of supply and demand. Cities offer better jobs, so population and demand for housing grow {{1}}. At the same time, planning restrictions, high construction costs and a {{2}} of suitable land limit the number of new homes that can be built. When supply cannot respond to demand, prices rise. Some governments have tried to improve {{3}} by offering grants to first-time buyers, but critics argue this may simply push prices even {{4}}.",
+      "answers": ["steadily", "shortage", "affordability", "higher"]
+    }
+  },
+  {
+    "typeCode": "LISTENING_FILL_BLANKS",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Using the university gym",
+      "tags": ["campus", "sport"],
+      "passage": "The university gym is free for all registered students, but before you use the equipment, you must attend a short safety {{1}}. These take place every weekday at noon and last about thirty minutes. The gym becomes very busy in the early evening, so if you prefer a quieter atmosphere, try visiting in the {{2}}. Lockers are available, but you will need to bring your own {{3}}, and towels are not provided.",
+      "answers": ["induction", "morning", "padlock"]
+    }
+  },
+  {
+    "typeCode": "LISTENING_FILL_BLANKS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The role of sleep in athletic performance",
+      "tags": ["sport", "health"],
+      "passage": "Professional sports teams have become increasingly interested in sleep. Research shows that athletes who sleep well react more quickly and make fewer {{1}} during competition. Sleep is also when much of the body's {{2}} takes place, as muscles repair themselves after intense training. When athletes travel across time zones, their internal clock is disrupted, so many teams now plan flights and training schedules carefully to {{3}} the effects of jet lag.",
+      "answers": ["mistakes", "recovery", "minimise"]
+    }
+  },
+  {
+    "typeCode": "LISTENING_FILL_BLANKS",
+    "difficulty": "HARD",
+    "content": {
+      "title": "The discovery of X-rays",
+      "tags": ["history of science", "physics"],
+      "passage": "In eighteen ninety-five, a German physicist was experimenting with electrical currents passed through glass tubes when he noticed that a nearby screen had begun to glow. He realised that an invisible form of {{1}} was passing through the tube's covering. Within weeks, he produced an image showing the bones of his wife's hand. The discovery spread with remarkable {{2}}, and doctors began using X-rays to locate broken bones. At first, however, the dangers of {{3}} were poorly understood, and some early researchers suffered serious {{4}} as a result.",
+      "answers": ["radiation", "speed", "exposure", "injuries"]
+    }
+  },
+  {
+    "typeCode": "LISTENING_FILL_BLANKS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Writing a literature review",
+      "tags": ["academic skills", "research"],
+      "passage": "A literature review is not simply a list of everything you have read. Its purpose is to {{1}} existing research, showing how different studies relate to one another and where they agree or disagree. A strong review is usually organised by theme rather than by author. It should also identify a {{2}} in current knowledge, because this helps to justify your own research question. Remember to evaluate the {{3}} of each study, rather than accepting every conclusion at face value.",
+      "answers": ["synthesise", "gap", "quality"]
+    }
+  },
+  {
+    "typeCode": "LISTENING_FILL_BLANKS",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Recycling rules in student housing",
+      "tags": ["campus", "environment"],
+      "passage": "Each kitchen in the student residences has three bins: one for general waste, one for recycling and one for food waste. Paper, cans and clean plastic bottles can go in the {{1}} bin, but please rinse containers first. Glass should be taken to the collection point near the car {{2}}. Food waste is collected twice a week and turned into {{3}} for the university gardens.",
+      "answers": ["recycling", "park", "compost"]
+    }
+  }
+]

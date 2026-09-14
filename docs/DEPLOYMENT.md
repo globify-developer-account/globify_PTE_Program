@@ -166,6 +166,25 @@ in your host's configuration, and change the password from the profile page.
 > hPanel terminal → `npx prisma studio`, or remove the `STUDENTS` block from
 > `prisma/seed.ts` before seeding a production database.
 
+### Load the full question bank
+
+The seed holds only a starter set. The main bank lives in `content/questions`,
+and its recordings and Describe Image charts are committed under
+`public/media/questions`, so they deploy with the app. Import and publish it:
+
+```bash
+npm run content:generate -- --from content/questions --publish
+```
+
+Safe to re-run: items whose title already exists are skipped (a matching draft
+is published), and every question without a recording or figure is linked to
+the file built for it. Recordings an admin uploaded are never replaced.
+
+When you add items to `content/questions`, run `npm run content:media` on a
+machine with ffmpeg (Windows voices, or natural voices with
+`AI_SPEECH_API_KEY` set), commit the new files in `public/media`, deploy, then
+run the import again.
+
 ---
 
 ## Step 6 — Verify storage

@@ -12,6 +12,7 @@ import { SEED_CONVERSATION_TOPICS } from './seed-data/conversation-topics'
 import { QUESTION_TYPES } from '../src/lib/pte/question-types'
 import { SEED_VOCAB_BOOKS } from './seed-data/vocab'
 import { SEED_LIVE_CLASSES } from './seed-data/classes'
+import { builtMediaFor } from '../scripts/lib/question-media'
 
 /**
  * Seeds a complete, demonstrable installation: the task catalogue, a question
@@ -364,6 +365,8 @@ async function main() {
     const questionTypeId = typeIds.get(question.typeCode)
     if (!questionTypeId) continue
 
+    // Recordings and figures built by `npm run content:media`, when present.
+    const built = builtMediaFor(question.typeCode, question.title)
     const data = {
       questionTypeId,
       categoryId,
@@ -371,8 +374,8 @@ async function main() {
       prompt: question.prompt ?? null,
       passage: question.passage ?? null,
       audioTranscript: question.audioTranscript ?? null,
-      imageUrl: question.imageUrl ?? null,
-      audioUrl: question.audioUrl ?? null,
+      imageUrl: question.imageUrl ?? built.imageUrl ?? null,
+      audioUrl: question.audioUrl ?? built.audioUrl ?? null,
       options: (question.options ?? []) as object,
       correctAnswer: (question.correctAnswer ?? {}) as object,
       explanation: question.explanation ?? null,

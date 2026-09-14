@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="Smartphone ownership among adults, 2012–2024">
+<rect width="800" height="500" fill="#ffffff"/>
+<text x="400" y="38" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#0f172a" text-anchor="middle">Smartphone ownership among adults, 2012–2024</text>
+<line x1="90" x2="750" y1="405" y2="405" stroke="#e2e8f0"/>
+<text x="80" y="410" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">0</text>
+<line x1="90" x2="750" y1="338" y2="338" stroke="#e2e8f0"/>
+<text x="80" y="343" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">20</text>
+<line x1="90" x2="750" y1="271" y2="271" stroke="#e2e8f0"/>
+<text x="80" y="276" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">40</text>
+<line x1="90" x2="750" y1="204" y2="204" stroke="#e2e8f0"/>
+<text x="80" y="209" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">60</text>
+<line x1="90" x2="750" y1="137" y2="137" stroke="#e2e8f0"/>
+<text x="80" y="142" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">80</text>
+<line x1="90" x2="750" y1="70" y2="70" stroke="#e2e8f0"/>
+<text x="80" y="75" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">100</text>
+<line x1="90" x2="750" y1="405" y2="405" stroke="#475569"/>
+<text x="22" y="237.5" transform="rotate(-90 22 237.5)" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#475569" text-anchor="middle">Adults owning a smartphone (%)</text>
+<polyline points="90,197.3 200,153.8 310,116.9 420,96.8 530,86.8 640,80.1 750,76.7" fill="none" stroke="#2e5bff" stroke-width="3" stroke-linejoin="round"/><circle cx="90" cy="197.3" r="4" fill="#2e5bff"/><circle cx="200" cy="153.8" r="4" fill="#2e5bff"/><circle cx="310" cy="116.9" r="4" fill="#2e5bff"/><circle cx="420" cy="96.8" r="4" fill="#2e5bff"/><circle cx="530" cy="86.8" r="4" fill="#2e5bff"/><circle cx="640" cy="80.1" r="4" fill="#2e5bff"/><circle cx="750" cy="76.7" r="4" fill="#2e5bff"/>
+<polyline points="90,354.8 200,331.3 310,301.2 420,261 530,217.4 640,180.5 750,153.8" fill="none" stroke="#e8590c" stroke-width="3" stroke-linejoin="round"/><circle cx="90" cy="354.8" r="4" fill="#e8590c"/><circle cx="200" cy="331.3" r="4" fill="#e8590c"/><circle cx="310" cy="301.2" r="4" fill="#e8590c"/><circle cx="420" cy="261" r="4" fill="#e8590c"/><circle cx="530" cy="217.4" r="4" fill="#e8590c"/><circle cx="640" cy="180.5" r="4" fill="#e8590c"/><circle cx="750" cy="153.8" r="4" fill="#e8590c"/>
+<text x="90" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2012</text>
+<text x="200" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2014</text>
+<text x="310" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2016</text>
+<text x="420" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2018</text>
+<text x="530" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2020</text>
+<text x="640" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2022</text>
+<text x="750" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2024</text>
+<rect x="230" y="467" width="14" height="14" rx="3" fill="#2e5bff"/><text x="252" y="478" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#475569">Aged 18–34</text>
+<rect x="400" y="467" width="14" height="14" rx="3" fill="#e8590c"/><text x="422" y="478" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#475569">Aged 65 and over</text>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="Employment rate by highest qualification and gender">
+<rect width="800" height="500" fill="#ffffff"/>
+<text x="400" y="38" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#0f172a" text-anchor="middle">Employment rate by highest qualification and gender</text>
+<line x1="90" x2="760" y1="405" y2="405" stroke="#e2e8f0"/>
+<text x="80" y="410" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">0</text>
+<line x1="90" x2="760" y1="338" y2="338" stroke="#e2e8f0"/>
+<text x="80" y="343" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">20</text>
+<line x1="90" x2="760" y1="271" y2="271" stroke="#e2e8f0"/>
+<text x="80" y="276" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">40</text>
+<line x1="90" x2="760" y1="204" y2="204" stroke="#e2e8f0"/>
+<text x="80" y="209" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">60</text>
+<line x1="90" x2="760" y1="137" y2="137" stroke="#e2e8f0"/>
+<text x="80" y="142" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">80</text>
+<line x1="90" x2="760" y1="70" y2="70" stroke="#e2e8f0"/>
+<text x="80" y="75" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">100</text>
+<line x1="90" x2="760" y1="405" y2="405" stroke="#475569"/>
+<text x="22" y="237.5" transform="rotate(-90 22 237.5)" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#475569" text-anchor="middle">Employment rate (%)</text>
+<rect x="109.8" y="210.7" width="46.2" height="194.3" rx="2" fill="#2e5bff"/>
+<text x="132.9" y="204.7" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">58</text>
+<rect x="158" y="257.6" width="46.2" height="147.4" rx="2" fill="#e8590c"/>
+<text x="181.1" y="251.6" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">44</text>
+<rect x="243.8" y="163.8" width="46.2" height="241.2" rx="2" fill="#2e5bff"/>
+<text x="266.9" y="157.8" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">72</text>
+<rect x="292" y="194" width="46.2" height="211.1" rx="2" fill="#e8590c"/>
+<text x="315.1" y="188" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">63</text>
+<rect x="377.8" y="137" width="46.2" height="268" rx="2" fill="#2e5bff"/>
+<text x="400.9" y="131" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">80</text>
+<rect x="426" y="157.1" width="46.2" height="247.9" rx="2" fill="#e8590c"/>
+<text x="449.1" y="151.1" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">74</text>
+<rect x="511.8" y="116.9" width="46.2" height="288.1" rx="2" fill="#2e5bff"/>
+<text x="534.9" y="110.9" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">86</text>
+<rect x="560" y="127" width="46.2" height="278.1" rx="2" fill="#e8590c"/>
+<text x="583.1" y="121" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">83</text>
+<rect x="645.8" y="106.9" width="46.2" height="298.2" rx="2" fill="#2e5bff"/>
+<text x="668.9" y="100.9" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">89</text>
+<rect x="694" y="113.6" width="46.2" height="291.5" rx="2" fill="#e8590c"/>
+<text x="717.1" y="107.6" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">87</text>
+<text x="157" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">No qualification</text>
+<text x="291" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">Secondary school</text>
+<text x="425" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">Diploma</text>
+<text x="559" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">Bachelor's</text><text x="559" y="443" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">degree</text>
+<text x="693" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">Postgraduate</text>
+<rect x="230" y="467" width="14" height="14" rx="3" fill="#2e5bff"/><text x="252" y="478" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#475569">Men</text>
+<rect x="400" y="467" width="14" height="14" rx="3" fill="#e8590c"/><text x="422" y="478" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#475569">Women</text>
+</svg>

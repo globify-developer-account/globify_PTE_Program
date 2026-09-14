@@ -13,6 +13,7 @@ import {
   type ChoiceOption,
 } from './pte/schemas'
 import { resolveMediaUrl } from './storage'
+import { pickSessionQuestions } from './practice-selection'
 
 /**
  * Practice session service.
@@ -181,32 +182,12 @@ export async function startPracticeSession(
     ...(ent.isPremium ? {} : { isPremium: false }),
   }
 
-  const attempted = await prisma.attempt.findMany({
-    where: { userId: input.userId },
-    select: { questionId: true },
-    distinct: ['questionId'],
-    take: 1000,
-  })
-  const seen = attempted.map((row) => row.questionId)
-
-  const fresh = await prisma.question.findMany({
-    where: seen.length > 0 ? { ...where, id: { notIn: seen } } : where,
-    select: { id: true },
-    orderBy: { createdAt: 'desc' },
-    take: input.count,
-  })
-
-  // Fall back to previously-seen questions once the fresh pool is exhausted.
-  let questionIds = fresh.map((row) => row.id)
-  if (questionIds.length < input.count) {
-    const filler = await prisma.question.findMany({
-      where: { ...where, id: { notIn: questionIds } },
-      select: { id: true },
-      orderBy: { timesAttempted: 'asc' },
-      take: input.count - questionIds.length,
-    })
-    questionIds = [...questionIds, ...filler.map((row) => row.id)]
-  }
+  const pool = await prisma.question.findMany({ where, select: { id: true } })
+  const questionIds = pickSessionQuestions(
+    pool.map((row) => row.id),
+    await lastPractisedAt(input.userId, pool.map((row) => row.id)),
+    input.count,
+  )
 
   if (questionIds.length === 0) {
     throw notFound('There are no published questions available for this selection yet.')
@@ -220,6 +201,29 @@ export async function startPracticeSession(
   })
 
   return { sessionId, questionIds }
+}
+
+/**
+ * When the student last answered each question, keyed by question id.
+ *
+ * Only answered attempts count. Attempts are created up front for the whole
+ * session, so counting pending ones would mark every question in an abandoned
+ * or partly skipped session as "seen" without the student ever answering it.
+ */
+async function lastPractisedAt(userId: string, questionIds: string[]): Promise<Map<string, Date>> {
+  if (questionIds.length === 0) return new Map()
+  const rows = await prisma.attempt.groupBy({
+    by: ['questionId'],
+    where: {
+      userId,
+      questionId: { in: questionIds },
+      status: { in: ['SUBMITTED', 'SCORED', 'SKIPPED'] },
+    },
+    _max: { createdAt: true },
+  })
+  return new Map(
+    rows.flatMap((row) => (row._max.createdAt ? [[row.questionId, row._max.createdAt] as const] : [])),
+  )
 }
 
 /**

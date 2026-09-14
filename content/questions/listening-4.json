@@ -1,0 +1,348 @@
+[
+  {
+    "typeCode": "HIGHLIGHT_CORRECT_SUMMARY",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Why cats purr",
+      "tags": ["animals", "biology"],
+      "transcript": "Most people assume that a purring cat is a happy cat, and very often that is true. Cats purr when they are relaxed, being stroked or feeding their kittens. However, researchers have noticed that cats also purr in situations that are clearly not pleasant, such as when they are injured, frightened or giving birth. This suggests that purring is not simply an expression of contentment. One theory is that purring helps cats calm themselves. Another, more surprising idea is that the low-frequency vibrations of purring may help bones and tissues heal, although this has not yet been proven. Either way, purring seems to be a form of communication and self-care, rather than a sign of happiness alone.",
+      "options": [
+        { "text": "The speaker explains that cats purr only when they are happy and relaxed, and describes research proving that the vibrations of purring heal injured bones and tissues more quickly.", "correct": false },
+        { "text": "The speaker notes that cats purr both when content and in stressful situations such as injury or fear, suggesting purring may serve to calm them or possibly aid healing, rather than simply showing happiness.", "correct": true },
+        { "text": "The speaker argues that purring is mainly a way for mother cats to communicate with their kittens during feeding, and that adult cats rarely purr in other circumstances.", "correct": false },
+        { "text": "The speaker describes how frightened cats purr to warn other animals away, and explains that purring is therefore a defensive behaviour rather than a sign of contentment.", "correct": false }
+      ],
+      "explanation": "The talk says cats purr when content and in unpleasant situations, and offers self-calming and possible healing as explanations. Healing is described as unproven, feeding kittens is only one example, and warning other animals is never mentioned."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_CORRECT_SUMMARY",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The rise of electric bicycles",
+      "tags": ["transport", "technology"],
+      "transcript": "Electric bicycles have become one of the fastest-growing forms of transport in many cities. Unlike motorcycles, they only provide power when the rider is pedalling, so riders still get some exercise, but hills and long distances become much easier. Surveys show that e-bikes attract people who would not otherwise cycle, including older adults and commuters who do not want to arrive at work tired. Many riders use them to replace car journeys rather than walking or public transport, which is why transport planners are interested in them as a way to reduce congestion and emissions. The main obstacles are the high purchase price and fear of theft, and some cities now offer subsidies and secure parking to address these concerns.",
+      "options": [
+        { "text": "E-bikes are popular mainly among young, fit cyclists who want to travel faster, and most riders use them instead of walking or buses. Cities are therefore concerned that they may increase congestion.", "correct": false },
+        { "text": "E-bikes work like small motorcycles and require no pedalling, which makes them attractive to older adults. Their low price has made them popular, although theft remains a problem in many cities.", "correct": false },
+        { "text": "E-bikes assist riders only while they pedal, making cycling easier and attracting new groups such as older people and commuters. Because they often replace car trips, planners support them, though cost and theft are barriers that some cities address with subsidies and secure parking.", "correct": true },
+        { "text": "E-bikes are growing in popularity, but transport planners doubt they reduce emissions because riders rarely give up their cars. Some cities have therefore introduced restrictions on where they can be parked.", "correct": false }
+      ],
+      "explanation": "Only the correct summary reflects pedal-assisted power, new groups of riders, replacement of car journeys and the barriers of price and theft. The others reverse the facts about who rides, what trips are replaced, the price, or planners' attitudes."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_CORRECT_SUMMARY",
+    "difficulty": "HARD",
+    "content": {
+      "title": "The placebo effect in pain research",
+      "tags": ["medicine", "research"],
+      "transcript": "In clinical trials of pain medication, the response to placebo treatments appears to have grown stronger over recent decades, particularly in studies conducted in the United States. Patients given inactive pills now report greater pain relief than similar patients did in the nineteen nineties. Researchers are not entirely sure why. One explanation is that trials have become longer, larger and more elaborate, with more contact between patients and medical staff, which may increase expectations of improvement. Another is that advertising has made people more familiar with the idea that medicines work. This trend creates a real difficulty for pharmaceutical companies, because a new drug must perform significantly better than placebo to be approved, and some potentially useful treatments are failing to clear that higher bar.",
+      "options": [
+        { "text": "Placebo responses in pain trials have weakened since the 1990s, making it easier for new drugs to demonstrate their effectiveness, and advertising is thought to have reduced patients' trust in medication.", "correct": false },
+        { "text": "Placebo responses in pain trials, especially in the United States, have become stronger, possibly because of larger trials with more staff contact or greater familiarity with medicines, making it harder for new drugs to prove their value.", "correct": true },
+        { "text": "Researchers have proven that longer clinical trials cause stronger placebo effects, and pharmaceutical companies now deliberately shorten trials so that their drugs can be approved more quickly.", "correct": false },
+        { "text": "The speaker explains that inactive pills are now used to treat pain in the United States because they produce similar results to real medication, reducing the need for new pharmaceutical drugs.", "correct": false }
+      ],
+      "explanation": "The talk reports a growing placebo response, gives two unconfirmed explanations and describes the difficulty for new drugs. The other summaries reverse the trend, present explanations as proven, or invent the use of placebos as treatment."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_CORRECT_SUMMARY",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Learning from mistakes at work",
+      "tags": ["work", "management"],
+      "transcript": "In many organisations, people hide mistakes because they fear being blamed. Unfortunately, this means that small problems remain undiscovered until they become serious ones. Some industries, most notably aviation, have taken a different approach. Pilots and air traffic controllers are encouraged to report errors and near misses, often confidentially, and the reports are analysed to improve procedures and training rather than to punish individuals. This culture has contributed to aviation's excellent safety record. Researchers who study teams have found a similar pattern elsewhere: the best-performing hospital teams sometimes report more errors than weaker teams, not because they make more mistakes, but because members feel safe enough to speak up. The lesson for managers is that punishing honest errors discourages the reporting that prevents larger failures.",
+      "options": [
+        { "text": "The speaker argues that aviation has a strong safety record because pilots who make mistakes are dismissed, and suggests hospitals should adopt similarly strict policies.", "correct": false },
+        { "text": "The speaker explains that teams reporting more errors are always less competent, and that managers should monitor error reports closely to identify weak employees.", "correct": false },
+        { "text": "The speaker describes how blaming individuals for mistakes encourages openness, as employees work harder to avoid errors, which explains the success of the best hospital teams.", "correct": false },
+        { "text": "The speaker explains that fear of blame leads people to hide mistakes, whereas industries like aviation encourage error reporting to improve systems. Strong teams may report more errors because they feel safe, so managers should avoid punishing honest mistakes.", "correct": true }
+      ],
+      "explanation": "The talk contrasts hiding errors with aviation's reporting culture and explains why strong teams report more errors. The other summaries claim punishment works or that more reports mean weaker teams, both of which contradict the speaker."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_CORRECT_SUMMARY",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Why the sea is salty",
+      "tags": ["geography", "science"],
+      "transcript": "Rain water is slightly acidic, and as it falls on land, it slowly breaks down rocks and carries tiny amounts of dissolved minerals into rivers. The rivers then carry these minerals to the sea. When sea water evaporates, the water rises into the air, but the salts are left behind. Over millions of years, this process has gradually increased the concentration of salt in the oceans. Some salt also enters the sea through openings in the ocean floor, where hot fluids from beneath the earth's crust mix with sea water. Rivers themselves do not taste salty because the amount of dissolved salt they carry is very small, and it is constantly being replaced by fresh rain.",
+      "options": [
+        { "text": "The sea is salty mainly because salt is released from underwater openings, while rivers remove salt from the oceans and carry it back onto the land.", "correct": false },
+        { "text": "Rain dissolves minerals from rocks, and rivers carry them to the sea, where evaporation leaves the salts behind. Over millions of years salt has accumulated, with some also coming from openings in the sea floor. Rivers taste fresh because they carry only small amounts.", "correct": true },
+        { "text": "Sea water is salty because it evaporates more slowly than river water, and rain falling on the ocean contains large amounts of salt collected from the air.", "correct": false },
+        { "text": "Rivers are as salty as the sea, but their salt is hidden by the acidity of rain water, which is why the ocean's salt level has remained unchanged for millions of years.", "correct": false }
+      ],
+      "explanation": "The correct summary describes minerals dissolved by rain, carried by rivers, concentrated by evaporation, and supplemented by sea-floor openings. The others reverse the role of rivers, invent salty rain, or claim salt levels never changed."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_CORRECT_SUMMARY",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Minimum wages and employment",
+      "tags": ["economics", "labour"],
+      "transcript": "For a long time, the standard economic view was that raising the minimum wage would reduce employment, because businesses would hire fewer workers if labour became more expensive. Studies from the nineteen nineties onwards challenged this view. Researchers compared neighbouring areas where one had raised its minimum wage and the other had not, and in many cases found little or no loss of jobs. Several explanations have been proposed. Higher pay can reduce staff turnover, saving businesses the cost of recruiting and training, and workers may become more productive. However, most economists agree that there is a limit. A minimum wage set very high relative to typical local wages is still likely to cost jobs, so the size of the increase and the local economy both matter.",
+      "options": [
+        { "text": "Recent research proves that raising the minimum wage always increases employment, because better-paid workers spend more money in local businesses, so there is no limit to how high it can be set.", "correct": false },
+        { "text": "Economists have always agreed that minimum wages have no effect on employment, and studies comparing neighbouring areas confirmed this long-held view.", "correct": false },
+        { "text": "Although economists traditionally expected minimum wage rises to cut jobs, studies comparing neighbouring areas often found little job loss, possibly due to lower turnover and higher productivity. Nevertheless, a very high minimum wage relative to local pay is still likely to reduce employment.", "correct": true },
+        { "text": "Studies from the 1990s showed that businesses respond to minimum wage increases by training staff less and replacing workers with machines, which explains the large job losses in neighbouring areas.", "correct": false }
+      ],
+      "explanation": "The correct summary covers the traditional view, the challenge from comparison studies, the proposed explanations and the agreed limit. The others claim there is no limit, misstate the traditional view, or describe job losses the speaker never reports."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_CORRECT_SUMMARY",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "How noise-cancelling headphones work",
+      "tags": ["technology", "physics"],
+      "transcript": "Noise-cancelling headphones use a simple principle from physics. Sound travels as a wave of pressure. If two waves with the same shape meet, but one is exactly reversed, they cancel each other out. The headphones contain small microphones that continuously measure the sound around the listener. A processor then creates an opposite wave and plays it through the speakers together with the music. This works best for steady, low-pitched sounds, such as the hum of an aircraft engine or an air conditioner. Sudden or high-pitched sounds, like voices or a baby crying, change too quickly to be predicted, so headphones rely on thick ear cushions to block those physically.",
+      "options": [
+        { "text": "Noise-cancelling headphones use microphones to measure surrounding sound and produce a reversed wave that cancels it. This is most effective for steady low sounds like engines, while sudden or high-pitched sounds are mainly blocked by the ear cushions.", "correct": true },
+        { "text": "Noise-cancelling headphones work best against voices and high-pitched sounds, because microphones can easily predict these waves, whereas engine noise must be blocked physically by thick cushions.", "correct": false },
+        { "text": "Noise-cancelling headphones reduce noise by playing music at a higher volume than the surrounding sound, and microphones are used to adjust the volume automatically.", "correct": false },
+        { "text": "Noise-cancelling headphones contain processors that record surrounding sounds and play them back later, which prevents the listener from hearing aircraft engines and air conditioners.", "correct": false }
+      ],
+      "explanation": "The talk explains cancellation by an opposite wave, its effectiveness for steady low sounds and the use of cushions for sudden high sounds. The other summaries reverse which sounds are cancelled or describe mechanisms the speaker never mentions."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_CORRECT_SUMMARY",
+    "difficulty": "EASY",
+    "content": {
+      "title": "The value of study breaks",
+      "tags": ["study skills", "health"],
+      "transcript": "When exams are approaching, many students try to study for as many hours as possible without stopping. Research on attention suggests this is not the most effective strategy. Concentration naturally declines after a period of focused work, and continuing without a break often means reading the same page several times without taking it in. Short breaks every forty-five to sixty minutes allow the brain to recover, and some studies suggest that a few minutes of rest after learning can even help new information be stored in memory. The type of break matters, though. A short walk or a drink of water is helpful, but scrolling through social media tends to be distracting and can make it harder to return to work.",
+      "options": [
+        { "text": "Students should study for as long as possible without breaks, because stopping interrupts memory storage, although a short walk is acceptable once the day's work is complete.", "correct": false },
+        { "text": "Checking social media during study breaks is the best way to rest the brain, since it is relaxing and helps students return to work with renewed concentration.", "correct": false },
+        { "text": "Studying without stopping is less effective because concentration declines, so regular short breaks help the brain recover and may aid memory. However, activities like walking help, whereas social media tends to distract students.", "correct": true },
+        { "text": "Research shows that students should take a long break of several hours after every study session, because the brain cannot store new information until it has fully rested.", "correct": false }
+      ],
+      "explanation": "The correct summary includes declining concentration, the benefit of short regular breaks and the difference between helpful and distracting breaks. The others recommend no breaks, praise social media, or describe long breaks the speaker never suggests."
+    }
+  },
+
+  {
+    "typeCode": "SELECT_MISSING_WORD",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Registration for new courses",
+      "tags": ["campus", "announcement"],
+      "transcript": "Just a reminder that online registration for next semester's elective courses opens this Friday at nine in the morning. Places on the most popular courses usually fill within a few hours, so it's a good idea to check the course list and prepare your choices in advance. If you have any problems logging in, please contact the student help desk rather than your lecturer. Remember, if you miss the registration period, you may not get a place on the course you want.",
+      "missing_ending": "the course you want.",
+      "distractors": ["a scholarship next year", "your final exam results", "the university library"],
+      "explanation": "The talk is about registering early for popular courses, so missing registration means losing a place on your preferred course. The other endings have no connection to course registration."
+    }
+  },
+  {
+    "typeCode": "SELECT_MISSING_WORD",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Bees and flower colours",
+      "tags": ["biology", "nature"],
+      "transcript": "Bees see the world very differently from humans. They cannot detect red light well, but they are sensitive to ultraviolet light, which is invisible to us. Many flowers that look plain to the human eye actually have ultraviolet patterns on their petals that guide bees towards the nectar, rather like lines painted on a runway. So when we admire a flower's colour, we should remember that its appearance was shaped mainly by what attracts insects, not by what pleases human observers.",
+      "missing_ending": "human observers.",
+      "distractors": ["other flowers", "the bees themselves", "hungry birds"],
+      "explanation": "The speaker contrasts what attracts insects with what we admire, so the logical ending refers to humans. Pleasing the bees would repeat rather than contrast, and flowers and birds are not part of the comparison."
+    }
+  },
+  {
+    "typeCode": "SELECT_MISSING_WORD",
+    "difficulty": "HARD",
+    "content": {
+      "title": "The limits of economic forecasts",
+      "tags": ["economics"],
+      "transcript": "Economic forecasts are produced with sophisticated models and enormous amounts of data, yet their record of predicting recessions is poor. Part of the reason is that economies are shaped by human expectations, which can change suddenly in response to news, and by rare events such as pandemics or financial crises that models are not designed to anticipate. This does not make forecasts useless, since they help organisations plan under reasonable assumptions. But it does mean that a forecast should be treated as a scenario rather than a guarantee.",
+      "missing_ending": "a guarantee.",
+      "distractors": ["a model", "an assumption", "a news report"],
+      "explanation": "The speaker stresses that forecasts are unreliable, so they are scenarios rather than certainties, making 'a guarantee' the natural contrast. A model and an assumption describe what forecasts are built on, and a news report is irrelevant."
+    }
+  },
+  {
+    "typeCode": "SELECT_MISSING_WORD",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Choosing a research topic",
+      "tags": ["research", "academic skills"],
+      "transcript": "When choosing a topic for your research project, it is tempting to pick a very broad subject, such as climate change or social media. The problem is that broad topics are almost impossible to investigate properly in a few months. A better approach is to narrow your focus to a specific question, a particular group of people, or a limited time period. For example, instead of studying social media, you might examine how first-year students use one platform to find accommodation. A narrower question is not less ambitious; it is simply more manageable.",
+      "missing_ending": "manageable.",
+      "distractors": ["expensive", "popular", "controversial"],
+      "explanation": "The speaker argues that broad topics are impossible to investigate in a few months, so a narrow question is more manageable. Nothing suggests narrow topics are more expensive, popular or controversial."
+    }
+  },
+  {
+    "typeCode": "SELECT_MISSING_WORD",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Drinking enough water",
+      "tags": ["health"],
+      "transcript": "Our bodies are made up of more than half water, and we lose water constantly through breathing, sweating and digestion. Even mild dehydration can cause headaches, tiredness and difficulty concentrating. The amount of water each person needs depends on their size, activity level and the climate, so there is no single rule that suits everyone. A simple way to check is to notice the colour of your urine, which should be pale yellow. If you exercise or the weather is hot, you will need to drink more than usual.",
+      "missing_ending": "more than usual.",
+      "distractors": ["less coffee", "only at night", "before breakfast"],
+      "explanation": "Exercise and hot weather increase water loss, so the speaker would advise drinking more than usual. The other endings do not follow from increased water loss."
+    }
+  },
+  {
+    "typeCode": "SELECT_MISSING_WORD",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Why archives matter to historians",
+      "tags": ["history", "research"],
+      "transcript": "Historians depend heavily on archives, but archives are never a complete record of the past. Documents survive when someone decided they were worth keeping, and those decisions were usually made by governments, churches and wealthy families. The lives of ordinary people, women and minority groups were recorded far less often, and when they were recorded, it was frequently through the eyes of officials. A careful historian therefore asks not only what the documents say, but also whose voices are missing from them.",
+      "missing_ending": "missing from them.",
+      "distractors": ["the most reliable", "written in them", "easy to read"],
+      "explanation": "The talk explains that archives under-represent many groups, so historians must ask whose voices are missing. The other endings ignore the speaker's point about gaps in the record."
+    }
+  },
+  {
+    "typeCode": "SELECT_MISSING_WORD",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Office plants and wellbeing",
+      "tags": ["work", "environment"],
+      "transcript": "Office plants are often promoted as a way to clean indoor air, but the evidence for this is weaker than advertisements suggest. In a normal office with a ventilation system, you would need an enormous number of plants to have a measurable effect on air quality. However, studies have found other benefits. Employees who work in offices with plants often report feeling more satisfied and less stressed, and some experiments show small improvements in concentration. So plants may not purify the air very much, but they can still improve how people feel at work.",
+      "missing_ending": "feel at work.",
+      "distractors": ["breathe at night", "water their gardens", "clean the office"],
+      "explanation": "The speaker contrasts weak air-cleaning evidence with benefits to satisfaction and stress, so plants improve how people feel at work. The alternatives return to air or introduce unrelated ideas."
+    }
+  },
+  {
+    "typeCode": "SELECT_MISSING_WORD",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Planning a presentation",
+      "tags": ["communication", "study skills"],
+      "transcript": "Many students spend hours designing slides for a presentation but very little time practising what they will say. Slides should support your talk, not replace it. Try to use short phrases and clear images rather than long paragraphs, because your audience cannot read and listen carefully at the same time. Most importantly, rehearse your presentation aloud at least twice, ideally in front of a friend, and time yourself. This will help you speak more naturally and make sure you finish on time.",
+      "missing_ending": "on time.",
+      "distractors": ["the slides", "your essay", "very early"],
+      "explanation": "The speaker recommends timing a rehearsal, so the purpose is finishing on time. Finishing very early is not the goal, and slides and essays do not fit the sentence."
+    }
+  },
+  {
+    "typeCode": "SELECT_MISSING_WORD",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Antibiotics and the gut",
+      "tags": ["medicine", "biology"],
+      "transcript": "Antibiotics are among the most important medicines ever developed, but they do not only target the bacteria causing an infection. They also affect the trillions of bacteria that live in the human gut, many of which help digest food and support the immune system. After a course of antibiotics, the diversity of these gut bacteria can fall significantly, and in some people it takes months to recover. This is one reason doctors are increasingly careful to prescribe antibiotics only when they are genuinely necessary.",
+      "missing_ending": "genuinely necessary.",
+      "distractors": ["cheaply available", "easy to swallow", "recently developed"],
+      "explanation": "Because antibiotics disturb helpful gut bacteria, doctors prescribe them only when genuinely necessary. Price, ease of swallowing and newness are not related to the side effect described."
+    }
+  },
+  {
+    "typeCode": "SELECT_MISSING_WORD",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The growth of podcasts",
+      "tags": ["media", "technology"],
+      "transcript": "Podcasts have grown rapidly over the last decade, and one reason is convenience. Unlike television or reading, listening to a podcast can be combined with other activities, such as commuting, cooking or exercising. Producing a podcast is also relatively cheap, so people with specialist knowledge can reach an audience without the support of a large media company. As a result, there are now podcasts on almost every imaginable subject, from ancient history to gardening, and listeners can easily find content that matches their particular interests.",
+      "missing_ending": "particular interests.",
+      "distractors": ["television schedules", "daily commute", "company budgets"],
+      "explanation": "The talk describes podcasts on almost every subject, so listeners find content matching their particular interests. The other options do not describe what content is matched to."
+    }
+  },
+
+  {
+    "typeCode": "HIGHLIGHT_INCORRECT_WORDS",
+    "difficulty": "EASY",
+    "content": {
+      "title": "The history of chocolate",
+      "tags": ["history", "food"],
+      "transcript": "Chocolate comes from the seeds of the cacao tree, which grows in tropical regions. For centuries, people in Central America prepared it as a bitter drink, often flavoured with spices. When it reached Europe, sugar was added, and it became fashionable among wealthy families. Solid chocolate bars were not produced until the nineteenth century.",
+      "displayed_text": "Chocolate comes from the leaves of the cacao tree, which grows in tropical regions. For centuries, people in Central America prepared it as a sweet drink, often flavoured with spices. When it reached Europe, milk was added, and it became fashionable among wealthy families. Solid chocolate bars were not produced until the eighteenth century."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_INCORRECT_WORDS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Wind turbines and birds",
+      "tags": ["energy", "wildlife"],
+      "transcript": "Wind turbines are sometimes criticised for harming birds, and collisions do happen. However, studies suggest that far more birds are killed by buildings, vehicles and domestic cats. The risk from turbines depends heavily on location, so careful planning can avoid migration routes and important breeding areas. Some farms also pause turbines when large flocks are detected.",
+      "displayed_text": "Wind turbines are sometimes praised for harming birds, and collisions do happen. However, studies suggest that far more birds are killed by buildings, vehicles and wild cats. The risk from turbines depends slightly on location, so careful planning can avoid migration routes and important feeding areas. Some farms also pause turbines when large flocks are detected."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_INCORRECT_WORDS",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Language acquisition in infants",
+      "tags": ["language", "psychology"],
+      "transcript": "Infants are born able to distinguish the sounds of almost every human language. During their first year, however, this ability gradually narrows. Babies become increasingly sensitive to the sounds of the language spoken around them and less able to hear differences that their own language does not use. This specialisation helps them learn their first language efficiently.",
+      "displayed_text": "Infants are born able to distinguish the sounds of almost every human language. During their first decade, however, this ability suddenly narrows. Babies become increasingly sensitive to the sounds of the language spoken around them and less able to hear similarities that their own language does not use. This specialisation helps them learn their second language efficiently."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_INCORRECT_WORDS",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Campus sports centre update",
+      "tags": ["campus", "sport"],
+      "transcript": "The campus sports centre will close for two weeks in July while the swimming pool is repaired. During this time, students can use the gym at the city leisure centre for free by showing their student card. Fitness classes will continue outdoors in the park, weather permitting. The centre will reopen on the first of August.",
+      "displayed_text": "The campus sports centre will close for three weeks in July while the swimming pool is repaired. During this time, students can use the gym at the city leisure centre for free by showing their library card. Fitness classes will continue indoors in the park, weather permitting. The centre will reopen on the first of September."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_INCORRECT_WORDS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The invention of the printing press",
+      "tags": ["history", "technology"],
+      "transcript": "Before the printing press, books were copied by hand, which made them rare and expensive. Printing with movable type allowed many identical copies to be produced quickly. Within a few decades, printing workshops had spread across Europe, and the cost of books fell dramatically. This helped ideas circulate much more widely than before.",
+      "displayed_text": "Before the printing press, books were copied by hand, which made them rare and cheap. Printing with movable type allowed many different copies to be produced quickly. Within a few centuries, printing workshops had spread across Europe, and the cost of books fell dramatically. This helped ideas circulate much more slowly than before."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_INCORRECT_WORDS",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Glaciers as water sources",
+      "tags": ["climate", "water"],
+      "transcript": "In many mountain regions, glaciers act as natural reservoirs. They store water as ice during the winter and release it gradually during warm, dry summers, when rivers would otherwise run low. As glaciers shrink, meltwater may temporarily increase, but over time the supply declines. Communities that depend on this water for farming face a difficult future.",
+      "displayed_text": "In many mountain regions, glaciers act as artificial reservoirs. They store water as ice during the winter and release it suddenly during warm, dry summers, when rivers would otherwise run high. As glaciers shrink, meltwater may temporarily increase, but over time the supply improves. Communities that depend on this water for farming face a difficult future."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_INCORRECT_WORDS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Why onions are layered",
+      "tags": ["plants", "biology"],
+      "transcript": "An onion is not a root but a bulb, made of modified leaves that store food for the plant. Each layer is the thickened base of a leaf. The plant uses these stored nutrients to survive the winter and to grow quickly when spring arrives. This is why onions can be kept for months after harvest.",
+      "displayed_text": "An onion is not a root but a bulb, made of modified stems that store water for the plant. Each layer is the thickened base of a leaf. The plant uses these stored nutrients to survive the summer and to grow slowly when spring arrives. This is why onions can be kept for months after harvest."
+    }
+  },
+  {
+    "typeCode": "HIGHLIGHT_INCORRECT_WORDS",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Tips for group assignments",
+      "tags": ["study skills", "teamwork"],
+      "transcript": "Group assignments go more smoothly when roles are agreed at the first meeting. Decide who will research each section, who will edit the final document and who will prepare the presentation. Set clear deadlines well before the submission date, and use a shared online folder so that everyone can see the latest version.",
+      "displayed_text": "Group assignments go more smoothly when roles are agreed at the final meeting. Decide who will research each section, who will print the final document and who will prepare the presentation. Set clear deadlines well after the submission date, and use a private online folder so that everyone can see the latest version."
+    }
+  },
+
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "EASY", "content": { "title": "Handing in assignments", "tags": ["campus"], "sentence": "All assignments must be submitted through the online portal before midnight." } },
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "EASY", "content": { "title": "Library study rooms", "tags": ["campus"], "sentence": "Study rooms in the library can be booked for two hours at a time." } },
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "MEDIUM", "content": { "title": "Reading before seminars", "tags": ["academic"], "sentence": "Students are expected to complete the required reading before each seminar." } },
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "MEDIUM", "content": { "title": "Climate data analysis", "tags": ["science"], "sentence": "The researchers analysed temperature data collected over several decades." } },
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "HARD", "content": { "title": "Evidence and conclusions", "tags": ["academic"], "sentence": "The conclusions of the study were not supported by sufficient evidence." } },
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "EASY", "content": { "title": "Timetable changes", "tags": ["campus"], "sentence": "Any changes to the timetable will be announced by email." } },
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "MEDIUM", "content": { "title": "Economic growth factors", "tags": ["economics"], "sentence": "Economic growth depends on investment, education and stable institutions." } },
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "HARD", "content": { "title": "Participants in the experiment", "tags": ["research"], "sentence": "Participants were randomly assigned to one of three experimental conditions." } },
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "MEDIUM", "content": { "title": "Feedback on drafts", "tags": ["academic"], "sentence": "Your tutor will provide written feedback on the first draft of your essay." } },
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "HARD", "content": { "title": "Urban population growth", "tags": ["geography"], "sentence": "Rapid urban growth has placed considerable pressure on public infrastructure." } },
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "EASY", "content": { "title": "Campus parking permits", "tags": ["campus"], "sentence": "Parking permits are available from the security office near the main gate." } },
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "MEDIUM", "content": { "title": "Referencing sources", "tags": ["academic"], "sentence": "Every source you quote must be referenced correctly at the end of your report." } },
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "HARD", "content": { "title": "Biodiversity and ecosystems", "tags": ["ecology"], "sentence": "Biodiversity plays an essential role in maintaining healthy and resilient ecosystems." } },
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "MEDIUM", "content": { "title": "Guest lecture attendance", "tags": ["campus"], "sentence": "The guest lecture was attended by students from several different faculties." } },
+  { "typeCode": "WRITE_FROM_DICTATION", "difficulty": "HARD", "content": { "title": "Historical interpretation", "tags": ["history"], "sentence": "Historians often disagree about how the same historical events should be interpreted." } }
+]

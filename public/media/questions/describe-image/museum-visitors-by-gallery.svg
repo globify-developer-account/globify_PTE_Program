@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="Museum visitors by gallery, 2025">
+<rect width="800" height="500" fill="#ffffff"/>
+<text x="400" y="38" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#0f172a" text-anchor="middle">Museum visitors by gallery, 2025</text>
+<rect x="50" y="142" width="700" height="46" fill="#1e3a8a"/>
+<text x="166.7" y="170" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">Gallery</text>
+<text x="400" y="170" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">Visitors (thousands)</text>
+<text x="633.3" y="170" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">Change since 2024</text>
+<rect x="50" y="188" width="700" height="46" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="166.7" y="216" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">Modern Art</text>
+<text x="400" y="216" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15"  fill="#0f172a" text-anchor="middle">412</text>
+<text x="633.3" y="216" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15"  fill="#0f172a" text-anchor="middle">+8%</text>
+<rect x="50" y="234" width="700" height="46" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="166.7" y="262" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">Natural History</text>
+<text x="400" y="262" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15"  fill="#0f172a" text-anchor="middle">386</text>
+<text x="633.3" y="262" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15"  fill="#0f172a" text-anchor="middle">+3%</text>
+<rect x="50" y="280" width="700" height="46" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="166.7" y="308" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">Science &amp; Technology</text>
+<text x="400" y="308" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15"  fill="#0f172a" text-anchor="middle">331</text>
+<text x="633.3" y="308" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15"  fill="#0f172a" text-anchor="middle">+12%</text>
+<rect x="50" y="326" width="700" height="46" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="166.7" y="354" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">Ancient Civilisations</text>
+<text x="400" y="354" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15"  fill="#0f172a" text-anchor="middle">254</text>
+<text x="633.3" y="354" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15"  fill="#0f172a" text-anchor="middle">-2%</text>
+<rect x="50" y="372" width="700" height="46" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="166.7" y="400" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">Photography</text>
+<text x="400" y="400" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15"  fill="#0f172a" text-anchor="middle">97</text>
+<text x="633.3" y="400" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15"  fill="#0f172a" text-anchor="middle">+21%</text>
+</svg>

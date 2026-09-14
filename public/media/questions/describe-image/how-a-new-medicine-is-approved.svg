@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="How a new medicine reaches patients">
+<rect width="800" height="500" fill="#ffffff"/>
+<text x="400" y="38" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#0f172a" text-anchor="middle">How a new medicine reaches patients</text>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+<line x1="199" y1="170" x2="231" y2="170" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+<line x1="384" y1="170" x2="416" y2="170" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+<line x1="569" y1="170" x2="601" y2="170" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+<line x1="677.5" y1="215" x2="677.5" y2="325" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+<line x1="601" y1="370" x2="569" y2="370" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+<line x1="416" y1="370" x2="384" y2="370" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="52" y="131" width="141" height="78" rx="12" fill="#ffffff" stroke="#2e5bff" stroke-width="2.5"/>
+<circle cx="56" cy="135" r="14" fill="#2e5bff"/>
+<text x="56" y="140" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+<text x="122.5" y="166" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">Laboratory</text>
+<text x="122.5" y="184" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">research</text>
+<rect x="237" y="131" width="141" height="78" rx="12" fill="#ffffff" stroke="#e8590c" stroke-width="2.5"/>
+<circle cx="241" cy="135" r="14" fill="#e8590c"/>
+<text x="241" y="140" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+<text x="307.5" y="166" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">Pre-clinical</text>
+<text x="307.5" y="184" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">testing</text>
+<rect x="422" y="131" width="141" height="78" rx="12" fill="#ffffff" stroke="#0d9488" stroke-width="2.5"/>
+<circle cx="426" cy="135" r="14" fill="#0d9488"/>
+<text x="426" y="140" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+<text x="492.5" y="157" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">Phase 1 trial:</text>
+<text x="492.5" y="175" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">safety in a</text>
+<text x="492.5" y="193" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">small group</text>
+<rect x="607" y="131" width="141" height="78" rx="12" fill="#ffffff" stroke="#c026d3" stroke-width="2.5"/>
+<circle cx="611" cy="135" r="14" fill="#c026d3"/>
+<text x="611" y="140" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">4</text>
+<text x="677.5" y="166" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">Phase 2 trial:</text>
+<text x="677.5" y="184" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">effectiveness</text>
+<rect x="607" y="331" width="141" height="78" rx="12" fill="#ffffff" stroke="#ca8a04" stroke-width="2.5"/>
+<circle cx="611" cy="335" r="14" fill="#ca8a04"/>
+<text x="611" y="340" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">5</text>
+<text x="677.5" y="357" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">Phase 3 trial:</text>
+<text x="677.5" y="375" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">large-scale</text>
+<text x="677.5" y="393" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">testing</text>
+<rect x="422" y="331" width="141" height="78" rx="12" fill="#ffffff" stroke="#64748b" stroke-width="2.5"/>
+<circle cx="426" cy="335" r="14" fill="#64748b"/>
+<text x="426" y="340" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">6</text>
+<text x="492.5" y="366" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">Regulatory</text>
+<text x="492.5" y="384" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">approval</text>
+<rect x="237" y="331" width="141" height="78" rx="12" fill="#ffffff" stroke="#dc2626" stroke-width="2.5"/>
+<circle cx="241" cy="335" r="14" fill="#dc2626"/>
+<text x="241" y="340" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">7</text>
+<text x="307.5" y="366" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">Monitoring after</text>
+<text x="307.5" y="384" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#0f172a" text-anchor="middle">release</text>
+</svg>

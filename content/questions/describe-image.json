@@ -1,0 +1,203 @@
+[
+  {
+    "typeCode": "DESCRIBE_IMAGE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Weekly study hours by year",
+      "tags": ["education", "bar chart"],
+      "chart": {
+        "type": "bar",
+        "title": "Average weekly study hours by year of study",
+        "unit": "hours",
+        "yLabel": "Hours per week",
+        "categories": ["Year 1", "Year 2", "Year 3", "Year 4"],
+        "series": [
+          { "name": "Science students", "values": [14, 17, 21, 26] },
+          { "name": "Humanities students", "values": [11, 13, 16, 19] }
+        ]
+      },
+      "sample_answer": "The bar chart compares the average number of hours science and humanities students study each week across four years of university. In both groups, study time rises steadily every year. Science students begin at fourteen hours in Year 1 and reach twenty-six hours in Year 4, while humanities students increase from eleven to nineteen hours. Science students study more than humanities students in every year, and the gap widens from three hours to seven hours by the final year."
+    }
+  },
+  {
+    "typeCode": "DESCRIBE_IMAGE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Smartphone ownership by age group",
+      "tags": ["technology", "line graph"],
+      "chart": {
+        "type": "line",
+        "title": "Smartphone ownership among adults, 2012–2024",
+        "unit": "%",
+        "yLabel": "Adults owning a smartphone (%)",
+        "categories": ["2012", "2014", "2016", "2018", "2020", "2022", "2024"],
+        "series": [
+          { "name": "Aged 18–34", "values": [62, 75, 86, 92, 95, 97, 98] },
+          { "name": "Aged 65 and over", "values": [15, 22, 31, 43, 56, 67, 75] }
+        ]
+      },
+      "sample_answer": "The line graph shows the percentage of adults who owned a smartphone between 2012 and 2024 in two age groups. Among people aged eighteen to thirty-four, ownership was already sixty-two percent in 2012 and rose quickly to ninety-two percent by 2018, before levelling off at almost one hundred percent. Ownership among people aged sixty-five and over started much lower, at fifteen percent, but grew steadily to seventy-five percent in 2024. Overall, the gap between the two groups narrowed considerably."
+    }
+  },
+  {
+    "typeCode": "DESCRIBE_IMAGE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "How students travel to campus",
+      "tags": ["transport", "pie chart"],
+      "chart": {
+        "type": "pie",
+        "title": "Main way university students travel to campus",
+        "unit": "%",
+        "slices": [
+          { "label": "Walking", "value": 34 },
+          { "label": "Bus", "value": 27 },
+          { "label": "Cycling", "value": 18 },
+          { "label": "Car", "value": 12 },
+          { "label": "Train", "value": 9 }
+        ]
+      },
+      "sample_answer": "The pie chart shows how university students usually travel to campus. Walking is the most common method, used by thirty-four percent of students, followed by the bus at twenty-seven percent. Together, these two options account for more than sixty percent of all journeys. Cycling is the third most popular choice at eighteen percent. Only twelve percent of students drive, and the train is the least common option, at nine percent. Overall, most students rely on low-cost or active forms of transport."
+    }
+  },
+  {
+    "typeCode": "DESCRIBE_IMAGE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Museum visitors by gallery",
+      "tags": ["culture", "table"],
+      "chart": {
+        "type": "table",
+        "title": "Museum visitors by gallery, 2025",
+        "columns": ["Gallery", "Visitors (thousands)", "Change since 2024"],
+        "rows": [
+          ["Modern Art", 412, "+8%"],
+          ["Natural History", 386, "+3%"],
+          ["Science & Technology", 331, "+12%"],
+          ["Ancient Civilisations", 254, "-2%"],
+          ["Photography", 97, "+21%"]
+        ]
+      },
+      "sample_answer": "The table shows the number of visitors to five museum galleries in 2025 and the change since 2024. Modern Art was the most visited gallery with 412,000 visitors, closely followed by Natural History with 386,000. Science and Technology attracted 331,000 people and grew by twelve percent. Ancient Civilisations was the only gallery to lose visitors, falling by two percent. Photography had by far the smallest audience, at 97,000, but it recorded the fastest growth, at twenty-one percent."
+    }
+  },
+  {
+    "typeCode": "DESCRIBE_IMAGE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "How paper is recycled",
+      "tags": ["environment", "process"],
+      "chart": {
+        "type": "process",
+        "title": "How paper is recycled",
+        "steps": [
+          "Used paper is collected",
+          "Paper is sorted by grade",
+          "Paper is mixed with water to make pulp",
+          "Ink and contaminants are removed",
+          "Pulp is pressed and dried",
+          "New paper is rolled and cut"
+        ]
+      },
+      "sample_answer": "The diagram illustrates the six stages of recycling paper. First, used paper is collected and then sorted into different grades. Next, it is mixed with water to create pulp, and any ink and other contaminants are removed. After that, the clean pulp is pressed to remove water and dried. Finally, the dried material is rolled into large sheets and cut to produce new paper. Overall, the process turns waste paper back into a usable product in a clear sequence of steps."
+    }
+  },
+  {
+    "typeCode": "DESCRIBE_IMAGE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Household energy use",
+      "tags": ["energy", "bar chart"],
+      "chart": {
+        "type": "bar",
+        "title": "How an average household uses energy",
+        "unit": "%",
+        "yLabel": "Share of household energy (%)",
+        "categories": ["Space heating", "Water heating", "Appliances", "Lighting", "Cooling", "Cooking"],
+        "series": [{ "name": "Share of energy use", "values": [42, 18, 16, 9, 8, 7] }]
+      },
+      "sample_answer": "The bar chart shows how an average household divides its energy use between six purposes. Space heating is by far the largest category, accounting for forty-two percent of the total. Water heating and appliances follow at eighteen and sixteen percent respectively. Lighting uses nine percent, cooling eight percent, and cooking is the smallest category at just seven percent. In summary, heating the home and water together consumes sixty percent of household energy, so these are the areas where savings would matter most."
+    }
+  },
+  {
+    "typeCode": "DESCRIBE_IMAGE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Visitors to a coastal town",
+      "tags": ["tourism", "line graph"],
+      "chart": {
+        "type": "line",
+        "title": "Monthly visitors to a coastal town (thousands)",
+        "unit": "thousands",
+        "yLabel": "Visitors (thousands)",
+        "categories": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        "series": [
+          { "name": "2024", "values": [12, 11, 15, 22, 34, 52, 71, 74, 48, 27, 14, 16] },
+          { "name": "2025", "values": [13, 13, 18, 26, 39, 58, 80, 83, 55, 30, 15, 18] }
+        ]
+      },
+      "sample_answer": "The line graph compares the number of monthly visitors to a coastal town in 2024 and 2025. Both years follow a very similar seasonal pattern. Visitor numbers are low in winter, at around twelve thousand, rise sharply from April, and peak in August, with seventy-four thousand visitors in 2024 and eighty-three thousand in 2025. Numbers then fall quickly through autumn. Every month in 2025 was at least as busy as the same month in 2024, and the difference was greatest during the summer."
+    }
+  },
+  {
+    "typeCode": "DESCRIBE_IMAGE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Freshwater use by sector",
+      "tags": ["water", "pie chart"],
+      "chart": {
+        "type": "pie",
+        "title": "Global freshwater withdrawals by sector",
+        "unit": "%",
+        "slices": [
+          { "label": "Agriculture", "value": 70 },
+          { "label": "Industry", "value": 19 },
+          { "label": "Domestic use", "value": 11 }
+        ]
+      },
+      "sample_answer": "The pie chart illustrates how the freshwater withdrawn worldwide is divided between three sectors. Agriculture is overwhelmingly the largest user, accounting for seventy percent of all withdrawals, mainly for irrigating crops. Industry is a distant second, using nineteen percent. Domestic use, which includes drinking, cooking and washing in homes, represents only eleven percent. In conclusion, the chart suggests that improving water efficiency in farming would have a far greater impact on global water demand than reducing household consumption."
+    }
+  },
+  {
+    "typeCode": "DESCRIBE_IMAGE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "How a new medicine is approved",
+      "tags": ["medicine", "process"],
+      "chart": {
+        "type": "process",
+        "title": "How a new medicine reaches patients",
+        "steps": [
+          "Laboratory research",
+          "Pre-clinical testing",
+          "Phase 1 trial: safety in a small group",
+          "Phase 2 trial: effectiveness",
+          "Phase 3 trial: large-scale testing",
+          "Regulatory approval",
+          "Monitoring after release"
+        ]
+      },
+      "sample_answer": "The diagram shows the seven stages a new medicine passes through before and after it reaches patients. The process begins with laboratory research, followed by pre-clinical testing. Human trials then take place in three phases: phase one checks safety in a small group, phase two tests effectiveness, and phase three involves large-scale testing. If the results are satisfactory, the medicine receives regulatory approval. Finally, its effects continue to be monitored after release to identify any rare problems."
+    }
+  },
+  {
+    "typeCode": "DESCRIBE_IMAGE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Employment rate by qualification",
+      "tags": ["employment", "bar chart"],
+      "chart": {
+        "type": "bar",
+        "title": "Employment rate by highest qualification and gender",
+        "unit": "%",
+        "yLabel": "Employment rate (%)",
+        "categories": ["No qualification", "Secondary school", "Diploma", "Bachelor's degree", "Postgraduate"],
+        "series": [
+          { "name": "Men", "values": [58, 72, 80, 86, 89] },
+          { "name": "Women", "values": [44, 63, 74, 83, 87] }
+        ]
+      },
+      "sample_answer": "The bar chart compares employment rates for men and women according to their highest qualification. For both genders, employment rises consistently with the level of education. Men without qualifications have an employment rate of fifty-eight percent, compared with eighty-nine percent for those with a postgraduate degree. Women show a similar pattern, rising from forty-four to eighty-seven percent. Men are more likely to be employed at every level, but the gap shrinks from fourteen percentage points to just two as qualifications increase."
+    }
+  }
+]

@@ -1,0 +1,174 @@
+[
+  {
+    "typeCode": "SUMMARIZE_WRITTEN_TEXT",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The value of urban wetlands",
+      "tags": ["environment", "cities"],
+      "passage": "For much of modern history, wetlands near cities were regarded as wasteland. Marshes and swamps were associated with disease, difficult to build on and of little obvious economic value, so they were drained to make room for housing, farmland and industry. In many regions, more than half of the original wetland area has disappeared. Scientists and planners now recognise that this loss carried hidden costs. Wetlands act like natural sponges, absorbing heavy rainfall and releasing it slowly, which reduces the risk of flooding in neighbouring areas. They also filter pollutants from water before it reaches rivers and coastal zones, and they store large amounts of carbon in their waterlogged soils. In addition, wetlands provide habitats for a remarkable variety of birds, fish, insects and plants, including many endangered species. As a result, several cities have begun restoring former wetlands, sometimes by removing concrete river channels and allowing water to spread across its natural floodplain. These projects can be expensive and may require land to be purchased from private owners, but supporters argue that the costs are frequently lower than those of building and maintaining artificial flood defences. Restored wetlands can also become valuable public spaces, offering residents walking routes and opportunities to observe wildlife close to home.",
+      "sample_answer": "Although urban wetlands were long drained as worthless land, they are now valued for reducing flooding, filtering pollution, storing carbon and supporting wildlife, so several cities are restoring them, which can be expensive but is often cheaper than artificial flood defences and also creates public spaces."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_WRITTEN_TEXT",
+    "difficulty": "HARD",
+    "content": {
+      "title": "The attention economy",
+      "tags": ["technology", "media"],
+      "passage": "Many of the most popular digital services, including social media platforms, video sites and mobile games, are free to use. Their business model depends not on selling a product to users but on capturing users' attention and selling access to it, usually through advertising. Economists sometimes describe this arrangement as the attention economy. Because revenue grows with the amount of time people spend on a platform, companies have strong incentives to design features that keep users engaged for as long as possible. Endless scrolling feeds, automatic playing of the next video and notifications timed to draw people back are all examples. Critics argue that such designs exploit well-understood psychological tendencies, such as our sensitivity to unpredictable rewards, and that they may contribute to reduced concentration and poorer sleep, particularly among young people. Defenders respond that users freely choose these services and gain real benefits from them, including entertainment, information and social connection, and that the evidence of harm is still mixed. Regulators in several countries are now considering rules that would limit certain design techniques for younger users or require platforms to offer settings that reduce engagement-driven features. The debate reflects a broader question about whether services funded by attention can ever fully align their interests with those of the people using them.",
+      "sample_answer": "Free digital platforms profit by capturing and selling users' attention, encouraging designs such as endless feeds and notifications that critics say exploit psychology and harm concentration and sleep, while defenders cite user choice and benefits, prompting regulators to consider limits and raising doubts about whether attention-funded services can serve users' interests."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_WRITTEN_TEXT",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Why people keep diaries",
+      "tags": ["psychology", "writing"],
+      "passage": "People have kept diaries for centuries, recording everything from important historical events to the small details of daily life. Some diaries, written by ordinary people, have become valuable sources for historians because they show how major events affected individuals in ways that official records do not. Yet most diarists write with no expectation that anyone else will read their words. For them, the main value of a diary is personal. Psychological research suggests that writing regularly about thoughts and feelings can have measurable benefits. In a number of studies, participants who wrote about stressful or emotional experiences for about fifteen minutes on several consecutive days later reported better mood and, in some cases, visited doctors less often than participants who wrote about neutral topics. Researchers believe that putting experiences into words helps people organise their thoughts and make sense of difficult events, rather than repeatedly worrying about them. Diaries can also help people notice patterns in their behaviour, such as what situations make them anxious or what activities improve their energy. However, the benefits appear to depend on how people write. Simply repeating negative feelings without reflecting on them may not help, and for some individuals it can even make distress worse. Writing that seeks understanding seems to be most helpful.",
+      "sample_answer": "Diaries can serve historians, but their main value is personal, as research shows that reflective writing about emotional experiences improves mood and health by helping people organise thoughts and notice patterns, although simply repeating negative feelings may not help."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_WRITTEN_TEXT",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The economics of sports stadiums",
+      "tags": ["economics", "sport"],
+      "passage": "When a city is asked to help pay for a new sports stadium, supporters typically promise significant economic benefits. They argue that construction will create jobs, that matches and concerts will bring visitors who spend money in local restaurants and hotels, and that the stadium will attract further investment to the surrounding area. These arguments are often persuasive to politicians and the public alike. Economists, however, have studied stadium projects for decades, and their conclusions are remarkably consistent. Most studies find that publicly funded stadiums produce little or no measurable increase in local income or employment. One reason is that much of the money spent at a stadium would otherwise have been spent elsewhere in the same city, for example at cinemas, restaurants or shops. Rather than generating new spending, the stadium largely moves existing spending from one place to another. Construction jobs are also temporary, and many permanent stadium jobs are part-time and low-paid. In addition, the public subsidy itself has a cost, since the money could have been used for schools, transport or tax reductions. None of this means stadiums have no value. Residents may take pride in a local team, and a well-designed stadium can help regenerate a neglected district if it is combined with housing and transport improvements. The key point is that such benefits should be weighed honestly against the considerable public cost.",
+      "sample_answer": "While supporters claim publicly funded stadiums create jobs and new spending, economists consistently find little economic benefit because spending is mostly shifted within the city, jobs are temporary or low-paid and subsidies have alternative uses, although civic pride and regeneration may justify some projects if weighed honestly against costs."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_WRITTEN_TEXT",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Citizen assemblies in democracy",
+      "tags": ["politics", "society"],
+      "passage": "In recent years, a number of governments have experimented with citizen assemblies as a way of addressing complex public questions. A citizen assembly brings together a group of randomly selected members of the public, chosen so that the group broadly reflects the population in terms of age, gender, region and background. Over several weekends, members hear evidence from experts and people affected by the issue, discuss the arguments in small facilitated groups and finally vote on recommendations. Assemblies have been used to consider topics such as climate policy, electoral reform and difficult social questions on which politicians have struggled to reach agreement. Supporters argue that the process has several strengths. Because members are not seeking re-election, they may be more willing to consider long-term consequences, and because they are ordinary citizens, their recommendations can carry public legitimacy. Observers have also noted that participants frequently change their views after careful deliberation, which suggests that the format encourages genuine learning rather than simply repeating existing positions. Critics raise important concerns, however. The choice of experts and the framing of questions can shape outcomes, and assemblies usually have no power to make decisions, so governments may ignore recommendations they dislike. Some also question whether a small group, however carefully selected, should influence policies affecting millions. Most analysts conclude that assemblies are best viewed as a complement to elected institutions rather than a replacement for them.",
+      "sample_answer": "Citizen assemblies, in which randomly selected representative citizens hear evidence and deliberate on complex issues, may encourage long-term thinking, public legitimacy and genuine learning, but concerns about expert selection, question framing and lack of decision-making power mean they are best seen as complementing elected institutions rather than replacing them."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_WRITTEN_TEXT",
+    "difficulty": "EASY",
+    "content": {
+      "title": "The return of the reusable bottle",
+      "tags": ["environment", "consumers"],
+      "passage": "Not long ago, milk, soft drinks and beer in many countries were sold in glass bottles that customers returned to be washed and refilled. This system gradually disappeared during the second half of the twentieth century as lightweight plastic bottles and cans became cheaper for manufacturers, who no longer had to collect, transport and clean used containers. The environmental consequences of single-use packaging have since become a major public concern, and reusable systems are beginning to return in new forms. Some supermarkets now offer refill stations for products such as cereals, detergents and cooking oil, while several drinks companies are trialling deposit schemes in which customers pay a small extra charge that is refunded when they return the container. Studies suggest that a reusable glass bottle can have a lower environmental impact than single-use packaging, but only if it is reused many times and not transported over long distances, since glass is heavy. For this reason, experts argue that successful reuse systems need to be local, convenient and widely standardised, so that bottles from different brands can be collected and cleaned together. Consumer habits are also crucial, because even a well-designed system fails if customers find returning containers inconvenient.",
+      "sample_answer": "Reusable bottle systems, abandoned when cheaper single-use packaging arrived, are returning through refill stations and deposit schemes, but they only benefit the environment if containers are reused many times locally, so systems must be convenient, standardised and supported by consumer habits."
+    }
+  },
+
+  {
+    "typeCode": "ESSAY",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Compulsory volunteering for students",
+      "tags": ["education", "community"],
+      "topic": "Some people believe that secondary school students should be required to complete a certain number of hours of unpaid community work before they graduate. To what extent do you agree or disagree?",
+      "sample_answer": "In many countries, schools are debating whether students should be required to volunteer in their communities before graduating. While compulsory volunteering raises some concerns, I largely agree that a modest requirement would benefit both students and society.\n\nThe strongest argument in favour is that community work develops skills that classrooms rarely teach. A student who helps at a food bank or assists elderly residents learns to communicate with people from different backgrounds, take responsibility and solve practical problems. These abilities are highly valued by universities and employers, yet many young people have few opportunities to practise them. In addition, volunteering can broaden students' understanding of social issues. Meeting people who face poverty or illness often makes abstract topics feel real, which may encourage a lifelong commitment to helping others.\n\nCritics argue that volunteering loses its meaning when it is forced, and that students may simply complete the hours without genuine interest. They also point out that some teenagers already have heavy academic workloads or part-time jobs to support their families. These concerns are valid, but they can be addressed through sensible design. Schools could require a reasonable number of hours, such as forty across several years, allow students to choose causes they care about, and include activities that fit around family responsibilities.\n\nIn conclusion, although compulsory service must be introduced carefully, I believe its advantages outweigh its drawbacks. A flexible requirement would help young people develop valuable skills, understand their communities better and experience the satisfaction of contributing to society."
+    }
+  },
+  {
+    "typeCode": "ESSAY",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Technology and human memory",
+      "tags": ["technology", "psychology"],
+      "topic": "Because information is always available online, people no longer need to memorise facts, and schools should focus on teaching students how to find and evaluate information instead. Discuss both views and give your own opinion.",
+      "sample_answer": "The internet has made enormous amounts of information instantly accessible, leading some people to argue that memorising facts is no longer necessary. Others believe that knowledge stored in memory remains essential. In my view, schools should teach research skills, but not at the expense of core knowledge.\n\nThose who favour reducing memorisation make a reasonable point. Many facts, such as specific dates or statistics, can be checked in seconds, and the volume of information in most subjects is growing too quickly for anyone to remember it all. Furthermore, the internet contains misleading and inaccurate material, so the ability to judge sources, compare evidence and recognise bias is arguably more important than ever. Students who can do this will be better prepared for university and work.\n\nHowever, the opposite view also has considerable merit. Evaluating information actually depends on existing knowledge. A student who knows little about history cannot easily recognise when an online article misrepresents a historical event. Knowledge in memory also allows people to think quickly, understand complex texts and connect ideas creatively, which is difficult if every basic fact must first be searched for. Research on learning suggests that experts differ from beginners largely because of the organised knowledge they hold in long-term memory.\n\nIn conclusion, I believe the two approaches are complementary rather than opposed. Schools should ensure that students master the essential knowledge of each subject, while explicitly teaching them how to search for, question and evaluate new information throughout their lives."
+    }
+  },
+  {
+    "typeCode": "ESSAY",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Taxing unhealthy food",
+      "tags": ["health", "policy"],
+      "topic": "Governments should introduce higher taxes on unhealthy foods and sugary drinks in order to improve public health. Do you agree or disagree? Support your opinion with reasons and examples.",
+      "sample_answer": "Rising rates of obesity and diabetes have encouraged many governments to consider taxing unhealthy foods and sugary drinks. Although such taxes are not a complete solution, I agree that they can be a useful part of a wider public health strategy.\n\nThe main argument for these taxes is that price influences behaviour. When sugary drinks become more expensive, consumers tend to buy fewer of them, and several countries that have introduced such taxes have reported reductions in sales. Just as importantly, taxes can encourage manufacturers to change their products. In some cases, drinks companies have reduced the sugar content of their products to avoid the higher rate, which benefits all consumers, including those who do not change their habits. The revenue raised can also be spent on health education or sports facilities for young people.\n\nOn the other hand, opponents argue that these taxes unfairly affect low-income households, who spend a larger share of their income on food. They also claim that people should be free to make their own choices. These objections deserve attention, but they can be partly addressed. Governments could use the revenue to make fruit and vegetables cheaper, and the taxes would target products that cause long-term health problems, which themselves impose significant costs on society.\n\nIn conclusion, taxing unhealthy food and drinks will not solve public health problems alone, since education, clear labelling and access to affordable healthy food are also essential. Nevertheless, I believe well-designed taxes can meaningfully reduce consumption and encourage healthier products."
+    }
+  },
+  {
+    "typeCode": "ESSAY",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Living in a city or the countryside",
+      "tags": ["society", "lifestyle"],
+      "topic": "Some people prefer to live in a big city, while others prefer to live in the countryside. Discuss the advantages of both and explain which you would prefer.",
+      "sample_answer": "Where people choose to live has a major effect on their daily lives. Big cities and the countryside both offer clear advantages, and the right choice depends largely on a person's priorities and stage of life. Personally, I would prefer to live in a city, at least for now.\n\nCities offer many opportunities that are difficult to find elsewhere. There are usually more jobs, particularly in fields such as technology, finance and the creative industries, and salaries are often higher. Cities also provide easy access to universities, hospitals, museums, restaurants and entertainment. Public transport means that residents can travel without a car, and people from many different cultures live side by side, which can make city life exciting and varied.\n\nThe countryside, however, has its own attractions. Rural areas are generally quieter, less polluted and closer to nature, which can benefit both physical and mental health. Housing is usually cheaper and more spacious, so families may be able to afford a home with a garden. In addition, smaller communities often have a stronger sense of belonging, as neighbours are more likely to know and support each other.\n\nIn my opinion, the city is the better choice for me because I am at the beginning of my career and value educational and professional opportunities. Nevertheless, I can understand why many people, especially those raising children or approaching retirement, prefer the peace and space of the countryside. Ideally, I would like to live in a city now and move somewhere quieter later in life."
+    }
+  },
+  {
+    "typeCode": "ESSAY",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Space exploration spending",
+      "tags": ["science", "policy"],
+      "topic": "Some argue that the large sums of money spent on space exploration would be better used to solve problems on Earth, such as poverty and climate change. To what extent do you agree or disagree?",
+      "sample_answer": "Space exploration is extremely expensive, and critics argue that the money would be better spent on urgent problems such as poverty and climate change. While these concerns are understandable, I largely disagree with the idea that space funding should be redirected entirely.\n\nIt is true that the problems facing people on Earth are serious and immediate. Millions of people lack clean water, healthcare or adequate food, and the effects of climate change are already causing floods, droughts and displacement. From this perspective, spending billions on sending robots to distant planets can appear difficult to justify. Governments have limited budgets, and every public investment involves choosing one priority over another.\n\nHowever, this argument overlooks two important points. First, space budgets are relatively small compared with overall government spending on areas such as health, education and defence. Eliminating them would not transform global poverty. Second, space research often helps to solve problems on Earth. Satellites monitor deforestation, track storms, measure sea-level rise and support agriculture, providing essential data for climate science and disaster response. Technologies developed for space missions have also contributed to advances in materials, communications and medical equipment.\n\nIn conclusion, although societies must continue to prioritise urgent human needs, I do not believe space exploration and solving problems on Earth are opposing goals. A balanced approach, in which space programmes receive reasonable funding and focus partly on benefits such as environmental monitoring, is more sensible than abandoning exploration altogether."
+    }
+  },
+
+  {
+    "typeCode": "WRITE_EMAIL",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Requesting a meeting with a tutor",
+      "tags": ["university", "formal"],
+      "task": "You are having difficulty understanding the requirements for your final assignment. Write an email to your tutor, Dr Lewis. In your email:\n- explain which part of the assignment is unclear\n- say why this is causing you concern\n- request a meeting and suggest suitable times",
+      "sample_answer": "Dear Dr Lewis,\n\nI am writing about the final assignment for the Environmental Policy module. I am unsure whether the case study should focus on one country or compare several, as the guidelines seem to allow both approaches.\n\nThis concerns me because I have already started collecting data, and I would like to avoid wasting time on the wrong structure.\n\nWould it be possible to meet briefly during your office hours? I am available on Tuesday afternoon or Thursday morning.\n\nThank you for your help.\n\nKind regards,\nAmir Khan"
+    }
+  },
+  {
+    "typeCode": "WRITE_EMAIL",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Complaint about a gym membership",
+      "tags": ["consumer", "formal"],
+      "task": "You recently joined a gym, but several facilities advertised on its website have not been available. Write an email to the gym manager. In your email:\n- describe the problems you have experienced\n- explain how these problems have affected you\n- say what you would like the gym to do",
+      "sample_answer": "Dear Manager,\n\nI joined your gym three weeks ago after seeing on your website that it offered a swimming pool, evening yoga classes and extended weekend opening hours. Unfortunately, the pool has been closed for repairs since I joined, and the yoga classes have been cancelled twice.\n\nAs a result, I have been unable to follow the exercise routine my physiotherapist recommended, and I feel I am paying for services I cannot use.\n\nI would appreciate a partial refund for this month or an extension to my membership until all facilities are available.\n\nYours faithfully,\nLaura Chen"
+    }
+  },
+  {
+    "typeCode": "WRITE_EMAIL",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Inviting a friend to visit",
+      "tags": ["personal", "informal"],
+      "task": "A friend who lives in another city has said they would like to visit you during the summer holidays. Write an email to your friend. In your email:\n- suggest when they could visit\n- describe some activities you could do together\n- give information about how to travel to your city",
+      "sample_answer": "Hi Jordan,\n\nIt was great to hear you'd like to visit this summer! The second week of July would be perfect, because my exams will be finished and the city festival starts then.\n\nWe could go to the outdoor concerts in the park, try the food market by the river and maybe hire bikes to explore the old town. If the weather is good, there's a lovely beach an hour away too.\n\nThe easiest way to get here is by train, which takes about three hours. I'll meet you at the station.\n\nSee you soon,\nSam"
+    }
+  },
+  {
+    "typeCode": "WRITE_EMAIL",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Applying for a part-time job",
+      "tags": ["work", "formal"],
+      "task": "You have seen an advertisement for a part-time job as a café assistant near your university. Write an email to the café owner, Ms Patel. In your email:\n- say which job you are interested in and where you saw it\n- describe your relevant experience and skills\n- explain when you are available to work",
+      "sample_answer": "Dear Ms Patel,\n\nI am writing to apply for the part-time café assistant position that I saw advertised on the university careers website.\n\nLast year, I worked for six months at a busy bakery, where I served customers, handled payments and prepared drinks. I enjoy working in a team, and I am comfortable staying calm and friendly during busy periods.\n\nAs a full-time student, I am available on weekday afternoons after two o'clock and all day on Saturdays. I would be happy to attend an interview at your convenience.\n\nYours sincerely,\nDaniel Okafor"
+    }
+  },
+  {
+    "typeCode": "WRITE_EMAIL",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Proposing a change at work",
+      "tags": ["work", "semi-formal"],
+      "task": "Your team spends a lot of time in long weekly meetings that you feel are not very productive. Write an email to your manager, Mr Evans. In your email:\n- describe the problem with the current meetings\n- suggest a specific change\n- explain how this change would benefit the team",
+      "sample_answer": "Dear Mr Evans,\n\nI wanted to share a suggestion about our weekly team meetings. They currently last around ninety minutes, and much of the time is spent on updates that affect only one or two people, so several colleagues have mentioned that they struggle to finish their work afterwards.\n\nCould we try a thirty-minute meeting focused only on decisions and shared problems, with individual updates posted in our project tool beforehand?\n\nI believe this would save everyone an hour each week and make our discussions more focused.\n\nBest regards,\nNadia"
+    }
+  },
+  {
+    "typeCode": "WRITE_EMAIL",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Problem with an online order",
+      "tags": ["consumer", "formal"],
+      "task": "You ordered a laptop bag online, but the item you received is different from the one you ordered. Write an email to the company's customer service team. In your email:\n- give details of your order\n- explain what is wrong with the item you received\n- say what you would like the company to do",
+      "sample_answer": "Dear Customer Service Team,\n\nOn 3 May I ordered a black leather laptop bag, order number 58214, which arrived yesterday.\n\nUnfortunately, the bag I received is brown and made of fabric, and it is also too small for a fifteen-inch laptop, which was the main reason I chose the original item.\n\nI would be grateful if you could send me the correct bag as soon as possible and arrange for this one to be collected at no extra cost. If the black bag is no longer available, I would like a full refund.\n\nYours faithfully,\nOmar Haddad"
+    }
+  }
+]

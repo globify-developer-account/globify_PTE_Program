@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="Global installed renewable capacity, 2015–2024">
+<rect width="800" height="500" fill="#ffffff"/>
+<text x="400" y="38" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#0f172a" text-anchor="middle">Global installed renewable capacity, 2015–2024</text>
+<line x1="90" x2="760" y1="405" y2="405" stroke="#e2e8f0"/>
+<text x="80" y="410" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">0</text>
+<line x1="90" x2="760" y1="338" y2="338" stroke="#e2e8f0"/>
+<text x="80" y="343" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">500</text>
+<line x1="90" x2="760" y1="271" y2="271" stroke="#e2e8f0"/>
+<text x="80" y="276" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">1,000</text>
+<line x1="90" x2="760" y1="204" y2="204" stroke="#e2e8f0"/>
+<text x="80" y="209" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">1,500</text>
+<line x1="90" x2="760" y1="137" y2="137" stroke="#e2e8f0"/>
+<text x="80" y="142" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">2,000</text>
+<line x1="90" x2="760" y1="70" y2="70" stroke="#e2e8f0"/>
+<text x="80" y="75" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="end">2,500</text>
+<line x1="90" x2="760" y1="405" y2="405" stroke="#475569"/>
+<text x="22" y="237.5" transform="rotate(-90 22 237.5)" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="14" fill="#475569" text-anchor="middle">Capacity (gigawatts)</text>
+<rect x="100.4" y="299.8" width="46.2" height="105.2" rx="2" fill="#2e5bff"/>
+<text x="123.5" y="293.8" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">785</text>
+<rect x="167.4" y="279" width="46.2" height="126" rx="2" fill="#2e5bff"/>
+<text x="190.5" y="273" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">940</text>
+<rect x="234.4" y="260.3" width="46.2" height="144.7" rx="2" fill="#2e5bff"/>
+<text x="257.5" y="254.3" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">1,080</text>
+<rect x="301.4" y="242.9" width="46.2" height="162.1" rx="2" fill="#2e5bff"/>
+<text x="324.5" y="236.9" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">1,210</text>
+<rect x="368.4" y="224.1" width="46.2" height="180.9" rx="2" fill="#2e5bff"/>
+<text x="391.5" y="218.1" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">1,350</text>
+<rect x="435.4" y="190.6" width="46.2" height="214.4" rx="2" fill="#2e5bff"/>
+<text x="458.5" y="184.6" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">1,600</text>
+<rect x="502.4" y="157.1" width="46.2" height="247.9" rx="2" fill="#2e5bff"/>
+<text x="525.5" y="151.1" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">1,850</text>
+<rect x="569.4" y="116.9" width="46.2" height="288.1" rx="2" fill="#2e5bff"/>
+<text x="592.5" y="110.9" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">2,150</text>
+<rect x="636.4" y="98.1" width="46.2" height="306.9" rx="2" fill="#2e5bff"/>
+<text x="659.5" y="92.1" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">2,290</text>
+<rect x="703.4" y="82.1" width="46.2" height="322.9" rx="2" fill="#2e5bff"/>
+<text x="726.5" y="76.1" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">2,410</text>
+<text x="123.5" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2015</text>
+<text x="190.5" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2016</text>
+<text x="257.5" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2017</text>
+<text x="324.5" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2018</text>
+<text x="391.5" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2019</text>
+<text x="458.5" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2020</text>
+<text x="525.5" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2021</text>
+<text x="592.5" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2022</text>
+<text x="659.5" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2023</text>
+<text x="726.5" y="427" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="13" fill="#475569" text-anchor="middle">2024</text>
+
+</svg>

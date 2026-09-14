@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="Global freshwater withdrawals by sector">
+<rect width="800" height="500" fill="#ffffff"/>
+<text x="400" y="38" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#0f172a" text-anchor="middle">Global freshwater withdrawals by sector</text>
+<path d="M280,275 L280,105 A170,170 0 1 1 118.3,327.5 Z" fill="#2e5bff" stroke="#ffffff" stroke-width="2"/>
+<path d="M280,275 L118.3,327.5 A170,170 0 0 1 171.6,144 Z" fill="#e8590c" stroke="#ffffff" stroke-width="2"/>
+<path d="M280,275 L171.6,144 A170,170 0 0 1 280,105 Z" fill="#0d9488" stroke="#ffffff" stroke-width="2"/>
+<rect x="500" y="221" width="16" height="16" rx="3" fill="#2e5bff"/>
+<text x="526" y="234" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" fill="#0f172a">Agriculture</text>
+<text x="760" y="234" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#0f172a" text-anchor="end">70%</text>
+<rect x="500" y="255" width="16" height="16" rx="3" fill="#e8590c"/>
+<text x="526" y="268" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" fill="#0f172a">Industry</text>
+<text x="760" y="268" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#0f172a" text-anchor="end">19%</text>
+<rect x="500" y="289" width="16" height="16" rx="3" fill="#0d9488"/>
+<text x="526" y="302" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" fill="#0f172a">Domestic use</text>
+<text x="760" y="302" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#0f172a" text-anchor="end">11%</text>
+</svg>

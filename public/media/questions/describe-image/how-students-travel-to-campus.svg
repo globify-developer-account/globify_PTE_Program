@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="Main way university students travel to campus">
+<rect width="800" height="500" fill="#ffffff"/>
+<text x="400" y="38" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#0f172a" text-anchor="middle">Main way university students travel to campus</text>
+<path d="M280,275 L280,105 A170,170 0 0 1 423.5,366.1 Z" fill="#2e5bff" stroke="#ffffff" stroke-width="2"/>
+<path d="M280,275 L423.5,366.1 A170,170 0 0 1 171.6,406 Z" fill="#e8590c" stroke="#ffffff" stroke-width="2"/>
+<path d="M280,275 L171.6,406 A170,170 0 0 1 115.3,232.7 Z" fill="#0d9488" stroke="#ffffff" stroke-width="2"/>
+<path d="M280,275 L115.3,232.7 A170,170 0 0 1 188.9,131.5 Z" fill="#c026d3" stroke="#ffffff" stroke-width="2"/>
+<path d="M280,275 L188.9,131.5 A170,170 0 0 1 280,105 Z" fill="#ca8a04" stroke="#ffffff" stroke-width="2"/>
+<rect x="500" y="187" width="16" height="16" rx="3" fill="#2e5bff"/>
+<text x="526" y="200" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" fill="#0f172a">Walking</text>
+<text x="760" y="200" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#0f172a" text-anchor="end">34%</text>
+<rect x="500" y="221" width="16" height="16" rx="3" fill="#e8590c"/>
+<text x="526" y="234" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" fill="#0f172a">Bus</text>
+<text x="760" y="234" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#0f172a" text-anchor="end">27%</text>
+<rect x="500" y="255" width="16" height="16" rx="3" fill="#0d9488"/>
+<text x="526" y="268" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" fill="#0f172a">Cycling</text>
+<text x="760" y="268" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#0f172a" text-anchor="end">18%</text>
+<rect x="500" y="289" width="16" height="16" rx="3" fill="#c026d3"/>
+<text x="526" y="302" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" fill="#0f172a">Car</text>
+<text x="760" y="302" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#0f172a" text-anchor="end">12%</text>
+<rect x="500" y="323" width="16" height="16" rx="3" fill="#ca8a04"/>
+<text x="526" y="336" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" fill="#0f172a">Train</text>
+<text x="760" y="336" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="15" font-weight="600" fill="#0f172a" text-anchor="end">9%</text>
+</svg>

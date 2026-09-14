@@ -1,0 +1,295 @@
+[
+  { "typeCode": "REPEAT_SENTENCE", "difficulty": "EASY", "content": { "title": "Exam booklet names", "tags": ["campus", "exams"], "sentence": "Please make sure your name is written clearly on the front of the booklet." } },
+  { "typeCode": "REPEAT_SENTENCE", "difficulty": "EASY", "content": { "title": "Climate policy lecture moved", "tags": ["campus"], "sentence": "The lecture on climate policy has been moved to the main auditorium." } },
+  { "typeCode": "REPEAT_SENTENCE", "difficulty": "MEDIUM", "content": { "title": "Tutorial attendance rule", "tags": ["campus", "rules"], "sentence": "Students who miss more than three tutorials may be asked to repeat the course." } },
+  { "typeCode": "REPEAT_SENTENCE", "difficulty": "MEDIUM", "content": { "title": "Exercise and memory", "tags": ["health", "research"], "sentence": "Research suggests that regular exercise improves both memory and concentration." } },
+  { "typeCode": "REPEAT_SENTENCE", "difficulty": "MEDIUM", "content": { "title": "Survey results publication", "tags": ["research"], "sentence": "The results of the survey will be published on the department website next month." } },
+  { "typeCode": "REPEAT_SENTENCE", "difficulty": "EASY", "content": { "title": "Returning laboratory equipment", "tags": ["campus", "science"], "sentence": "All laboratory equipment must be returned to the storage room after use." } },
+  { "typeCode": "REPEAT_SENTENCE", "difficulty": "HARD", "content": { "title": "Guest speaker background", "tags": ["energy", "careers"], "sentence": "Our guest speaker has spent most of her career developing affordable renewable energy systems." } },
+  { "typeCode": "REPEAT_SENTENCE", "difficulty": "MEDIUM", "content": { "title": "Scholarship deadline", "tags": ["campus", "funding"], "sentence": "Scholarship applications close at the end of this week, so please do not delay." } },
+  { "typeCode": "REPEAT_SENTENCE", "difficulty": "HARD", "content": { "title": "City architecture history", "tags": ["history", "architecture"], "sentence": "The economic history of the city can be traced through the architecture of its harbour." } },
+  { "typeCode": "REPEAT_SENTENCE", "difficulty": "HARD", "content": { "title": "Presentation time limit", "tags": ["campus", "assessment"], "sentence": "Group presentations should last no longer than fifteen minutes, including time for questions." } },
+
+  {
+    "typeCode": "RETELL_LECTURE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Why we yawn",
+      "tags": ["biology", "psychology"],
+      "lecture": "For a long time, scientists assumed that we yawn because our blood is short of oxygen. Experiments have not supported that idea: people breathing air rich in oxygen yawn just as often as anyone else. A more promising explanation is that yawning helps to cool the brain. When we take a deep breath and stretch the jaw, cooler air and increased blood flow may lower the temperature of the brain slightly, which could help us stay alert. This would explain why people yawn more when they are tired or bored, and less in very hot weather, when the air cannot provide much cooling. Yawning is also contagious, especially between close friends, which suggests it may play a social role as well.",
+      "sample_answer": "The lecture explains that yawning was once thought to be caused by a lack of oxygen, but experiments showed that extra oxygen does not reduce yawning. A better theory is that yawning cools the brain through deep breaths and increased blood flow, helping us stay alert. This fits the fact that people yawn more when tired and less in hot weather. The speaker adds that yawning is contagious, suggesting a social function."
+    }
+  },
+  {
+    "typeCode": "RETELL_LECTURE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The slow adoption of the barcode",
+      "tags": ["technology", "business"],
+      "lecture": "The barcode was patented in the early nineteen fifties, but for more than twenty years almost nobody used it. The idea was simple: represent a number as a pattern of lines that a machine could read. The problem was the reader. Early scanners were large, expensive and unreliable, and shops had no reason to buy them until manufacturers printed codes on their products. Manufacturers, in turn, would not print codes until shops had scanners. The deadlock was broken only when the grocery industry agreed on a single standard and cheap laser scanners became available at the same time. Once that happened, adoption was rapid, because the barcode made checkouts faster and gave shops accurate information about their stock.",
+      "sample_answer": "The lecture describes how the barcode, patented in the 1950s, went unused for over twenty years. Although the concept was simple, early scanners were costly and unreliable, and shops and manufacturers each waited for the other to adopt the technology first. This deadlock ended when the grocery industry agreed on one standard and cheap laser scanners appeared. Adoption then spread quickly, as barcodes sped up checkouts and improved stock information."
+    }
+  },
+  {
+    "typeCode": "RETELL_LECTURE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Urban heat islands",
+      "tags": ["environment", "cities"],
+      "lecture": "Cities are often several degrees warmer than the countryside around them, an effect known as the urban heat island. There are three main causes. First, materials such as concrete and asphalt absorb heat during the day and release it slowly at night. Second, cities have fewer trees and less open soil, so there is less evaporation to cool the air. Third, cars, air conditioners and factories all release waste heat directly into the street. The consequences are serious during heatwaves, when high night-time temperatures prevent people's bodies from recovering. Solutions include planting trees, painting roofs in light colours that reflect sunlight, and designing streets so that air can move through them.",
+      "sample_answer": "The lecture explains the urban heat island effect, where cities are warmer than the surrounding countryside. It has three causes: concrete and asphalt store heat and release it at night, fewer trees mean less cooling evaporation, and vehicles, air conditioners and factories emit waste heat. This is dangerous in heatwaves because warm nights stop people recovering. Solutions include planting trees, using reflective light-coloured roofs and designing streets for better airflow."
+    }
+  },
+  {
+    "typeCode": "RETELL_LECTURE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "What borrowed words reveal",
+      "tags": ["language", "history"],
+      "lecture": "Every language borrows words from others, and the pattern of borrowing tells us a great deal about history. English, for example, took many of its words for food and government from French after the Norman conquest, while everyday words for farm animals stayed Anglo-Saxon. This reflects who held power: French-speaking nobles ate the meat, and English-speaking farmers raised the animals. Borrowing continues today, but the direction has changed. Many languages now take technology and business vocabulary from English, sometimes to the frustration of language authorities who try to create local alternatives. In practice, speakers usually adopt whichever word is shortest and most widely understood, regardless of official advice.",
+      "sample_answer": "The lecture argues that borrowed words reveal history. After the Norman conquest, English adopted French words for food and government while keeping Anglo-Saxon words for farm animals, reflecting that French-speaking nobles ate the meat raised by English farmers. Today many languages borrow technology and business terms from English, despite language authorities promoting local alternatives, because speakers tend to choose the shortest and most widely understood word."
+    }
+  },
+  {
+    "typeCode": "RETELL_LECTURE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The economics of free delivery",
+      "tags": ["business", "consumer behaviour"],
+      "lecture": "Online retailers often offer free delivery, but of course delivery is never actually free. The cost is either built into the price of the products or recovered through minimum order values. Research on shopping behaviour shows why retailers accept this arrangement. Customers react far more strongly to a delivery charge than to an equal increase in the price of the item itself. A five dollar shipping fee feels like a penalty, while a product that is five dollars more expensive barely registers. As a result, many shoppers add extra items to their basket just to reach the free delivery threshold. For retailers, this increases the average order size, which usually more than covers the cost of delivery.",
+      "sample_answer": "The lecture explains that free delivery is never truly free: its cost is included in product prices or recovered through minimum order values. Retailers use it because customers react much more negatively to a separate shipping fee than to an equivalent price increase. Consequently, shoppers often add extra items to reach free delivery thresholds, which raises average order sizes and usually covers the delivery cost."
+    }
+  },
+  {
+    "typeCode": "RETELL_LECTURE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Pollinators beyond honeybees",
+      "tags": ["ecology", "agriculture"],
+      "lecture": "When people think about pollination, they usually picture honeybees, but honeybees are only part of the story. Thousands of wild bee species, as well as flies, butterflies, moths, beetles, birds and even bats, carry pollen between plants. In some crops, wild insects are actually more effective than honeybees, because they visit flowers at different times of day or in cooler weather. This matters because relying on a single managed species is risky. If a disease spreads through honeybee colonies, farms with a variety of wild pollinators are far better protected. For that reason, many researchers now recommend leaving strips of wild flowers along the edges of fields.",
+      "sample_answer": "The lecture points out that honeybees are only one type of pollinator; wild bees, flies, butterflies, moths, beetles, birds and bats also carry pollen. For some crops, wild insects are more effective because they are active at different times or in cooler weather. Depending on one species is risky, since disease could affect honeybees, so researchers recommend planting wild flower strips beside fields to support diverse pollinators."
+    }
+  },
+  {
+    "typeCode": "RETELL_LECTURE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "The purpose of medieval maps",
+      "tags": ["history", "geography"],
+      "lecture": "Medieval maps are often criticised for being inaccurate, but that criticism misunderstands their purpose. Many were not designed to help travellers find their way. Instead, they presented a picture of the world as their makers understood it, combining geography with religion, history and legend. A single map might place a holy city at the centre, a biblical garden in the east, and imaginary creatures around the edges. Practical navigation relied on a different kind of document: written lists of ports, distances and landmarks, and later, sea charts drawn from sailors' direct experience. Only when these practical charts improved did the idea of a map as an accurate measurement of space become dominant.",
+      "sample_answer": "The lecture argues that medieval maps are unfairly judged as inaccurate because their purpose was not navigation. They represented their makers' worldview, mixing geography with religion, history and legend, such as placing a holy city at the centre. Travellers instead relied on written lists of ports and distances, and later on sea charts based on sailors' experience. The modern idea of maps as accurate measurements developed as those practical charts improved."
+    }
+  },
+  {
+    "typeCode": "RETELL_LECTURE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Classroom noise and learning",
+      "tags": ["education", "health"],
+      "lecture": "Classrooms are rarely silent, and a certain amount of background noise is unavoidable. However, studies suggest that noise affects learning more than teachers often realise. Young children are particularly vulnerable, because their ability to separate a speaker's voice from surrounding sounds is still developing, and they cannot fill in missed words using context as adults do. Children in noisy schools, such as those near airports or busy roads, tend to perform worse in reading tests. The good news is that simple changes help a great deal. Carpets, soft ceiling panels and even curtains absorb sound, and seating children closer to the teacher reduces the effort needed to follow a lesson.",
+      "sample_answer": "The lecture explains that classroom noise affects learning more than many teachers realise. Young children are especially affected because they are still learning to separate a voice from background sounds and cannot use context to fill gaps. Pupils in noisy schools near airports or roads perform worse in reading. However, carpets, soft ceiling panels, curtains and seating children nearer the teacher can significantly reduce the problem."
+    }
+  },
+
+  { "typeCode": "ANSWER_SHORT_QUESTION", "difficulty": "EASY", "content": { "title": "Designing buildings", "tags": ["jobs"], "question": "What do we call a person whose job is to design buildings?", "answer": "an architect" } },
+  { "typeCode": "ANSWER_SHORT_QUESTION", "difficulty": "EASY", "content": { "title": "Organ for breathing", "tags": ["body"], "question": "Which organs of the body take in air when we breathe?", "answer": "lungs" } },
+  { "typeCode": "ANSWER_SHORT_QUESTION", "difficulty": "MEDIUM", "content": { "title": "Measuring temperature", "tags": ["science"], "question": "What instrument is normally used to measure temperature?", "answer": "a thermometer" } },
+  { "typeCode": "ANSWER_SHORT_QUESTION", "difficulty": "EASY", "content": { "title": "The day before Monday", "tags": ["time"], "question": "If today is Monday, what day of the week was it yesterday?", "answer": "Sunday" } },
+  { "typeCode": "ANSWER_SHORT_QUESTION", "difficulty": "MEDIUM", "content": { "title": "Opposite of ancient", "tags": ["vocabulary"], "question": "What word means the opposite of ancient?", "answer": "modern" } },
+  { "typeCode": "ANSWER_SHORT_QUESTION", "difficulty": "EASY", "content": { "title": "Season after summer", "tags": ["time"], "question": "Which season comes directly after summer?", "answer": "autumn" } },
+  { "typeCode": "ANSWER_SHORT_QUESTION", "difficulty": "EASY", "content": { "title": "Young cat", "tags": ["animals"], "question": "What do we call a very young cat?", "answer": "a kitten" } },
+  { "typeCode": "ANSWER_SHORT_QUESTION", "difficulty": "MEDIUM", "content": { "title": "Borrowing books", "tags": ["places"], "question": "Where would you usually go to borrow a book without buying it?", "answer": "a library" } },
+  { "typeCode": "ANSWER_SHORT_QUESTION", "difficulty": "MEDIUM", "content": { "title": "Underground part of a plant", "tags": ["plants"], "question": "Which part of a plant usually grows under the ground?", "answer": "the roots" } },
+  { "typeCode": "ANSWER_SHORT_QUESTION", "difficulty": "EASY", "content": { "title": "Sides of a triangle", "tags": ["mathematics"], "question": "How many sides does a triangle have?", "answer": "three" } },
+  { "typeCode": "ANSWER_SHORT_QUESTION", "difficulty": "HARD", "content": { "title": "Study of the stars", "tags": ["science"], "question": "What is the name of the science that studies stars and planets?", "answer": "astronomy" } },
+  { "typeCode": "ANSWER_SHORT_QUESTION", "difficulty": "HARD", "content": { "title": "Book of word meanings", "tags": ["language"], "question": "What kind of book lists words in alphabetical order and explains their meanings?", "answer": "a dictionary" } },
+
+  {
+    "typeCode": "SUMMARIZE_GROUP_DISCUSSION",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Recorded or live lectures",
+      "tags": ["education", "technology"],
+      "discussion": "Speaker A: I much prefer recorded lectures. I can pause when something is difficult, speed up when it's easy, and study at times that suit my part-time job. Attending a lecture at nine o'clock on a Monday morning simply doesn't fit into my week anymore.\nSpeaker B: Flexibility is useful, but I've noticed that when everything is recorded, I keep postponing it. Last term I ended up with nearly twenty hours of video to catch up on before the exams. A live lecture gives me a routine, and I can ask the lecturer a question the moment I'm confused.\nSpeaker C: I think the best answer is to combine the two. Universities could keep recordings for revision but still run smaller live sessions where students discuss the material together. What we really lose online isn't the lecture itself, it's the contact with other students, and that's where a lot of learning actually happens.",
+      "sample_answer": "The speakers discuss whether recorded or live lectures are better. The first speaker prefers recordings because they can pause, change the speed and study around a part-time job. The second speaker finds that recordings lead to procrastination, leaving hours of catching up before exams, and values the routine and immediate questions of live lectures. The third speaker suggests combining both, using recordings for revision alongside small live discussion sessions, because contact with other students is where much learning happens."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_GROUP_DISCUSSION",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Car-free city centres",
+      "tags": ["cities", "transport"],
+      "discussion": "Speaker A: Closing city centres to cars is long overdue. Where it has been tried, air quality improved within months, streets became safer for children, and cafés and shops gained space to put tables outside. People actually spend more time in the centre when they aren't dodging traffic.\nSpeaker B: That works in a compact city with good public transport, but many towns aren't like that. Older people, disabled residents and anyone carrying heavy shopping still depend on cars. If the centre becomes hard to reach, those customers simply go to out-of-town shopping centres instead.\nSpeaker C: Both points are fair, so I'd introduce it gradually. Start with weekends or a few streets, improve bus services at the same time, and keep access for delivery vehicles and blue badge holders. Then measure what happens to visitor numbers and pollution before deciding whether to expand it.",
+      "sample_answer": "The speakers discuss banning cars from city centres. The first speaker supports it, saying that where it has been tried, air quality and safety improved, businesses gained outdoor space and people spent longer in the centre. The second speaker warns that it suits only compact cities with good public transport, and that older, disabled and heavily laden shoppers may go elsewhere. The third speaker recommends a gradual approach, with better buses, exemptions for deliveries and disabled drivers, and careful measurement before expanding."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_GROUP_DISCUSSION",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Paying students for good grades",
+      "tags": ["education", "motivation"],
+      "discussion": "Speaker A: Some schools have experimented with paying students for good grades, and I can see the appeal. Teenagers respond to rewards, and for students from poorer families a small payment could make studying feel more worthwhile than taking a weekend job. It's not so different from adults being paid a bonus for doing their work well.\nSpeaker B: I'm very sceptical. Research on motivation suggests that paying people for a task can reduce their interest in the task itself. Once the money stops, students may work less than before. It also teaches them that learning only matters when someone is paying for it.\nSpeaker C: The evidence I've read is mixed rather than clearly negative. Paying for results rarely worked, because students didn't know how to improve. Paying for specific actions, like reading books or attending classes, worked better. So the design matters more than the basic idea of a reward.",
+      "sample_answer": "The speakers discuss paying students for good grades. The first speaker sees benefits, arguing that teenagers respond to rewards and payments could help students from poorer families prioritise study over part-time work. The second speaker is sceptical, citing research that payment can reduce genuine interest and that effort may fall once rewards stop. The third speaker says the evidence is mixed: paying for results rarely worked, but rewarding specific actions such as reading or attendance was more effective, so design is crucial."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_GROUP_DISCUSSION",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Tourism in small towns",
+      "tags": ["tourism", "communities"],
+      "discussion": "Speaker A: Tourism has completely changed my home town, mostly for the better. There are new restaurants and hotels, young people can find jobs without moving to the city, and the old buildings in the centre have finally been restored. Twenty years ago half the shops on the main street were empty, and now they are all busy.\nSpeaker B: I'd be more cautious. In my town, so many houses became holiday rentals that local families can no longer afford to live there. For half the year the streets are crowded, and for the other half they are almost empty because the homes belong to visitors.\nSpeaker C: I think the problem isn't tourism itself but the lack of planning. Some towns now limit the number of short-term rentals and charge a small tourist tax, which pays for housing and public services. That way residents share the benefits instead of just dealing with the crowds.",
+      "sample_answer": "The speakers discuss the effects of tourism on small towns. The first speaker is positive, noting new restaurants and hotels, local jobs for young people and the restoration of historic buildings. The second speaker highlights problems, explaining that holiday rentals have made housing unaffordable for local families and left streets crowded in one season and empty in the other. The third speaker argues that planning is the real issue, and suggests limiting short-term rentals and introducing a tourist tax to fund housing and services."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_GROUP_DISCUSSION",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Should homework be reduced",
+      "tags": ["education", "schools"],
+      "discussion": "Speaker A: I think primary schools should give much less homework. Young children already spend six hours a day at school, and they need time to play, read for pleasure and spend time with their families. Many parents also end up doing the homework themselves, which rather defeats the purpose, and families without much free time in the evenings are put at a disadvantage.\nSpeaker B: I don't agree with removing it. Short, regular practice at home helps children remember what they learned in class, especially in reading and mathematics. Homework also shows parents what their children are studying, which keeps them involved.\nSpeaker C: Perhaps the amount isn't the main issue. A lot of homework is simply unfinished classwork or worksheets that nobody checks. If teachers set fewer tasks but made them meaningful, like reading together or a small project, children would benefit and families wouldn't feel so much pressure.",
+      "sample_answer": "The speakers discuss homework for young children. The first speaker wants much less of it, arguing that children already spend long days at school and need time for play, reading and family, and that parents often complete it themselves. The second speaker believes short regular practice helps children remember lessons, particularly in reading and mathematics, and keeps parents involved. The third speaker suggests the quality matters more than the amount, recommending fewer but more meaningful tasks, such as shared reading or small projects."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_GROUP_DISCUSSION",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Software in job recruitment",
+      "tags": ["technology", "employment"],
+      "discussion": "Speaker A: Many large companies now use software to screen job applications, and I understand why. A single graduate position can attract thousands of applicants, and automated screening saves recruiters weeks of work. It can also apply exactly the same criteria to every candidate, whereas a tired recruiter reading the five hundredth application is unlikely to be very consistent.\nSpeaker B: The same criteria aren't necessarily fair criteria, though. If a system learns from a company's past hiring decisions, it can repeat the biases in those decisions. Candidates also have no idea why they were rejected, so they can't challenge the result or improve their next application.\nSpeaker C: I think both concerns can be managed. Software could handle simple checks, such as whether an applicant has the required qualification, while people make the final decisions. Companies should also test their systems regularly for bias and give rejected candidates at least a short explanation.",
+      "sample_answer": "The speakers discuss using software to screen job applications. The first speaker supports it because positions attract thousands of applicants, automation saves recruiters time, and every candidate is judged by the same criteria. The second speaker argues that consistent criteria are not always fair, since systems trained on past decisions may repeat biases, and rejected candidates receive no explanation. The third speaker proposes a balance, with software handling simple checks, people making final decisions, regular bias testing and brief explanations for rejected applicants."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_GROUP_DISCUSSION",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Working while studying",
+      "tags": ["students", "work"],
+      "discussion": "Speaker A: I work about fifteen hours a week in a supermarket, and honestly it has helped me. I'm better at managing my time than I was in my first year, and I've learned how to deal with customers and colleagues, which employers keep asking about in interviews.\nSpeaker B: Fifteen hours sounds manageable, but a lot of students work far more because living costs are so high. A friend of mine works thirty hours a week, and she regularly misses lectures and submits assignments late. For her, the job is damaging her degree rather than adding to it.\nSpeaker C: That's why I think universities should get involved. They could offer more paid jobs on campus with flexible shifts that fit around the timetable, and give clear advice about a sensible maximum number of hours. Better financial support would also mean fewer students need to work so much.",
+      "sample_answer": "The speakers discuss working while at university. The first speaker works fifteen hours a week and believes the job has improved their time management and communication skills, which employers value. The second speaker notes that high living costs force many students to work much longer hours, and describes a friend whose thirty-hour working week causes missed lectures and late assignments. The third speaker suggests universities offer flexible on-campus jobs, advise on a sensible maximum number of hours and improve financial support."
+    }
+  },
+  {
+    "typeCode": "SUMMARIZE_GROUP_DISCUSSION",
+    "difficulty": "HARD",
+    "content": {
+      "title": "The role of modern zoos",
+      "tags": ["animals", "conservation"],
+      "discussion": "Speaker A: Modern zoos do important conservation work. Several species that had disappeared from the wild have survived only because zoos bred them and later released them. Zoos also fund research and field projects that most visitors never hear about.\nSpeaker B: Those success stories are real, but they involve a small number of species. Most animals in zoos are there because they are popular with visitors, not because they are endangered. Large animals such as elephants often show signs of stress in captivity, however good the enclosure is.\nSpeaker C: I'd separate the question by type of animal. Zoos seem well suited to smaller species with modest space needs, especially where breeding programmes make a real difference. For animals that travel long distances in the wild, it might be better to support protected areas in their natural habitat instead.",
+      "sample_answer": "The speakers discuss the value of zoos. The first speaker emphasises conservation, pointing out that some species survived only through zoo breeding and release programmes, and that zoos fund research and field projects. The second speaker argues that such successes involve few species, since most zoo animals are chosen for popularity, and that large animals like elephants often suffer stress in captivity. The third speaker suggests zoos focus on smaller species that benefit from breeding, while wide-ranging animals are protected in their natural habitats."
+    }
+  },
+
+  {
+    "typeCode": "RESPOND_TO_SITUATION",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Missed group project meeting",
+      "tags": ["university", "teamwork"],
+      "situation": "You are working on a group project at university. You missed yesterday's meeting because your train was cancelled, and the group made several decisions without you. One member has messaged to ask whether you agree with the new plan. Call your group leader, explain what happened, and suggest how you can catch up.",
+      "sample_answer": "Hi Sam, it's me. I'm really sorry I missed yesterday's meeting. My train was cancelled and I couldn't reach anyone in time to let you know. I've seen the message about the new plan, and it looks sensible, but I'd like to understand the decisions properly before I agree. Could you send me the notes, or could we have a quick video call this evening? I'm also happy to take on an extra section to make up for missing the meeting."
+    }
+  },
+  {
+    "typeCode": "RESPOND_TO_SITUATION",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Noisy neighbour late at night",
+      "tags": ["housing", "neighbours"],
+      "situation": "You live in an apartment and have an important exam tomorrow morning. It is eleven o'clock at night, and your neighbour is playing loud music. This has happened several times this week. Knock on your neighbour's door and politely ask them to turn the music down.",
+      "sample_answer": "Hi, sorry to disturb you so late. I live next door. I don't know if you realise, but the music is quite loud in my apartment, and I have an important exam early tomorrow morning. Would you mind turning it down a little tonight? I know it's been a busy week, and I'm not trying to spoil your evening. If you ever have a party planned, just let me know in advance and I can make other arrangements. Thanks very much for understanding."
+    }
+  },
+  {
+    "typeCode": "RESPOND_TO_SITUATION",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Wrong order at a restaurant",
+      "tags": ["customer service", "food"],
+      "situation": "You are having lunch with a colleague at a busy restaurant. You ordered a vegetarian pasta dish, but the waiter has brought you a pasta dish with chicken. You do not eat meat, and you only have forty minutes before you must return to work. Speak to the waiter about the problem.",
+      "sample_answer": "Excuse me, I'm sorry to bother you, but I think there's been a mistake with my order. I asked for the vegetarian pasta, but this one has chicken in it, and I don't eat meat. Would it be possible to change it? I only have about forty minutes before I need to be back at work, so if the vegetarian pasta will take a long time, could you suggest something quicker? Thank you, I appreciate your help."
+    }
+  },
+  {
+    "typeCode": "RESPOND_TO_SITUATION",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Asking a tutor for an extension",
+      "tags": ["university", "deadlines"],
+      "situation": "Your essay is due on Friday, but you have been ill with a high fever for most of this week and have a note from your doctor. You have written about half of the essay. Go to your tutor's office hours and ask for an extension to the deadline.",
+      "sample_answer": "Good afternoon. I wanted to talk to you about the essay that's due on Friday. Unfortunately, I've been ill with a high fever for most of this week, and I have a note from my doctor that I can show you. I've managed to write about half of the essay, but I don't think I can finish it to a good standard by Friday. Would it be possible to have an extension of a few days, perhaps until next Wednesday? I can send you my draft now if that helps."
+    }
+  },
+  {
+    "typeCode": "RESPOND_TO_SITUATION",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Declining a colleague's invitation",
+      "tags": ["work", "social"],
+      "situation": "A colleague you get on well with has invited you to her birthday dinner on Saturday evening. However, you have already promised to help your brother move into his new flat that weekend, and you will be busy until late. Talk to your colleague, thank her for the invitation and explain why you cannot come.",
+      "sample_answer": "Hi Maria, thank you so much for inviting me to your birthday dinner, that's really kind of you. Unfortunately, I won't be able to come on Saturday. I promised my brother ages ago that I'd help him move into his new flat that weekend, and we'll probably be carrying boxes until late in the evening. I'm really sorry to miss it. Could I take you out for a coffee next week to celebrate instead? I hope you have a wonderful evening."
+    }
+  },
+  {
+    "typeCode": "RESPOND_TO_SITUATION",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Lost library book",
+      "tags": ["library", "university"],
+      "situation": "You borrowed a textbook from the university library three weeks ago, and now you cannot find it anywhere. You think you may have left it on a bus. The book is due back tomorrow. Go to the library help desk, explain the situation and ask what you should do.",
+      "sample_answer": "Hello, I'm hoping you can help me. About three weeks ago I borrowed a textbook, and it's due back tomorrow, but I can't find it anywhere. I think I may have left it on the bus. I've already contacted the bus company's lost property office, but they haven't found it yet. Could I extend the loan for a few days while I keep looking? And if it doesn't turn up, what's the process for paying for a replacement?"
+    }
+  },
+  {
+    "typeCode": "RESPOND_TO_SITUATION",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Double-booked meeting room",
+      "tags": ["work", "planning"],
+      "situation": "You booked the large meeting room for an important client presentation at two o'clock. When you arrive to prepare, you find another team already using the room, and they say they also booked it. Your client will arrive in twenty minutes. Speak to the other team's manager and try to resolve the problem.",
+      "sample_answer": "Hi, sorry to interrupt. I think there may be a booking mix-up. I reserved this room for a client presentation at two, and I have the confirmation email here. It sounds as though you also booked it, so it's probably a system error. My client arrives in twenty minutes and I need the projector and the space for eight people. Is there any chance your team could move to the smaller room on the second floor? I'll report the error so it doesn't happen again."
+    }
+  },
+  {
+    "typeCode": "RESPOND_TO_SITUATION",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Recommending a place to visit",
+      "tags": ["travel", "friends"],
+      "situation": "A friend from another country is visiting your city for the first time next month. She will be staying for only one day and has asked you for a recommendation. She enjoys history and good food but does not like crowded places. Leave her a voice message with your advice.",
+      "sample_answer": "Hi Anna, it's great that you're coming next month! Since you only have one day, I'd start early at the old fort, because it's quiet in the morning and the history there is fascinating. After that, walk down to the old market area for lunch. There's a small family restaurant near the clock tower that serves amazing local dishes. In the afternoon, the botanical gardens are peaceful and never too crowded. Message me if you'd like me to meet you there."
+    }
+  },
+  {
+    "typeCode": "RESPOND_TO_SITUATION",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Overcharged on a phone bill",
+      "tags": ["consumer", "customer service"],
+      "situation": "You have received your monthly mobile phone bill, and it is almost twice the usual amount. The bill includes charges for international calls, but you have not made any calls abroad. Phone the customer service line, explain the problem and ask the company to correct your bill.",
+      "sample_answer": "Hello, I'm calling about my latest mobile phone bill. It's almost twice as much as I normally pay, and when I checked the details, I found several charges for international calls. I haven't made any calls abroad this month, so I think there must be an error, or possibly someone has used my account. Could you please look into it and remove the incorrect charges? I'd also like to know whether I should change my password or take any other steps to protect my account."
+    }
+  },
+  {
+    "typeCode": "RESPOND_TO_SITUATION",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Welcoming a new team member",
+      "tags": ["work", "teamwork"],
+      "situation": "A new colleague has just joined your team and is sitting at the desk next to yours. Your manager is away today, so nobody has shown him around the office yet. He looks a little unsure about what to do. Introduce yourself and help him feel welcome on his first morning.",
+      "sample_answer": "Hi, welcome to the team! I'm Priya, and I sit right next to you. Our manager is away today, so I'm sorry nobody has shown you around yet. Let me give you a quick tour: the kitchen is just down the corridor, and the printers are near the lifts. The IT desk on the ground floor can set up your laptop and email. We usually have lunch together around one, so please join us. And don't hesitate to ask me anything today."
+    }
+  },
+
+  { "typeCode": "READ_ALOUD", "difficulty": "EASY", "content": { "title": "The benefits of walking meetings", "tags": ["work", "health"], "passage": "Some companies now encourage employees to hold short meetings while walking rather than sitting around a table. Supporters say that walking improves concentration and makes conversations feel less formal, so colleagues share ideas more openly. It also adds a little physical activity to a working day that is otherwise spent almost entirely in front of a screen." } },
+  { "typeCode": "READ_ALOUD", "difficulty": "MEDIUM", "content": { "title": "How volcanoes enrich soil", "tags": ["geology", "agriculture"], "passage": "Although volcanic eruptions can be devastating, the land around many volcanoes is remarkably fertile. Over time, ash and weathered lava release minerals such as potassium and phosphorus, which plants need to grow. This is why farming communities have repeatedly returned to the slopes of active volcanoes, accepting a considerable risk in exchange for unusually productive fields." } },
+  { "typeCode": "READ_ALOUD", "difficulty": "HARD", "content": { "title": "Antarctic ice cores", "tags": ["climate", "science"], "passage": "Ice cores drilled from the Antarctic sheet contain tiny bubbles of air trapped as snow was compressed over hundreds of thousands of years. By analysing the composition of these bubbles, climatologists can reconstruct atmospheric conditions with extraordinary precision, establishing a detailed relationship between greenhouse gas concentrations and global temperatures across many glacial cycles." } },
+  { "typeCode": "READ_ALOUD", "difficulty": "MEDIUM", "content": { "title": "The origins of public libraries", "tags": ["history", "education"], "passage": "Public libraries, funded by taxes and open to everyone, became common in the nineteenth century. Their founders hoped that access to books would help working people educate themselves and participate more fully in society. Today, libraries still provide that opportunity, although many visitors now come for free internet access, study space and community events as much as for books." } },
+  { "typeCode": "READ_ALOUD", "difficulty": "EASY", "content": { "title": "Why leaves change colour", "tags": ["biology", "nature"], "passage": "In autumn, many trees stop producing chlorophyll, the green pigment that helps leaves capture sunlight. As the green fades, yellow and orange pigments that were present all summer finally become visible. Some trees also produce red pigments at this time, which may protect the leaves while the tree recovers valuable nutrients before winter arrives." } },
+  { "typeCode": "READ_ALOUD", "difficulty": "HARD", "content": { "title": "Behavioural economics and pensions", "tags": ["economics", "psychology"], "passage": "Traditional economic theory assumed that individuals would rationally save enough for retirement. Behavioural economists observed something different: many employees never joined pension schemes simply because enrolment required paperwork. When employers made enrolment automatic while still allowing people to leave, participation rose dramatically, demonstrating how powerfully default options influence long-term financial decisions." } }
+]

@@ -59,7 +59,10 @@ users out — do not launch with any of them unticked.
 
 - [ ] Demo students removed, if you do not want them in your analytics. The seed
       creates ten with practice history.
-- [ ] Question bank reviewed. The seed ships 35 questions; check the answer keys
+- [ ] Question bank loaded: `npm run content:generate -- --from content/questions --publish`
+      (see DEPLOYMENT.md, Step 5). Every task type should show at least eight
+      published questions in /admin/questions.
+- [ ] Question bank reviewed. Check the answer keys
       on anything you have edited, especially Highlight Incorrect Words, whose
       key is word *indexes* into the passage and breaks if the passage is edited
       without re-selecting.

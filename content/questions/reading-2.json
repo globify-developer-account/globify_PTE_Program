@@ -1,0 +1,497 @@
+[
+  {
+    "typeCode": "READING_MCQ_SINGLE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "The purpose of sleep in animals",
+      "tags": ["biology", "sleep"],
+      "passage": "Almost every animal that scientists have studied sleeps in some form, from mammals and birds to insects and even jellyfish, which have no brain at all. This is surprising, because sleep appears to be a dangerous state. A sleeping animal cannot watch for predators, search for food or care for its young. If sleep offered no important benefit, evolution would be expected to have removed it long ago. Researchers have proposed several functions. Sleep seems to allow the brain to clear waste products that build up during waking hours, to strengthen memories, and to save energy at times when activity would be less productive. Different animals have also developed clever ways to reduce the risks. Some dolphins and birds can sleep with one half of the brain at a time, keeping the other half alert. The fact that sleep has survived despite its dangers is strong evidence that it is essential rather than optional.",
+      "question": "What does the writer suggest is the strongest evidence that sleep is essential?",
+      "options": [
+        { "text": "Sleeping animals are able to watch for predators", "correct": false },
+        { "text": "Sleep has survived across species despite being dangerous", "correct": true },
+        { "text": "Only animals with large brains need to sleep", "correct": false },
+        { "text": "Dolphins and birds sleep for longer than other animals", "correct": false }
+      ],
+      "explanation": "The final sentence states that sleep surviving despite its dangers is strong evidence that it is essential. The passage says sleeping animals cannot watch for predators, that even brainless jellyfish sleep, and it never compares sleep length."
+    }
+  },
+  {
+    "typeCode": "READING_MCQ_SINGLE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Microfinance and poverty",
+      "tags": ["economics", "development"],
+      "passage": "In the late twentieth century, microfinance, the practice of lending very small sums to people without access to banks, was widely promoted as a powerful tool against poverty. Stories of women using tiny loans to start successful businesses attracted enormous attention, and the idea spread to dozens of countries. Later research produced a more cautious picture. Several large randomised studies found that access to microloans did help some borrowers expand existing businesses and manage irregular incomes, for example by paying for school fees or medical costs when earnings were low. However, on average, the loans did not lead to dramatic increases in household income or lift large numbers of people out of poverty. In some areas, borrowers took out several loans from competing lenders and struggled with repayments. Most researchers now view microfinance as a useful financial service rather than the transformative solution it was once believed to be.",
+      "question": "What is the main point of the passage?",
+      "options": [
+        { "text": "Microfinance has failed and should no longer be offered to poor households", "correct": false },
+        { "text": "Microfinance mainly benefits banks rather than borrowers", "correct": false },
+        { "text": "Research shows microfinance is useful but less transformative than first claimed", "correct": true },
+        { "text": "Microloans have lifted most borrowers out of poverty in many countries", "correct": false }
+      ],
+      "explanation": "The passage describes early enthusiasm, then research showing modest benefits, concluding that microfinance is a useful service rather than a transformative solution. It does not call it a failure, discuss bank profits, or claim most borrowers escaped poverty."
+    }
+  },
+  {
+    "typeCode": "READING_MCQ_SINGLE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Translation and meaning",
+      "tags": ["language", "literature"],
+      "passage": "It is often said that something is always lost in translation, and in a narrow sense this is true. Wordplay, rhythm and the associations that particular words carry in one culture rarely survive intact when moved into another language. Yet this familiar complaint overlooks what translators actually do. A skilled literary translator does not aim to reproduce each word of the original, which would frequently produce awkward or even misleading sentences. Instead, the translator makes a series of judgements about which qualities of a text matter most, whether humour, tone, argument or sound, and seeks equivalent effects in the new language. In doing so, translators sometimes create passages that readers of the translation find more vivid than a literal version could ever be. Translation, then, is better understood not as a process of inevitable loss, but as a creative act of interpretation in which some features are sacrificed so that others can be preserved.",
+      "question": "Which statement best reflects the writer's view of translation?",
+      "options": [
+        { "text": "Good translators reproduce every word of the original as closely as possible", "correct": false },
+        { "text": "Translation inevitably destroys the most important features of a text", "correct": false },
+        { "text": "Wordplay and rhythm can always be preserved by a skilled translator", "correct": false },
+        { "text": "Translation is a creative interpretation that balances what is kept and lost", "correct": true }
+      ],
+      "explanation": "The writer concludes that translation is a creative act of interpretation, sacrificing some features to preserve others. The passage rejects word-for-word translation, disputes the idea of inevitable loss, and says wordplay rarely survives intact."
+    }
+  },
+  {
+    "typeCode": "READING_MCQ_SINGLE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The design of supermarket layouts",
+      "tags": ["business", "psychology"],
+      "passage": "Supermarket layouts are rarely accidental. Essential items such as milk, bread and eggs are often placed towards the back of the store, so that customers must walk past many other products to reach them. Along the way, shoppers encounter displays at the ends of aisles, which are prime locations that manufacturers frequently pay for. Products placed at eye level typically sell better than those on the top or bottom shelves, which is why the most profitable brands usually occupy the middle shelves, while cheaper alternatives may require customers to bend down. Even the entrance is carefully designed. Many stores place fresh fruit, vegetables and flowers near the door, because bright colours and pleasant smells create an impression of freshness and quality that shoppers may then associate with the entire store. None of these techniques forces anyone to buy more, but together they make unplanned purchases considerably more likely.",
+      "question": "According to the passage, why are fresh fruit and flowers often placed near the entrance?",
+      "options": [
+        { "text": "They need to be kept close to the doors to stay cool", "correct": false },
+        { "text": "Manufacturers pay the highest prices for these locations", "correct": false },
+        { "text": "They create an impression of freshness associated with the whole store", "correct": true },
+        { "text": "Customers usually want to buy them before any other products", "correct": false }
+      ],
+      "explanation": "The passage says colours and smells near the door create an impression of freshness and quality linked to the entire store. Temperature is not mentioned, paid positions are the aisle ends, and shoppers' preferred buying order is not discussed."
+    }
+  },
+  {
+    "typeCode": "READING_MCQ_SINGLE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Why bamboo grows so fast",
+      "tags": ["plants", "environment"],
+      "passage": "Some species of bamboo are among the fastest-growing plants on Earth, capable of growing almost a metre in a single day under ideal conditions. This remarkable speed is possible because bamboo does not grow in the same way as most trees. A new bamboo shoot emerges from the ground with all of its sections already formed, and each section then expands rapidly, rather like a telescope being extended. The plant is supported by an extensive underground network of roots and stems, which stores the energy needed for this sudden growth. Because it grows quickly and regrows after cutting without needing to be replanted, bamboo is increasingly used as a sustainable material for flooring, furniture and even construction. However, its environmental benefits depend on how it is farmed and processed, since some bamboo products involve chemical treatments and long-distance transport.",
+      "question": "What explains bamboo's very rapid growth, according to the passage?",
+      "options": [
+        { "text": "Its shoots emerge with sections already formed, which then expand", "correct": true },
+        { "text": "It is treated with chemicals that speed up its growth", "correct": false },
+        { "text": "It grows new sections every day like most trees", "correct": false },
+        { "text": "It must be replanted after each harvest", "correct": false }
+      ],
+      "explanation": "The passage explains that shoots emerge with all sections formed and expand like a telescope, supported by stored energy. Chemical treatment relates to processing, bamboo grows differently from trees, and it regrows without replanting."
+    }
+  },
+  {
+    "typeCode": "READING_MCQ_SINGLE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "The value of boredom",
+      "tags": ["psychology", "creativity"],
+      "passage": "Boredom is usually regarded as something to be avoided, and modern technology makes avoidance easier than ever: a phone can fill any spare moment with messages, news or entertainment. Psychologists who study boredom, however, suggest that the experience may serve a purpose. Boredom is uncomfortable precisely because it signals that our current activity is not satisfying our need for engagement or meaning. In that sense, it functions rather like hunger, prompting us to look for something more rewarding. Some experimental studies have also found that people who first completed a dull task, such as copying numbers from a telephone directory, later produced more original ideas in creative tests than people who had not been bored. The researchers suggest that boredom encourages the mind to wander, which can lead to unexpected connections. If every idle moment is immediately filled, we may lose not only the discomfort of boredom but also the motivation and creativity it can generate.",
+      "question": "Why does the writer compare boredom to hunger?",
+      "options": [
+        { "text": "Both are unpleasant sensations caused by using technology", "correct": false },
+        { "text": "Both can be eliminated by filling spare moments", "correct": false },
+        { "text": "Both are signals that motivate us to seek something we need", "correct": true },
+        { "text": "Both reduce our ability to think creatively", "correct": false }
+      ],
+      "explanation": "The comparison shows that boredom, like hunger, signals an unmet need and prompts us to look for something more rewarding. Technology is not described as causing hunger, eliminating boredom is presented as a loss, and boredom is linked to greater creativity."
+    }
+  },
+
+  {
+    "typeCode": "READING_MCQ_MULTIPLE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "The advantages of cycling to work",
+      "tags": ["health", "transport"],
+      "passage": "Cycling to work has become more popular in many cities, and research suggests it offers a range of benefits. The most obvious is physical health. Regular cyclists tend to have better cardiovascular fitness, and large studies have linked commuting by bicycle with a lower risk of heart disease. Cycling can also be good for mental wellbeing: many commuters report that the ride helps them feel more alert at the start of the day and allows them to relax on the way home. For individuals, the financial savings can be considerable, since bicycles are cheap to maintain compared with cars and require no fuel. In congested cities, a bicycle is often as fast as a car for short journeys, and cyclists do not need to search for parking. There are, however, drawbacks. Riders may arrive sweaty if their workplace lacks showers, and in cities without separate cycle lanes, safety remains a serious concern that discourages many potential cyclists.",
+      "question": "Which of the following are presented as benefits of cycling to work? Choose all that apply.",
+      "options": [
+        { "text": "A lower risk of heart disease", "correct": true },
+        { "text": "Improved mental wellbeing", "correct": true },
+        { "text": "Access to workplace showers", "correct": false },
+        { "text": "Lower costs than running a car", "correct": true },
+        { "text": "Greater safety than driving in all cities", "correct": false }
+      ],
+      "explanation": "The passage lists heart health, mental wellbeing and financial savings as benefits. Showers are mentioned only as something workplaces may lack, and safety is described as a serious concern in cities without cycle lanes."
+    }
+  },
+  {
+    "typeCode": "READING_MCQ_MULTIPLE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Challenges of space exploration",
+      "tags": ["science", "space"],
+      "passage": "Sending humans on long missions beyond Earth presents challenges that go far beyond building powerful rockets. One of the most serious is radiation. Outside the protection of Earth's magnetic field, astronauts are exposed to high-energy particles that can damage cells and increase the risk of cancer, and effective shielding adds considerable weight to a spacecraft. Weightlessness also affects the body. Without gravity, bones lose density and muscles weaken, which is why astronauts on the International Space Station exercise for around two hours every day. Long missions raise psychological issues as well, since small crews must live in confined spaces, far from family, with communication delays that make real-time conversation with Earth impossible on a journey to Mars. Food supply is a further problem, because a crew cannot rely on regular deliveries. Interestingly, engineers consider the technology for landing on Mars one of the less uncertain aspects, as robotic missions have already landed there successfully many times.",
+      "question": "Which challenges of long space missions are described in the passage? Choose all that apply.",
+      "options": [
+        { "text": "Exposure to harmful radiation", "correct": true },
+        { "text": "Loss of bone density and muscle strength", "correct": true },
+        { "text": "Delays in communicating with Earth", "correct": true },
+        { "text": "The complete lack of technology for landing on Mars", "correct": false },
+        { "text": "Astronauts being unable to exercise in weightlessness", "correct": false }
+      ],
+      "explanation": "Radiation, bone and muscle loss, and communication delays are all described as challenges. Landing technology is called one of the less uncertain aspects, and astronauts are said to exercise for two hours a day."
+    }
+  },
+  {
+    "typeCode": "READING_MCQ_MULTIPLE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Assessing the four-day school week",
+      "tags": ["education", "policy"],
+      "passage": "In some rural school districts, a four-day school week has been introduced, with longer school days compensating for the day removed. The motivations are largely practical. Districts save money on transport, heating and support staff, and some report that the schedule helps them recruit teachers, who value the extra day off in areas where salaries are relatively low. Attendance may also improve, since families can schedule medical appointments on the free day rather than removing children from lessons. The effects on learning, however, appear to be mixed. Several studies have found small declines in test scores, particularly in mathematics, while others have found no significant difference. Much seems to depend on what happens on the fifth day. Where schools offer optional tutoring or activities, the disadvantages are reduced, but families in which both parents work full time may struggle to arrange childcare, and children from low-income homes may lose access to school meals on that day.",
+      "question": "According to the passage, which of the following are possible disadvantages of a four-day school week? Choose all that apply.",
+      "options": [
+        { "text": "Small declines in test scores in some studies", "correct": true },
+        { "text": "Higher transport and heating costs for districts", "correct": false },
+        { "text": "Difficulty arranging childcare for working parents", "correct": true },
+        { "text": "Reduced access to school meals for some children", "correct": true },
+        { "text": "Greater difficulty recruiting teachers", "correct": false }
+      ],
+      "explanation": "The passage mentions possible declines in test scores, childcare difficulties and loss of school meals. Transport and heating costs are said to fall, and the schedule is said to help teacher recruitment."
+    }
+  },
+  {
+    "typeCode": "READING_MCQ_MULTIPLE",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "Why historic buildings are reused",
+      "tags": ["architecture", "sustainability"],
+      "passage": "When an old factory, warehouse or church is no longer used for its original purpose, it is increasingly converted into homes, offices, museums or cultural centres rather than demolished. This practice, known as adaptive reuse, has several attractions. From an environmental perspective, it avoids much of the carbon produced by manufacturing new concrete and steel, since a large share of a building's lifetime emissions come from its construction. Historic buildings also contribute to the character of a neighbourhood, and converted spaces with high ceilings and original features are often popular with residents and businesses. In some cases, reuse can be faster than new construction because the main structure already exists. Nevertheless, the process is not always simple or cheap. Older buildings may contain hazardous materials, fail to meet modern safety or energy standards, and require expensive structural repairs. Planning rules that protect historic features can also limit how much the interior may be altered.",
+      "question": "Which of the following are given as advantages of adaptive reuse? Choose all that apply.",
+      "options": [
+        { "text": "It avoids emissions from producing new construction materials", "correct": true },
+        { "text": "It always costs less than building a new structure", "correct": false },
+        { "text": "It preserves the character of neighbourhoods", "correct": true },
+        { "text": "Older buildings usually meet modern energy standards", "correct": false },
+        { "text": "It can sometimes be faster than new construction", "correct": true }
+      ],
+      "explanation": "The passage cites lower construction emissions, neighbourhood character and sometimes faster completion. It states that reuse is not always cheap and that older buildings may fail modern energy standards."
+    }
+  },
+  {
+    "typeCode": "READING_MCQ_MULTIPLE",
+    "difficulty": "EASY",
+    "content": {
+      "title": "How to improve reading speed",
+      "tags": ["study skills", "reading"],
+      "passage": "Students often feel overwhelmed by the amount of reading required at university, and many look for ways to read faster. Some popular and heavily advertised speed-reading techniques promise to multiply reading speed several times, but research suggests that such dramatic gains usually come at the cost of understanding. There are, however, practical strategies that genuinely help. The first is to read with a clear purpose. Before starting a chapter, decide what you need to find out, which allows you to skim sections that are less relevant. Second, look at headings, summaries and the first sentence of each paragraph, which often contain the main idea. Third, build your vocabulary in your subject, since unfamiliar terms are one of the main causes of slow reading. Finally, it is worth accepting that not every text deserves the same attention. Some sources should be studied carefully, while others need only a quick check for key points.",
+      "question": "Which strategies does the writer recommend for reading more efficiently? Choose all that apply.",
+      "options": [
+        { "text": "Deciding in advance what information you need", "correct": true },
+        { "text": "Using speed-reading techniques to read several times faster", "correct": false },
+        { "text": "Looking at headings and first sentences of paragraphs", "correct": true },
+        { "text": "Reading every text with the same level of attention", "correct": false },
+        { "text": "Developing subject-specific vocabulary", "correct": true }
+      ],
+      "explanation": "The writer recommends reading with a purpose, checking headings and first sentences, and building vocabulary. Dramatic speed-reading is said to reduce understanding, and the writer argues texts deserve different levels of attention."
+    }
+  },
+  {
+    "typeCode": "READING_MCQ_MULTIPLE",
+    "difficulty": "HARD",
+    "content": {
+      "title": "The limits of GDP comparisons",
+      "tags": ["economics", "statistics"],
+      "passage": "Comparisons of gross domestic product between countries are widely used to judge relative prosperity, but economists warn that such figures need careful interpretation. One difficulty is price levels. The same income buys much more in some countries than others, so figures are often adjusted using purchasing power parity to reflect what money can actually buy locally. Another issue is the informal economy. In many countries, a substantial share of work, such as street trading or small-scale farming, is never officially recorded and is therefore partly or wholly missing from national statistics. Gross domestic product also measures total output rather than how it is shared, so a country with a high average may still contain widespread poverty. Population size matters too, which is why comparisons usually use output per person. Finally, the measure takes no account of environmental damage, so rapid growth achieved by depleting forests or fisheries may appear entirely positive in the statistics.",
+      "question": "Which problems with comparing GDP between countries are mentioned? Choose all that apply.",
+      "options": [
+        { "text": "Differences in what money can buy in each country", "correct": true },
+        { "text": "Unrecorded work in the informal economy", "correct": true },
+        { "text": "The inability to calculate output per person", "correct": false },
+        { "text": "Changes in exchange rates between currencies each day", "correct": false },
+        { "text": "The absence of information about how income is distributed", "correct": true }
+      ],
+      "explanation": "The passage discusses price levels, the informal economy and the fact that GDP ignores distribution. It says output per person is commonly used, and daily exchange-rate changes are not mentioned."
+    }
+  },
+
+  {
+    "typeCode": "REORDER_PARAGRAPHS",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Opening a small bakery",
+      "tags": ["business"],
+      "paragraphs_in_order": [
+        "When Maya lost her office job, she decided to turn her weekend hobby of baking bread into a business.",
+        "At first, she sold loaves at a local farmers' market every Saturday, testing which recipes customers liked best.",
+        "Encouraged by regular queues at her stall, she borrowed money from a community lender to rent a small shop.",
+        "Within two years, the bakery employed five people and supplied bread to several nearby cafés."
+      ],
+      "explanation": "The sequence moves from the decision to start, to testing at a market, to opening a shop with borrowed money, to later growth. 'At first' and 'Encouraged by regular queues' link each step."
+    }
+  },
+  {
+    "typeCode": "REORDER_PARAGRAPHS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The discovery of a new comet",
+      "tags": ["astronomy", "science"],
+      "paragraphs_in_order": [
+        "Amateur astronomers still make important contributions to science, particularly in the search for comets.",
+        "Last year, one such enthusiast noticed a faint, fuzzy object in photographs taken with a backyard telescope.",
+        "She reported the sighting to an international astronomy centre, which asked professional observatories to confirm it.",
+        "Their measurements showed that the object was indeed a previously unknown comet travelling towards the inner solar system.",
+        "In recognition of her discovery, the comet was officially given her name."
+      ],
+      "explanation": "The general statement comes first, followed by a specific example, the report, professional confirmation, and finally the recognition. 'One such enthusiast' refers back to amateur astronomers, and 'Their measurements' refers to the observatories."
+    }
+  },
+  {
+    "typeCode": "REORDER_PARAGRAPHS",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Why the city changed its water policy",
+      "tags": ["policy", "environment"],
+      "paragraphs_in_order": [
+        "For decades, the city's water supply seemed limitless, and prices were among the lowest in the country.",
+        "That assumption was shattered by three consecutive years of drought, which left the main reservoir at a fifth of its capacity.",
+        "Officials initially responded with temporary bans on watering gardens, but these proved difficult to enforce.",
+        "They therefore introduced a tiered pricing system, under which households paid considerably more for water above a basic allowance.",
+        "Although unpopular at first, the policy reduced consumption by almost a quarter and has remained in place since."
+      ],
+      "explanation": "The passage moves from the original situation to the drought that challenged it, the first response, the replacement policy, and its results. 'That assumption', 'initially' and 'therefore' establish the order."
+    }
+  },
+  {
+    "typeCode": "REORDER_PARAGRAPHS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "How a scientific paper is published",
+      "tags": ["research", "academic"],
+      "paragraphs_in_order": [
+        "Once researchers have completed a study, they write up their methods and findings as a paper.",
+        "The paper is then submitted to a journal, where an editor decides whether it is suitable for review.",
+        "If it is, the editor sends it to independent experts, who assess the quality of the research and suggest changes.",
+        "Only after the authors have addressed these comments satisfactorily is the paper accepted for publication."
+      ],
+      "explanation": "The steps follow the publishing process in order: writing, submission to an editor, peer review by experts, and acceptance. 'Then', 'If it is' and 'these comments' link each box to the previous one."
+    }
+  },
+  {
+    "typeCode": "REORDER_PARAGRAPHS",
+    "difficulty": "EASY",
+    "content": {
+      "title": "A village's solar project",
+      "tags": ["energy", "community"],
+      "paragraphs_in_order": [
+        "The remote village had never been connected to the national electricity grid.",
+        "Residents relied instead on kerosene lamps, which were expensive and filled homes with smoke.",
+        "In response, a local cooperative installed solar panels on the roof of the community hall and connected nearby homes.",
+        "As a result, children can now study in the evenings, and several families have started small businesses."
+      ],
+      "explanation": "The problem is introduced, followed by its consequence, the solution and the results. 'Instead', 'In response' and 'As a result' show the logical sequence."
+    }
+  },
+  {
+    "typeCode": "REORDER_PARAGRAPHS",
+    "difficulty": "HARD",
+    "content": {
+      "title": "The evolution of the museum",
+      "tags": ["history", "culture"],
+      "paragraphs_in_order": [
+        "The earliest collections that resembled museums were private cabinets of curiosities owned by wealthy individuals.",
+        "These rooms displayed shells, fossils, coins and objects from distant lands, often with little attempt at systematic organisation.",
+        "Over time, some collectors donated their possessions to universities or cities, and the first public museums were founded.",
+        "Such institutions gradually adopted scientific classification, arranging objects to educate visitors rather than simply to impress them.",
+        "Today, museums increasingly go further still, involving communities in deciding how their histories are presented."
+      ],
+      "explanation": "The order traces museums from private cabinets, to their contents, to public donation, to scientific organisation, and to modern community involvement. 'These rooms', 'Such institutions' and 'go further still' connect each stage."
+    }
+  },
+
+  {
+    "typeCode": "READING_FILL_BLANKS",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Why we need vitamin D",
+      "tags": ["health", "nutrition"],
+      "passage": "Vitamin D helps the body absorb calcium, which is essential for strong bones and teeth. Unlike most vitamins, it can be {{1}} by the skin when it is exposed to sunlight. People who spend little time outdoors, or who live far from the equator, may therefore have low levels during the winter {{2}}. Doctors sometimes recommend supplements to {{3}} a deficiency, particularly for older adults and young children.",
+      "blanks": [
+        { "answer": "produced", "distractors": ["removed", "damaged", "forgotten"] },
+        { "answer": "months", "distractors": ["lessons", "meals", "streets"] },
+        { "answer": "prevent", "distractors": ["encourage", "celebrate", "measure"] }
+      ],
+      "explanation": "The skin produces vitamin D in sunlight, low levels occur during the winter months, and supplements prevent a deficiency. The distractors do not fit the meaning of each sentence."
+    }
+  },
+  {
+    "typeCode": "READING_FILL_BLANKS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The spread of invasive plants",
+      "tags": ["ecology", "environment"],
+      "passage": "Many invasive plants were originally introduced deliberately, often as attractive additions to gardens. Freed from the insects and diseases that {{1}} them in their native habitats, some species spread rapidly into the surrounding countryside. There they can {{2}} native plants for light, water and nutrients, reducing the variety of wildlife an area can support. Removing an established invasive species is usually extremely difficult and {{3}}, so preventing new introductions is widely considered the most effective strategy.",
+      "blanks": [
+        { "answer": "controlled", "distractors": ["decorated", "celebrated", "described"] },
+        { "answer": "outcompete", "distractors": ["replant", "photograph", "welcome"] },
+        { "answer": "expensive", "distractors": ["enjoyable", "unnecessary", "decorative"] }
+      ],
+      "explanation": "Insects and diseases controlled the plants at home, invasive species outcompete native plants for resources, and removal is difficult and expensive, which is why prevention is preferred."
+    }
+  },
+  {
+    "typeCode": "READING_FILL_BLANKS",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Cognitive load and learning",
+      "tags": ["psychology", "education"],
+      "passage": "Cognitive load theory proposes that working memory, the system we use to hold and process new information, has a very limited {{1}}. When learners are presented with too many unfamiliar elements at once, this system becomes overloaded and understanding {{2}}. Effective instruction therefore breaks complex material into manageable parts and removes {{3}} information that does not contribute to learning. As learners gain expertise, knowledge stored in long-term memory reduces the burden on working memory, allowing them to {{4}} increasingly complex problems.",
+      "blanks": [
+        { "answer": "capacity", "distractors": ["history", "colour", "reputation"] },
+        { "answer": "suffers", "distractors": ["expands", "celebrates", "accelerates"] },
+        { "answer": "irrelevant", "distractors": ["essential", "fundamental", "memorable"] },
+        { "answer": "tackle", "distractors": ["ignore", "invent", "postpone"] }
+      ],
+      "explanation": "Working memory has limited capacity, overload means understanding suffers, instruction removes irrelevant information, and expertise allows learners to tackle harder problems."
+    }
+  },
+  {
+    "typeCode": "READING_FILL_BLANKS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The origins of the marathon",
+      "tags": ["sport", "history"],
+      "passage": "The modern marathon is based on a legend about a Greek messenger who ran from the battlefield of Marathon to Athens to {{1}} a victory. When the first modern Olympic Games were held in eighteen ninety-six, organisers included a long-distance race to {{2}} this story. The distance varied at early Games and was only officially {{3}} at just over forty-two kilometres in the nineteen twenties.",
+      "blanks": [
+        { "answer": "announce", "distractors": ["forget", "prevent", "purchase"] },
+        { "answer": "commemorate", "distractors": ["criticise", "conceal", "abandon"] },
+        { "answer": "fixed", "distractors": ["broken", "ignored", "shortened"] }
+      ],
+      "explanation": "The messenger ran to announce a victory, organisers wanted to commemorate the legend, and the distance was later officially fixed."
+    }
+  },
+  {
+    "typeCode": "READING_FILL_BLANKS",
+    "difficulty": "EASY",
+    "content": {
+      "title": "How rainbows form",
+      "tags": ["physics", "weather"],
+      "passage": "A rainbow appears when sunlight shines through raindrops in the air. As light enters each drop, it bends and {{1}} into its different colours, because each colour bends by a slightly different amount. The light then reflects off the back of the drop before leaving it. To see a rainbow, you must stand with the sun {{2}} you and the rain in front of you, which is why rainbows are most often seen in the early morning or late {{3}}.",
+      "blanks": [
+        { "answer": "separates", "distractors": ["freezes", "disappears", "hardens"] },
+        { "answer": "behind", "distractors": ["inside", "beneath", "without"] },
+        { "answer": "afternoon", "distractors": ["winter", "century", "midnight"] }
+      ],
+      "explanation": "Light separates into colours, the sun must be behind the observer, and rainbows are common in the early morning or late afternoon when the sun is low."
+    }
+  },
+  {
+    "typeCode": "READING_FILL_BLANKS",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Automation in accounting",
+      "tags": ["technology", "work"],
+      "passage": "Software now performs many routine accounting tasks, such as recording transactions and preparing standard reports, far more quickly than people can. Some observers predicted this would make accountants {{1}}, yet employment in the profession has not collapsed. Instead, the nature of the work has {{2}}. Accountants increasingly spend their time interpreting financial data, advising clients on strategy and ensuring {{3}} with complex regulations, tasks that require judgement rather than calculation. The profession's experience suggests that automation often transforms jobs rather than simply {{4}} them.",
+      "blanks": [
+        { "answer": "redundant", "distractors": ["wealthy", "famous", "confident"] },
+        { "answer": "shifted", "distractors": ["vanished", "froze", "doubled"] },
+        { "answer": "compliance", "distractors": ["competition", "confusion", "celebration"] },
+        { "answer": "eliminating", "distractors": ["decorating", "advertising", "celebrating"] }
+      ],
+      "explanation": "Observers predicted accountants would become redundant, but the work shifted towards interpretation, advice and regulatory compliance, showing that automation transforms rather than eliminates jobs."
+    }
+  },
+
+  {
+    "typeCode": "READING_WRITING_FILL_BLANKS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The benefits of bilingualism",
+      "tags": ["language", "psychology"],
+      "passage": "Researchers have long been interested in whether speaking two languages {{1}} the brain in ways that go beyond communication. Some studies suggest that bilingual people are slightly better at switching between tasks, possibly because they constantly {{2}} which language to use. However, other researchers have failed to {{3}} these findings, and the size of any advantage remains {{4}}. What is clear is that learning another language offers substantial cultural and professional benefits.",
+      "blanks": [
+        { "answer": "affects", "distractors": ["effects", "affection", "affecting"] },
+        { "answer": "manage", "distractors": ["management", "managed", "manageable"] },
+        { "answer": "replicate", "distractors": ["replication", "replicated", "replicas"] },
+        { "answer": "uncertain", "distractors": ["uncertainty", "uncertainly", "certainty"] }
+      ],
+      "explanation": "'Affects' is the verb needed after 'speaking two languages'; 'manage' follows 'constantly' as a verb; 'replicate' follows 'failed to'; and 'uncertain' is an adjective after 'remains'."
+    }
+  },
+  {
+    "typeCode": "READING_WRITING_FILL_BLANKS",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Public parks and city life",
+      "tags": ["cities", "health"],
+      "passage": "Public parks play an important role in city life. They {{1}} residents with space for exercise, relaxation and social activities, which is especially valuable for people who do not have gardens. Trees in parks also help to {{2}} air quality and reduce summer temperatures. For these reasons, many city councils are trying to make sure that every household lives {{3}} walking distance of a green space, although finding suitable land can be {{4}} in crowded areas.",
+      "blanks": [
+        { "answer": "provide", "distractors": ["provision", "providing", "provided"] },
+        { "answer": "improve", "distractors": ["improvement", "improving", "improves"] },
+        { "answer": "within", "distractors": ["among", "above", "between"] },
+        { "answer": "difficult", "distractors": ["difficulty", "difficultly", "differ"] }
+      ],
+      "explanation": "'Provide residents with' requires a base verb; 'help to' is followed by the base form 'improve'; 'within walking distance' is a fixed phrase; and 'can be' needs the adjective 'difficult'."
+    }
+  },
+  {
+    "typeCode": "READING_WRITING_FILL_BLANKS",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Ethics in medical research",
+      "tags": ["medicine", "ethics"],
+      "passage": "Modern medical research is governed by strict ethical principles, many of which were {{1}} in response to serious abuses in the past. Participants must give informed consent, meaning they understand the purpose, risks and potential benefits of a study before agreeing to take part. Independent committees review research proposals to ensure that risks are {{2}} to a minimum and that vulnerable groups are protected. Participants also retain the right to {{3}} from a study at any time without penalty, a principle that is now {{4}} accepted throughout the world.",
+      "blanks": [
+        { "answer": "developed", "distractors": ["development", "developing", "develops"] },
+        { "answer": "kept", "distractors": ["held", "put", "made"] },
+        { "answer": "withdraw", "distractors": ["withdrawal", "withdrawn", "withdrawing"] },
+        { "answer": "widely", "distractors": ["wide", "width", "widen"] }
+      ],
+      "explanation": "The passive 'were developed' needs a past participle; 'kept to a minimum' is the fixed collocation; 'the right to' takes the base verb 'withdraw'; and the adverb 'widely' modifies 'accepted'."
+    }
+  },
+  {
+    "typeCode": "READING_WRITING_FILL_BLANKS",
+    "difficulty": "MEDIUM",
+    "content": {
+      "title": "The growth of online learning",
+      "tags": ["education", "technology"],
+      "passage": "Online courses have made education accessible to millions of people who cannot attend a university in person, including those who work full time or live in remote areas. However, completion rates for free online courses are often {{1}} low, with many students leaving after the first few weeks. Researchers believe that a lack of structure and personal {{2}} contributes to this problem. Courses that {{3}} regular deadlines, discussion groups and feedback from tutors tend to keep learners {{4}} for longer.",
+      "blanks": [
+        { "answer": "remarkably", "distractors": ["remarkable", "remark", "remarked"] },
+        { "answer": "contact", "distractors": ["contacted", "contacting", "contactable"] },
+        { "answer": "include", "distractors": ["inclusion", "inclusive", "including"] },
+        { "answer": "engaged", "distractors": ["engagement", "engage", "engages"] }
+      ],
+      "explanation": "An adverb, 'remarkably', modifies 'low'; 'personal contact' needs a noun; 'Courses that' requires a plural verb, 'include'; and 'keep learners engaged' uses a participle adjective."
+    }
+  },
+  {
+    "typeCode": "READING_WRITING_FILL_BLANKS",
+    "difficulty": "EASY",
+    "content": {
+      "title": "Why people keep pets",
+      "tags": ["animals", "health"],
+      "passage": "People keep pets for many reasons, but companionship is usually the most important. Studies have shown that owning a dog can {{1}} people to take more exercise, since dogs need to be walked every day. Pets can also help to reduce feelings of loneliness, particularly among older people who live {{2}}. However, looking after an animal is a long-term {{3}}, and anyone thinking of getting a pet should consider the time and cost {{4}}.",
+      "blanks": [
+        { "answer": "encourage", "distractors": ["courage", "encouragement", "encouraging"] },
+        { "answer": "alone", "distractors": ["lonely", "lone", "loneliness"] },
+        { "answer": "commitment", "distractors": ["commit", "committed", "committee"] },
+        { "answer": "involved", "distractors": ["involve", "involvement", "involving"] }
+      ],
+      "explanation": "'Can' is followed by the base verb 'encourage'; 'live alone' uses the adverb; 'a long-term commitment' needs a noun; and 'the time and cost involved' uses a past participle after the noun."
+    }
+  },
+  {
+    "typeCode": "READING_WRITING_FILL_BLANKS",
+    "difficulty": "HARD",
+    "content": {
+      "title": "Artificial light and human health",
+      "tags": ["health", "science"],
+      "passage": "Human bodies evolved to follow a daily rhythm {{1}} by the natural cycle of light and darkness. Exposure to bright artificial light in the evening, particularly the blue light emitted by screens, can {{2}} the release of melatonin, a hormone that helps regulate sleep. Over time, disrupted sleep has been {{3}} with a range of health problems. Experts therefore recommend dimming lights and avoiding screens for an hour before bed, {{4}} few people find this advice easy to follow.",
+      "blanks": [
+        { "answer": "governed", "distractors": ["government", "governing", "governs"] },
+        { "answer": "suppress", "distractors": ["suppression", "suppressed", "suppressive"] },
+        { "answer": "associated", "distractors": ["association", "associate", "associating"] },
+        { "answer": "although", "distractors": ["despite", "because", "unless"] }
+      ],
+      "explanation": "'A rhythm governed by' needs a past participle; 'can' takes the base verb 'suppress'; the passive 'has been associated with' is required; and 'although' introduces a contrasting clause, which 'despite' cannot do before a clause."
+    }
+  }
+]

@@ -2,6 +2,7 @@ import { z } from 'zod'
 import { questionType, type QuestionTypeCode } from '../pte/question-types'
 import { tokenizeWords } from '../pte/schemas'
 import { normalizeText } from '../pte/scoring'
+import { chartSchema, describeImagePrompt, validateChart } from './charts'
 
 /**
  * AI-assisted authoring for the PTE question bank.
@@ -701,6 +702,38 @@ export const GENERATABLE_TYPES = Object.keys(SPECS) as QuestionTypeCode[]
 
 export function generationSpec(code: string): GenerationSpec | undefined {
   return SPECS[code as QuestionTypeCode]
+}
+
+/**
+ * Specs for hand-written items imported with `--from`, which is where Describe
+ * Image comes in: each item carries the data for its figure, and
+ * `npm run content:media` draws it (see ../content/charts).
+ */
+const IMPORT_ONLY_SPECS: Partial<Record<QuestionTypeCode, GenerationSpec>> = {
+  DESCRIBE_IMAGE: spec({
+    prefix: 'DI',
+    brief: 'Describe a chart, table or diagram.',
+    properties: {},
+    schema: base.extend({ chart: chartSchema, sample_answer: z.string() }),
+    assemble(raw) {
+      try {
+        validateChart(raw.chart)
+      } catch (error) {
+        throw new GenerationError(error instanceof Error ? error.message : String(error))
+      }
+      requireWords('Sample answer', raw.sample_answer, 50, 110)
+      return draft({
+        title: raw.title,
+        tags: raw.tags,
+        prompt: describeImagePrompt(raw.chart),
+        sampleAnswer: raw.sample_answer,
+      })
+    },
+  }),
+}
+
+export function importSpec(code: string): GenerationSpec | undefined {
+  return generationSpec(code) ?? IMPORT_ONLY_SPECS[code as QuestionTypeCode]
 }
 
 export interface GenerationRequest {
